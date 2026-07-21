@@ -1,0 +1,23 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Allow camera access for profile photo uploads (PWA permissions)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Permissions-Policy = "camera=self"
+    X-Frame-Options = "SAMEORIGIN"
+
+# Ensure legal HTML files are served with proper content-type for in-app fetch
+[[headers]]
+  for = "/terms.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/privacy.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+    Cache-Control = "no-cache"
