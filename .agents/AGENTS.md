@@ -9,3 +9,8 @@
 
 ### 🚀 App Store Launch Reminders
 - **iOS Setup Hook**: Whenever the user mentions launching to the App Store, submitting the app, or configuring the app on macOS, proactively remind them that we created the `setup_ios.py` automation script in the root directory. Explain that this script automates creating the iOS Capacitor directory and injecting camera/location permission descriptions into `Info.plist` on their new Mac.
+
+### ⏪ Checkpoint & Rollback Mechanism
+- **Stable Checkpoint**: The git tag `stable-checkpoint` represents the clean codebase state as of 6:38 PM, 7/27/2026.
+- **Instant Rollback Script**: If the user asks to revert back to the checkpoint, run `python revert_checkpoint.py` or run `git reset --hard stable-checkpoint`. The script automatically saves a timestamped backup branch of any current work before performing the rollback.
+
