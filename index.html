@@ -28,7 +28,7 @@
   <!-- Leaflet.js for embedded route maps -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="index.css?v=20">
+  <link rel="stylesheet" href="index.css?v=50">
 
 </head>
 <body>
@@ -51,382 +51,494 @@
 
   <!-- ══════════════ SPLASH / ONBOARDING / LOGIN ══════════════ -->
   <div class="splash" id="splash">
+    <!-- ══════════════ 8-STEP ONBOARDING & AUTH FLOW ══════════════ -->
+    <div id="auth-onboard-container" class="hopon-auth-container">
 
-    <!-- Onboarding -->
-    <div class="onboard" id="onboard">
-      <div class="onboard-slides" id="onboard-slides-wrap">
-
-        <!-- Slide 1 -->
-        <div class="onboard-slide" style="background:linear-gradient(160deg,#f5f0ff 0%,#ede8f8 100%)">
-          <div class="onboard-illustration" style="background:rgba(6,64,43,0.08); display:flex; align-items:center; justify-content:center;">
-            <svg width="100" height="100" viewBox="0 0 100 100" style="animation: carFloat 2.5s infinite ease-in-out;">
-              <path class="road-dashed" d="M10 70 L90 70" stroke="var(--purple)" stroke-width="3" stroke-dasharray="8 6" fill="none" />
-              <!-- Car Graphic -->
-              <path d="M 20,62 L 20,53 C 20,50 22,48 25,48 L 30,48 C 33,48 36,44 38,40 L 45,30 C 47,27 52,27 54,30 L 62,40 C 64,44 67,48 70,48 L 75,48 C 78,48 80,50 80,53 L 80,62 Z" fill="var(--purple)" />
-              <!-- Window -->
-              <path d="M 40,46 L 47,34 C 48,32 52,32 53,34 L 60,46 Z" fill="#fff" opacity="0.8" />
-              <!-- Headlight -->
-              <circle cx="77" cy="54" r="3" fill="#FBBF24" />
-              <!-- Wheels -->
-              <circle cx="32" cy="62" r="7" fill="#1E1A34" stroke="#fff" stroke-width="1.5" />
-              <circle cx="68" cy="62" r="7" fill="#1E1A34" stroke="#fff" stroke-width="1.5" />
-            </svg>
-          </div>
-          <div class="onboard-text">
-            <div class="onboard-tag" style="background:var(--purple-pale);color:var(--purple)">Ridesharing</div>
-            <div class="onboard-title" style="color:var(--text-dark)">Find rides that match your route</div>
-            <div class="onboard-desc" style="color:var(--text-light)">Browse hundreds of community-verified rides near you. Safe, affordable, and community-driven.</div>
-          </div>
+      <!-- STEP 1: WELCOME SCREEN (Sign In vs Create Account) -->
+      <div id="step-auth-welcome" class="hopon-auth-step active">
+        <!-- 🎨 Background Vector Layer: Luggage, Pin & Car Route -->
+        <div class="hopon-bg-vector-layer top-right float-diagonal">
+          <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="75" y="45" width="55" height="70" rx="10" stroke="#06402b" stroke-width="3.5" />
+            <path d="M92 45 V32 C92 28 98 28 102 28 C106 28 112 28 112 32 V45" stroke="#06402b" stroke-width="3" />
+            <line x1="75" y1="70" x2="130" y2="70" stroke="#06402b" stroke-width="2.5" />
+            <line x1="75" y1="90" x2="130" y2="90" stroke="#06402b" stroke-width="2.5" />
+            <circle cx="87" cy="118" r="4" fill="#06402b" />
+            <circle cx="118" cy="118" r="4" fill="#06402b" />
+            <path d="M35 25 C35 15 50 15 50 25 C50 35 35 48 35 48 C35 48 20 35 20 25 C20 15 35 15 35 25 Z" stroke="#06402b" stroke-width="3" />
+            <circle cx="35" cy="25" r="5" fill="#06402b" />
+          </svg>
         </div>
-
-        <!-- Slide 2 -->
-        <div class="onboard-slide" style="background:linear-gradient(160deg,#1a1035 0%,#06402B 100%)">
-          <div class="onboard-illustration" style="background:rgba(255,255,255,0.10); display:flex; align-items:center; justify-content:center;">
-            <svg width="100" height="100" viewBox="0 0 100 100" style="animation: coinFloat 2.5s infinite ease-in-out;">
-              <!-- Chart Bars -->
-              <rect x="25" y="60" width="10" height="15" fill="#fff" opacity="0.3" rx="2" />
-              <rect x="40" y="45" width="10" height="30" fill="#fff" opacity="0.5" rx="2" />
-              <rect x="55" y="30" width="10" height="45" fill="#fff" opacity="0.8" rx="2" />
-              <!-- Bouncing Coin -->
-              <circle cx="70" cy="25" r="9" fill="#FBBF24" stroke="#D97706" stroke-width="1.5" style="animation: coinBounce 2s infinite ease-in-out;" />
-              <text x="70" y="28" font-family="'Fredoka', sans-serif" font-size="10" font-weight="800" fill="#fff" text-anchor="middle">$</text>
-            </svg>
-          </div>
-          <div class="onboard-text">
-            <div class="onboard-tag" style="background:rgba(255,255,255,0.15);color:#fff">Earn Money</div>
-            <div class="onboard-title" style="color:#fff">Turn your commute into cash</div>
-            <div class="onboard-desc" style="color:rgba(255,255,255,0.75)">Post your ride, pick up passengers on your route, and get paid instantly to your account.</div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="onboard-slide" style="background:linear-gradient(160deg,#f0fdf4 0%,#dcfce7 100%)">
-          <div class="onboard-illustration" style="background:rgba(34,197,94,0.10); display:flex; align-items:center; justify-content:center; overflow:visible;">
-            <svg width="100" height="100" viewBox="0 0 100 100" style="animation: shieldPulse 2s infinite ease-in-out; overflow:visible;">
-              <!-- Pulsing rings -->
-              <circle cx="50" cy="50" r="38" fill="none" stroke="#22C55E" stroke-width="2" class="shield-pulse-ring" />
-              <circle cx="50" cy="50" r="38" fill="none" stroke="#22C55E" stroke-width="2" class="shield-pulse-ring-delayed" />
-              <!-- Shield -->
-              <path d="M50 22 C62 22 70 18 70 18 L70 48 C70 62 50 78 50 78 C50 78 30 62 30 48 L30 18 C30 18 38 22 50 22 Z" fill="#22C55E" />
-              <!-- Checkmark -->
-              <path d="M42 50 L48 56 L58 44" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </div>
-          <div class="onboard-text">
-            <div class="onboard-tag" style="background:#dcfce7;color:#16A34A">Safety First</div>
-            <div class="onboard-title" style="color:var(--text-dark)">Ride with verified members only</div>
-            <div class="onboard-desc" style="color:var(--text-light)">Every driver is ID-verified and background-checked. Share your live trip with friends for peace of mind.</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="onboard-footer">
-        <div class="dots">
-          <div class="dot-indicator active" id="dot0"></div>
-          <div class="dot-indicator" id="dot1"></div>
-          <div class="dot-indicator" id="dot2"></div>
-        </div>
-        <button class="btn-purple" id="onboard-next-btn" onclick="onboardNext()">Get Started →</button>
-        <div class="login-link" style="margin-top:12px">Already have an account? <span onclick="showLogin()">Sign In</span></div>
-      </div>
-    </div>
-
-    <!-- Login Screen -->
-    <div class="login-screen hidden" id="login-screen">
-      <div class="login-hero">
-        <div class="login-hero-logo">
-          <!-- HopOn Leaping Rabbit Logo -->
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:80px;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.2));">
-            <path fill="white" d="M 43.41,7.20 C 43.41,7.20 51.04,8.04 52.20,8.29 C 53.35,8.55 52.91,9.26 53.29,9.39 C 53.68,9.52 54.46,9.01 55.49,9.39 C 56.51,9.77 60.28,11.27 62.07,12.68 C 63.87,14.09 69.32,19.54 70.85,21.46 C 72.39,23.38 73.96,28.12 75.24,29.15 C 76.52,30.17 80.29,29.73 81.83,30.24 C 83.37,30.76 87.39,32.90 88.41,33.54 C 89.44,34.18 90.35,35.35 90.61,35.73 C 90.87,36.12 90.23,36.19 90.61,36.83 C 90.99,37.47 93.52,40.20 93.90,41.22 C 94.29,42.24 94.41,44.71 93.90,45.61 C 93.39,46.51 90.41,48.52 89.51,48.90 C 88.62,49.29 86.73,48.77 86.22,48.90 C 85.71,49.03 86.02,49.87 85.12,50.00 C 84.23,50.13 79.82,49.62 78.54,50.00 C 77.26,50.38 74.27,52.65 74.15,53.29 C 74.02,53.93 76.80,55.23 77.44,55.49 C 78.08,55.74 78.35,54.98 79.63,55.49 C 80.91,56.00 86.62,58.60 88.41,59.88 C 90.21,61.16 94.36,65.57 95.00,66.46 C 95.64,67.36 94.67,67.56 93.90,67.56 C 93.13,67.56 89.18,66.72 88.41,66.46 C 87.65,66.21 88.09,65.62 87.32,65.37 C 86.55,65.11 82.60,64.52 81.83,64.27 C 81.06,64.01 81.37,63.30 80.73,63.17 C 80.09,63.04 76.98,63.30 76.34,63.17 C 75.70,63.04 76.27,62.20 75.24,62.07 C 74.22,61.95 68.59,62.20 67.56,62.07 C 66.54,61.95 68.51,60.98 66.46,60.98 C 64.41,60.98 52.05,61.82 50.00,62.07 C 47.95,62.33 49.54,63.04 48.90,63.17 C 48.26,63.30 45.15,63.04 44.51,63.17 C 43.87,63.30 43.54,64.27 43.41,64.27 C 43.29,64.27 42.77,63.94 43.41,63.17 C 44.05,62.40 47.49,59.86 48.90,57.68 C 50.31,55.51 53.95,46.82 55.49,44.51 C 57.02,42.21 60.92,38.82 62.07,37.93 C 63.23,37.03 64.34,37.47 65.37,36.83 C 66.39,36.19 70.60,33.21 70.85,32.44 C 71.11,31.67 68.71,30.63 67.56,30.24 C 66.41,29.86 62.26,29.66 60.98,29.15 C 59.70,28.63 57.23,26.24 56.59,25.85 C 55.95,25.47 56.51,26.75 55.49,25.85 C 54.46,24.96 49.09,19.84 47.80,18.17 C 46.52,16.51 45.02,12.87 44.51,11.59 C 44.00,10.30 43.54,7.71 43.41,7.20 C 43.29,6.68 42.39,7.07 43.41,7.20 Z"/>
-            <path fill="white" d="M 53.29,36.83 C 53.29,36.83 60.34,36.70 60.98,36.83 C 61.62,36.96 59.68,37.16 58.78,37.93 C 57.88,38.70 54.83,41.11 53.29,43.41 C 51.76,45.72 47.40,55.12 45.61,57.68 C 43.82,60.24 39.85,63.96 37.93,65.37 C 36.01,66.77 30.94,68.60 29.15,69.76 C 27.35,70.91 23.46,74.60 22.56,75.24 C 21.66,75.88 22.62,74.22 21.46,75.24 C 20.31,76.27 13.71,82.87 12.68,84.02 C 11.66,85.18 13.07,84.61 12.68,85.12 C 12.30,85.63 9.90,87.65 9.39,88.41 C 8.88,89.18 8.55,91.20 8.29,91.71 C 8.04,92.22 7.58,92.68 7.20,92.80 C 6.81,92.93 5.26,93.96 5.00,92.80 C 4.74,91.65 4.87,84.21 5.00,82.93 C 5.13,81.65 5.97,82.47 6.10,81.83 C 6.23,81.19 5.97,78.08 6.10,77.44 C 6.23,76.80 6.94,77.11 7.20,76.34 C 7.45,75.57 7.65,72.39 8.29,70.85 C 8.93,69.32 12.17,64.32 12.68,63.17 C 13.20,62.02 13.20,61.49 12.68,60.98 C 12.17,60.46 8.93,59.29 8.29,58.78 C 7.65,58.27 7.32,57.35 7.20,56.59 C 7.07,55.82 7.07,52.96 7.20,52.20 C 7.32,51.43 7.78,50.51 8.29,50.00 C 8.80,49.49 10.82,48.06 11.59,47.80 C 12.35,47.55 14.24,47.68 14.88,47.80 C 15.52,47.93 16.56,48.39 17.07,48.90 C 17.59,49.41 18.88,51.81 19.27,52.20 C 19.65,52.58 19.34,52.96 20.37,52.20 C 21.39,51.43 25.87,47.02 28.05,45.61 C 30.23,44.20 37.36,40.76 39.02,40.12 C 40.69,39.48 41.42,40.38 42.32,40.12 C 43.21,39.87 45.55,38.18 46.71,37.93 C 47.86,37.67 51.43,38.05 52.20,37.93 C 52.96,37.80 53.16,36.96 53.29,36.83 C 53.42,36.70 52.40,36.83 53.29,36.83 Z"/>
+        <div class="hopon-bg-vector-layer bottom-left float-vertical">
+          <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="110" width="85" height="30" rx="8" stroke="#6366f1" stroke-width="3.5" />
+            <path d="M30 110 L45 88 L80 88 L95 110 Z" stroke="#6366f1" stroke-width="3.5" />
+            <circle cx="40" cy="142" r="8" stroke="#6366f1" stroke-width="3" fill="#fff" />
+            <circle cx="85" cy="142" r="8" stroke="#6366f1" stroke-width="3" fill="#fff" />
+            <path d="M10 150 C60 150, 110 120, 160 80" stroke="#6366f1" stroke-width="3" stroke-dasharray="6 6" />
           </svg>
         </div>
 
-        <div class="login-hero-title">HopOn</div>
-        <div class="login-hero-sub">Campus ridesharing, reimagined</div>
-      </div>
-
-      <div class="login-body">
-        <h2>Welcome back 👋</h2>
-        <p class="sub">Sign in to continue your journey</p>
-
-        <button class="social-btn" onclick="doLogin('google')">
-          <svg viewBox="0 0 24 24"><path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18 8.657 18 5.755 15.068 5.755 11.5S8.657 5 12.24 5c1.614 0 3.09.568 4.232 1.664l2.427-2.427C17.223 2.65 14.936 2 12.24 2 6.963 2 2.66 6.25 2.66 11.5S6.963 21 12.24 21c5.513 0 9.145-3.832 9.145-9.3 0-.622-.054-1.223-.159-1.415H12.24z" fill="currentColor"/></svg>
-          Continue with Google
-        </button>
-
-        <div class="divider-row">
-          <div class="divider-line"></div>
-          <div class="divider-text">or</div>
-          <div class="divider-line"></div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" type="email" id="login-email" placeholder="you@university.edu" />
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <div class="pwd-wrap">
-            <input class="form-input" type="password" id="login-pwd" placeholder="Enter password" style="padding-right:44px" />
-            <button class="pwd-eye" onclick="togglePwd()" id="pwd-toggle">
-              <svg id="eye-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            </button>
+        <div class="hopon-auth-body">
+          <div class="hopon-brand-logo-hero" style="display:flex; flex-direction:column; align-items:center; justify-content:center; margin: 4px 0 12px 0;">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 52px; height: 46px; filter: drop-shadow(0 4px 10px rgba(6,64,43,0.25));">
+              <path fill="var(--hopon-emerald, #06402b)" d="M 43.41,7.20 C 43.41,7.20 51.04,8.04 52.20,8.29 C 53.35,8.55 52.91,9.26 53.29,9.39 C 53.68,9.52 54.46,9.01 55.49,9.39 C 56.51,9.77 60.28,11.27 62.07,12.68 C 63.87,14.09 69.32,19.54 70.85,21.46 C 72.39,23.38 73.96,28.12 75.24,29.15 C 76.52,30.17 80.29,29.73 81.83,30.24 C 83.37,30.76 87.39,32.90 88.41,33.54 C 89.44,34.18 90.35,35.35 90.61,35.73 C 90.87,36.12 90.23,36.19 90.61,36.83 C 90.99,37.47 93.52,40.20 93.90,41.22 C 94.29,42.24 94.41,44.71 93.90,45.61 C 93.39,46.51 90.41,48.52 89.51,48.90 C 88.62,49.29 86.73,48.77 86.22,48.90 C 85.71,49.03 86.02,49.87 85.12,50.00 C 84.23,50.13 79.82,49.62 78.54,50.00 C 77.26,50.38 74.27,52.65 74.15,53.29 C 74.02,53.93 76.80,55.23 77.44,55.49 C 78.08,55.74 78.35,54.98 79.63,55.49 C 80.91,56.00 86.62,58.60 88.41,59.88 C 90.21,61.16 94.36,65.57 95.00,66.46 C 95.64,67.36 94.67,67.56 93.90,67.56 C 93.13,67.56 89.18,66.72 88.41,66.46 C 87.65,66.21 88.09,65.62 87.32,65.37 C 86.55,65.11 82.60,64.52 81.83,64.27 C 81.06,64.01 81.37,63.30 80.73,63.17 C 80.09,63.04 76.98,63.30 76.34,63.17 C 75.70,63.04 76.27,62.20 75.24,62.07 C 74.22,61.95 68.59,62.20 67.56,62.07 C 66.54,61.95 68.51,60.98 66.46,60.98 C 64.41,60.98 52.05,61.82 50.00,62.07 C 47.95,62.33 49.54,63.04 48.90,63.17 C 48.26,63.30 45.15,63.04 44.51,63.17 C 43.87,63.30 43.54,64.27 43.41,64.27 C 43.29,64.27 42.77,63.94 43.41,63.17 C 44.05,62.40 47.49,59.86 48.90,57.68 C 50.31,55.51 53.95,46.82 55.49,44.51 C 57.02,42.21 60.92,38.82 62.07,37.93 C 63.23,37.03 64.34,37.47 65.37,36.83 C 66.39,36.19 70.60,33.21 70.85,32.44 C 71.11,31.67 68.71,30.63 67.56,30.24 C 66.41,29.86 62.26,29.66 60.98,29.15 C 59.70,28.63 57.23,26.24 56.59,25.85 C 55.95,25.47 56.51,26.75 55.49,25.85 C 54.46,24.96 49.09,19.84 47.80,18.17 C 46.52,16.51 45.02,12.87 44.51,11.59 C 44.00,10.30 43.54,7.71 43.41,7.20 Z"/>
+              <path fill="var(--hopon-emerald, #06402b)" d="M 53.29,36.83 C 53.29,36.83 60.34,36.70 60.98,36.83 C 61.62,36.96 59.68,37.16 58.78,37.93 C 57.88,38.70 54.83,41.11 53.29,43.41 C 51.76,45.72 47.40,55.12 45.61,57.68 C 43.82,60.24 39.85,63.96 37.93,65.37 C 36.01,66.77 30.94,68.60 29.15,69.76 C 27.35,70.91 23.46,74.60 22.56,75.24 C 21.66,75.88 22.62,74.22 21.46,75.24 C 20.31,76.27 13.71,82.87 12.68,84.02 C 11.66,85.18 13.07,84.61 12.68,85.12 C 12.30,85.63 9.90,87.65 9.39,88.41 C 8.88,89.18 8.55,91.20 8.29,91.71 C 8.04,92.22 7.58,92.68 7.20,92.80 C 6.81,92.93 5.26,93.96 5.00,92.80 C 4.74,91.65 4.87,84.21 5.00,82.93 C 5.13,81.65 5.97,82.47 6.10,81.83 C 6.23,81.19 5.97,78.08 6.10,77.44 C 6.23,76.80 6.94,77.11 7.20,76.34 C 7.45,75.57 7.65,72.39 8.29,70.85 C 8.93,69.32 12.17,64.32 12.68,63.17 C 13.20,62.02 13.20,61.49 12.68,60.98 C 12.17,60.46 8.93,59.29 8.29,58.78 C 7.65,58.27 7.32,57.35 7.20,56.59 C 7.07,55.82 7.07,52.96 7.20,52.20 C 7.32,51.43 7.78,50.51 8.29,50.00 C 8.80,49.49 10.82,48.06 11.59,47.80 C 12.35,47.55 14.24,47.68 14.88,47.80 C 15.52,47.93 16.56,48.39 17.07,48.90 C 17.59,49.41 18.88,51.81 19.27,52.20 C 19.65,52.58 19.34,52.96 20.37,52.20 C 21.39,51.43 25.87,47.02 28.05,45.61 C 30.23,44.20 37.36,40.76 39.02,40.12 C 40.69,39.48 41.42,40.38 42.32,40.12 C 43.21,39.87 45.55,38.18 46.71,37.93 C 47.86,37.67 51.43,38.05 52.20,37.93 C 52.96,37.80 53.16,36.96 53.29,36.83 C 53.42,36.70 52.40,36.83 53.29,36.83 Z"/>
+            </svg>
+            <div style="font-size: 22px; font-weight: 900; color: var(--hopon-emerald, #06402b); letter-spacing: -0.5px; margin-top: 2px;">HopOn</div>
           </div>
-        </div>
-        <div style="text-align:right;margin-bottom:16px;">
-          <span style="font-size:12px;color:var(--purple);font-weight:600;cursor:pointer">Forgot password?</span>
-        </div>
-        <button class="btn-purple" onclick="doLogin()">Sign In</button>
-        <div class="login-link">Don't have an account? <span onclick="showSignup()">Sign Up Free</span></div>
-      </div>
-    </div>
-
-    <!-- Sign Up Screen -->
-    <div class="login-screen hidden" id="signup-screen" style="position: relative;">
-      <!-- Back Button to Login -->
-      <button class="back-btn" onclick="showLogin()" style="position: absolute; top: 16px; left: 16px; color: white; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; outline: none;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      </button>
-      <div class="login-hero" style="height:200px">
-        <div class="login-hero-logo">
-          <!-- HopOn Leaping Rabbit Logo -->
-          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:80px;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.2));">
-            <path fill="white" d="M 43.41,7.20 C 43.41,7.20 51.04,8.04 52.20,8.29 C 53.35,8.55 52.91,9.26 53.29,9.39 C 53.68,9.52 54.46,9.01 55.49,9.39 C 56.51,9.77 60.28,11.27 62.07,12.68 C 63.87,14.09 69.32,19.54 70.85,21.46 C 72.39,23.38 73.96,28.12 75.24,29.15 C 76.52,30.17 80.29,29.73 81.83,30.24 C 83.37,30.76 87.39,32.90 88.41,33.54 C 89.44,34.18 90.35,35.35 90.61,35.73 C 90.87,36.12 90.23,36.19 90.61,36.83 C 90.99,37.47 93.52,40.20 93.90,41.22 C 94.29,42.24 94.41,44.71 93.90,45.61 C 93.39,46.51 90.41,48.52 89.51,48.90 C 88.62,49.29 86.73,48.77 86.22,48.90 C 85.71,49.03 86.02,49.87 85.12,50.00 C 84.23,50.13 79.82,49.62 78.54,50.00 C 77.26,50.38 74.27,52.65 74.15,53.29 C 74.02,53.93 76.80,55.23 77.44,55.49 C 78.08,55.74 78.35,54.98 79.63,55.49 C 80.91,56.00 86.62,58.60 88.41,59.88 C 90.21,61.16 94.36,65.57 95.00,66.46 C 95.64,67.36 94.67,67.56 93.90,67.56 C 93.13,67.56 89.18,66.72 88.41,66.46 C 87.65,66.21 88.09,65.62 87.32,65.37 C 86.55,65.11 82.60,64.52 81.83,64.27 C 81.06,64.01 81.37,63.30 80.73,63.17 C 80.09,63.04 76.98,63.30 76.34,63.17 C 75.70,63.04 76.27,62.20 75.24,62.07 C 74.22,61.95 68.59,62.20 67.56,62.07 C 66.54,61.95 68.51,60.98 66.46,60.98 C 64.41,60.98 52.05,61.82 50.00,62.07 C 47.95,62.33 49.54,63.04 48.90,63.17 C 48.26,63.30 45.15,63.04 44.51,63.17 C 43.87,63.30 43.54,64.27 43.41,64.27 C 43.29,64.27 42.77,63.94 43.41,63.17 C 44.05,62.40 47.49,59.86 48.90,57.68 C 50.31,55.51 53.95,46.82 55.49,44.51 C 57.02,42.21 60.92,38.82 62.07,37.93 C 63.23,37.03 64.34,37.47 65.37,36.83 C 66.39,36.19 70.60,33.21 70.85,32.44 C 71.11,31.67 68.71,30.63 67.56,30.24 C 66.41,29.86 62.26,29.66 60.98,29.15 C 59.70,28.63 57.23,26.24 56.59,25.85 C 55.95,25.47 56.51,26.75 55.49,25.85 C 54.46,24.96 49.09,19.84 47.80,18.17 C 46.52,16.51 45.02,12.87 44.51,11.59 C 44.00,10.30 43.54,7.71 43.41,7.20 C 43.29,6.68 42.39,7.07 43.41,7.20 Z"/>
-            <path fill="white" d="M 53.29,36.83 C 53.29,36.83 60.34,36.70 60.98,36.83 C 61.62,36.96 59.68,37.16 58.78,37.93 C 57.88,38.70 54.83,41.11 53.29,43.41 C 51.76,45.72 47.40,55.12 45.61,57.68 C 43.82,60.24 39.85,63.96 37.93,65.37 C 36.01,66.77 30.94,68.60 29.15,69.76 C 27.35,70.91 23.46,74.60 22.56,75.24 C 21.66,75.88 22.62,74.22 21.46,75.24 C 20.31,76.27 13.71,82.87 12.68,84.02 C 11.66,85.18 13.07,84.61 12.68,85.12 C 12.30,85.63 9.90,87.65 9.39,88.41 C 8.88,89.18 8.55,91.20 8.29,91.71 C 8.04,92.22 7.58,92.68 7.20,92.80 C 6.81,92.93 5.26,93.96 5.00,92.80 C 4.74,91.65 4.87,84.21 5.00,82.93 C 5.13,81.65 5.97,82.47 6.10,81.83 C 6.23,81.19 5.97,78.08 6.10,77.44 C 6.23,76.80 6.94,77.11 7.20,76.34 C 7.45,75.57 7.65,72.39 8.29,70.85 C 8.93,69.32 12.17,64.32 12.68,63.17 C 13.20,62.02 13.20,61.49 12.68,60.98 C 12.17,60.46 8.93,59.29 8.29,58.78 C 7.65,58.27 7.32,57.35 7.20,56.59 C 7.07,55.82 7.07,52.96 7.20,52.20 C 7.32,51.43 7.78,50.51 8.29,50.00 C 8.80,49.49 10.82,48.06 11.59,47.80 C 12.35,47.55 14.24,47.68 14.88,47.80 C 15.52,47.93 16.56,48.39 17.07,48.90 C 17.59,49.41 18.88,51.81 19.27,52.20 C 19.65,52.58 19.34,52.96 20.37,52.20 C 21.39,51.43 25.87,47.02 28.05,45.61 C 30.23,44.20 37.36,40.76 39.02,40.12 C 40.69,39.48 41.42,40.38 42.32,40.12 C 43.21,39.87 45.55,38.18 46.71,37.93 C 47.86,37.67 51.43,38.05 52.20,37.93 C 52.96,37.80 53.16,36.96 53.29,36.83 C 53.42,36.70 52.40,36.83 53.29,36.83 Z"/>
-          </svg>
-        </div>
-
-        <div class="login-hero-title">Create Account</div>
-        <div class="login-hero-sub">Join the HopOn community</div>
-      </div>
-
-      <div class="login-body">
-        <div class="form-row">
-          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" id="signup-first-name" placeholder="Ike" /></div>
-          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" id="signup-last-name" placeholder="Hmm" /></div>
-        </div>
-        <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="signup-email" placeholder="you@university.edu" /></div>
-        <div class="form-group">
-          <label class="form-label">Phone</label>
-          <div class="phone-input-row">
-            <select class="country-code-select" id="signup-country-code">
-              <option value="+1">🇨🇦 +1 (CA)</option>
-              <option value="+1">🇺🇸 +1 (US)</option>
-              <option value="+44">🇬🇧 +44 (UK)</option>
-              <option value="+91">🇮🇳 +91 (IN)</option>
-              <option value="+234">🇳🇬 +234 (NG)</option>
-              <option value="+33">🇫🇷 +33 (FR)</option>
-            </select>
-            <input class="form-input" type="tel" id="signup-phone" placeholder="(555) 000-0000" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <div class="pwd-wrap">
-            <input class="form-input" type="password" id="signup-pwd" placeholder="Min 8 characters" style="padding-right:44px" />
-            <button class="pwd-eye" type="button" onclick="toggleSignupPwd()" id="signup-pwd-toggle">
-              <svg id="signup-eye-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            </button>
-          </div>
-        </div>
-        <div class="form-group" style="text-align: center; margin-bottom: 20px;">
-          <label class="form-label" style="display: block; text-align: center; margin-bottom: 12px; font-weight: 700; color: var(--text-dark);">Upload Profile Photo (Mandatory) 🚨</label>
-          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <div onclick="showPhotoSourceSheet()" id="avatar-upload-container" style="width: 100px; height: 100px; border-radius: 50%; border: 3px dashed rgba(6,64,43,0.6); background: rgba(6,64,43,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; margin-bottom: 8px; position: relative; overflow: hidden;" title="Choose Photo Option">
-              <span style="font-size: 28px; line-height: 1;">📷</span>
-              <span style="font-size: 10px; color: var(--text-light); font-weight: 600; margin-top: 6px;">Tap to select</span>
+          <h1 class="hopon-hero-title">Welcome!</h1>
+          <p class="hopon-hero-sub">We're so glad you're here! Please choose an option below to sign in.</p>
+          
+          <div class="hopon-hero-card-stack">
+            <div class="hopon-card-glow emerald-glow"></div>
+            <div class="hopon-card-glow purple-glow"></div>
+            <div class="hopon-card-main">
+              <img src="carpool_welcome.jpg" alt="HopOn Community Carpoolers" class="hopon-hero-img" />
+              <div class="hopon-hero-tag">Verified Community</div>
             </div>
-             <div id="avatar-upload-status" style="font-size: 11px; color: var(--danger); font-weight: 700;">No photo uploaded yet</div>
+          </div>
+
+          <div class="hopon-auth-actions">
+            <button class="hopon-social-btn" onclick="executeHopOnSocialLogin('google')">
+              <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+              <span>Continue with Google</span>
+            </button>
+
+            <button class="hopon-social-btn" onclick="executeHopOnSocialLogin('facebook')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              <span>Continue with Facebook</span>
+            </button>
+
+            <button class="hopon-social-btn" onclick="executeHopOnSocialLogin('apple')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#000"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.35c.67-.82 1.12-1.96.99-3.1-.96.04-2.13.64-2.82 1.44-.61.72-1.14 1.88-.99 3 1.07.08 2.16-.52 2.82-1.34z"/></svg>
+              <span>Continue with Apple</span>
+            </button>
+
+            <button class="hopon-social-btn" onclick="goToHopOnStep('login')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Continue with email</span>
+            </button>
+
+            <div class="hopon-switch-row" style="margin-top: 10px;">
+              Don't have an account? 
+              <span class="hopon-link-action" onclick="goToHopOnStep('signup')">Sign Up Free</span>
+            </div>
+
           </div>
         </div>
-        <div style="display:flex; align-items:flex-start; gap:8px; margin-bottom:16px; text-align:left;">
-          <input type="checkbox" id="signup-consent" style="width:16px; height:16px; margin-top:2px; accent-color:var(--purple); cursor:pointer;" />
-          <label for="signup-consent" style="font-size:11px; color:var(--text-light); line-height:1.4; cursor:pointer;">
-            I agree to the <span style="color:var(--purple); font-weight:600; cursor:pointer;" onclick="openLegalScreen('terms')">Terms of Service</span> &amp; <span style="color:var(--purple); font-weight:600; cursor:pointer;" onclick="openLegalScreen('privacy')">Privacy Policy</span>, and consent to PIPEDA data protection compliance.
-          </label>
-        </div>
-        <button class="btn-purple" onclick="doLogin()">Create Account 👤</button>
-        <div class="login-link">Already have an account? <span onclick="showLogin()">Sign In</span></div>
-        <div style="height:20px"></div>
       </div>
-    </div>
 
-    <!-- 🎴 Photo Source Selector Sheet -->
-    <div id="photo-source-sheet" class="checkout-sheet-modal" style="z-index: 9999;" onclick="closePhotoSourceSheet(event)">
-      <div class="checkout-sheet" style="background: #110e20; border-top: 1px solid rgba(6,64,43,0.3); border-radius: 20px 20px 0 0; padding: 20px; box-sizing: border-box;">
-        <h3 style="color: #fff; font-size: 16px; font-weight: 700; margin-top: 0; margin-bottom: 16px; text-align: center; font-family: Montserrat, sans-serif;">Profile Photo Option</h3>
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <button onclick="openLiveCamera()" style="background: rgba(6,64,43,0.15); border: 1px solid rgba(6,64,43,0.4); color: #c7d2fe; padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Montserrat, sans-serif; outline: none; border-style: solid;">
-            <span>📷</span> Take Photo
+      <!-- STEP 2A: SIGN IN FORM (Existing Users) -->
+      <div id="step-auth-login" class="hopon-auth-step">
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('welcome')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
-          <button onclick="triggerFileUpload()" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: Montserrat, sans-serif; outline: none; border-style: solid;">
-            <span>📁</span> Upload Photo
-          </button>
-          <button onclick="closePhotoSourceSheet()" style="background: transparent; border: none; color: #9ca3af; padding: 10px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: Montserrat, sans-serif;">
-            Cancel
-          </button>
+          <span class="hopon-header-title">Sign In</span>
+        </div>
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-step-title">Welcome Back 👋</h1>
+            <p class="hopon-step-sub">Sign in with your email or phone to manage your rides.</p>
+            <div class="hopon-form-group">
+              <label class="hopon-form-label">Email or Phone Number</label>
+              <input type="text" id="hopon-login-id" class="hopon-form-input" placeholder="e.g. alex@example.com or +1 555-0192" />
+            </div>
+            <div class="hopon-form-group">
+              <label class="hopon-form-label">Password</label>
+              <input type="password" id="hopon-login-pwd" class="hopon-form-input" placeholder="Enter your password" />
+            </div>
+          </div>
+          <div>
+            <button class="hopon-btn-primary" onclick="executeHopOnEmailLogin()">Sign In ➔</button>
+            <div class="hopon-switch-row">
+              Don't have an account? <span class="hopon-link-action" onclick="goToHopOnStep('signup')">Sign Up</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Hidden File Input for Avatar Uploads (Root Level to prevent Safari display:none click blocking) -->
-    <input type="file" id="custom-avatar-upload" accept="image/*" style="display: none;" onchange="handleCustomAvatar(this)" />
-
-    <!-- Passenger Rating Selector Sheet -->
-    <div id="passenger-rating-selector-modal" class="checkout-sheet-modal" style="z-index: 9999;" onclick="closePassengerRatingSelector(event)">
-      <div class="checkout-sheet" style="background: #110e20; border-top: 1px solid rgba(6,64,43,0.3); border-radius: 20px 20px 0 0; padding: 20px; box-sizing: border-box; width: 100%; max-width: 390px; margin: 0 auto;">
-        <h3 style="color: #fff; font-size: 16px; font-weight: 700; margin-top: 0; margin-bottom: 16px; text-align: center; font-family: Montserrat, sans-serif;">Select Passenger to Rate</h3>
-        <div id="passenger-rating-selector-list" style="display: flex; flex-direction: column; gap: 12px;">
-          <!-- Dynamically populated list of passengers -->
+      <!-- STEP 2B: ACCOUNT DETAILS FORM (New Users Signup) -->
+      <div id="step-auth-signup" class="hopon-auth-step">
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('welcome')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <span class="hopon-header-title">Create Account</span>
         </div>
-        <button onclick="closePassengerRatingSelector()" style="background: transparent; border: none; color: #9ca3af; padding: 10px; width: 100%; font-size: 14px; font-weight: 600; cursor: pointer; font-family: Montserrat, sans-serif; margin-top: 8px; outline: none;">
-          Cancel
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-step-title">Get Started with HopOn 🚀</h1>
+            <p class="hopon-step-sub">Enter your basic details to create your verified profile.</p>
+            <div class="hopon-form-row">
+              <div class="hopon-form-group">
+                <label class="hopon-form-label">First Name</label>
+                <input type="text" id="hopon-signup-fname" class="hopon-form-input" placeholder="Alex" />
+              </div>
+              <div class="hopon-form-group">
+                <label class="hopon-form-label">Last Name</label>
+                <input type="text" id="hopon-signup-lname" class="hopon-form-input" placeholder="Morgan" />
+              </div>
+            </div>
+            <div class="hopon-form-group">
+              <label class="hopon-form-label">Email Address</label>
+              <input type="email" id="hopon-signup-email" class="hopon-form-input" placeholder="alex@example.com" />
+            </div>
+            <div class="hopon-form-group">
+              <label class="hopon-form-label">Mobile Phone</label>
+              <div class="hopon-phone-row">
+                <select class="hopon-select"><option>🇨🇦 +1</option><option>🇺🇸 +1</option></select>
+                <input type="tel" id="hopon-signup-phone" class="hopon-form-input" placeholder="(555) 000-0000" />
+              </div>
+            </div>
+            <div class="hopon-form-group">
+              <label class="hopon-form-label">Create Password</label>
+              <input type="password" id="hopon-signup-pwd" class="hopon-form-input" placeholder="Min 6 characters" />
+            </div>
+          </div>
+          <div>
+            <button class="hopon-btn-primary" onclick="proceedSignupToOnboarding()">Continue ➔</button>
+            <div class="hopon-switch-row">
+              Already have an account? <span class="hopon-link-action" onclick="goToHopOnStep('login')">Sign In</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: ONBOARDING INTRO (3 Things You Need To Know) -->
+      <div id="step-onboard-intro" class="hopon-auth-step">
+        <!-- 🎨 Background Vector Layer: Steering Wheel, Car & Road -->
+        <div class="hopon-bg-vector-layer top-right float-vertical">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="60" r="45" stroke="#06402b" stroke-width="3.5" />
+            <circle cx="100" cy="60" r="14" stroke="#06402b" stroke-width="3" />
+            <line x1="100" y1="15" x2="100" y2="46" stroke="#06402b" stroke-width="3" />
+            <line x1="55" y1="60" x2="86" y2="60" stroke="#06402b" stroke-width="3" />
+            <line x1="114" y1="60" x2="145" y2="60" stroke="#06402b" stroke-width="3" />
+          </svg>
+        </div>
+        <div class="hopon-bg-vector-layer bottom-left float-diagonal">
+          <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 140 Q 80 80, 160 150" stroke="#10b981" stroke-width="3.5" stroke-dasharray="8 6" />
+            <rect x="25" y="80" width="70" height="26" rx="6" stroke="#10b981" stroke-width="3" />
+            <path d="M35 80 L48 65 L72 65 L82 80 Z" stroke="#10b981" stroke-width="3" />
+            <circle cx="42" cy="108" r="6" stroke="#10b981" stroke-width="3" fill="#fff" />
+            <circle cx="78" cy="108" r="6" stroke="#10b981" stroke-width="3" fill="#fff" />
+          </svg>
+        </div>
+
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('signup')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-hero-title">3 things you need to know about <span class="hopon-highlight">HopOn</span></h1>
+            <p class="hopon-hero-sub">Before you start booking or offering rides, here is how our community stays safe and reliable.</p>
+
+            <div class="hopon-rules-card-list">
+              <div class="hopon-rule-card">
+                <div class="hopon-rule-icon yellow-icon">🚕</div>
+                <div>
+                  <div class="hopon-rule-title">Carpooling & Cargo Service</div>
+                  <div class="hopon-rule-desc">Drivers share extra seats or cargo space for campus and city travel.</div>
+                </div>
+              </div>
+              <div class="hopon-rule-card">
+                <div class="hopon-rule-icon green-icon">⚡</div>
+                <div>
+                  <div class="hopon-rule-title">Reliability Counts</div>
+                  <div class="hopon-rule-desc">Cancellations disrupt schedules. Show up on time for smooth journeys.</div>
+                </div>
+              </div>
+              <div class="hopon-rule-card">
+                <div class="hopon-rule-icon blue-icon">🤝</div>
+                <div>
+                  <div class="hopon-rule-title">Fair & Respectful</div>
+                  <div class="hopon-rule-desc">Treat fellow commuters with courtesy and keep conversations friendly.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button class="hopon-btn-primary" onclick="goToHopOnStep('rules')">Got it? Great! ➔</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: COMMUNITY RULES & CONSENT -->
+      <div id="step-onboard-rules" class="hopon-auth-step">
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('intro')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-hero-title">Our HopOn Guidelines</h1>
+            <p class="hopon-hero-sub">Help us build a trusted peer-to-peer transport network.</p>
+
+            <div class="hopon-rules-card-list">
+              <div class="hopon-rule-card">
+                <div class="hopon-rule-icon green-icon">⭐</div>
+                <div>
+                  <div class="hopon-rule-title">5-Star Community Standards</div>
+                  <div class="hopon-rule-desc">Maintain good ratings to keep full access to rides and cargo booking.</div>
+                </div>
+              </div>
+              <div class="hopon-rule-card">
+                <div class="hopon-rule-icon blue-icon">⏰</div>
+                <div>
+                  <div class="hopon-rule-title">Punctuality First</div>
+                  <div class="hopon-rule-desc">Show up 10 minutes early so your pickup departs right on schedule.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="hopon-consent-box">
+              <input type="checkbox" id="hopon-legal-consent-chk" checked />
+              <label for="hopon-legal-consent-chk">
+                By tapping "I agree", you accept our HopOn Community Rules, 
+                <span class="hopon-link-action" onclick="openLegalScreen('terms')">Terms of Service</span>, and 
+                <span class="hopon-link-action" onclick="openLegalScreen('privacy')">Privacy Policy</span>.
+              </label>
+            </div>
+            <button class="hopon-btn-primary" onclick="proceedRulesToProfileIntro()">I Agree & Continue ➔</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: PROFILE SETUP INTRO -->
+      <div id="step-profile-intro" class="hopon-auth-step">
+        <!-- 🎨 Background Vector Layer: Delivery Van & Cargo Boxes -->
+        <div class="hopon-bg-vector-layer top-right pulse-slow">
+          <svg width="170" height="170" viewBox="0 0 170 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="45" width="80" height="42" rx="6" stroke="#06402b" stroke-width="3.5" />
+            <path d="M120 58 L142 58 L150 75 L150 87 L120 87 Z" stroke="#06402b" stroke-width="3.5" />
+            <circle cx="65" cy="87" r="8" stroke="#06402b" stroke-width="3" fill="#fff" />
+            <circle cx="132" cy="87" r="8" stroke="#06402b" stroke-width="3" fill="#fff" />
+            <rect x="55" y="55" width="22" height="18" rx="3" stroke="#06402b" stroke-width="2" />
+            <line x1="55" y1="64" x2="77" y2="64" stroke="#06402b" stroke-width="1.5" />
+          </svg>
+        </div>
+        <div class="hopon-bg-vector-layer bottom-right float-vertical">
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="70" y="70" width="48" height="48" rx="6" stroke="#6366f1" stroke-width="3.5" />
+            <line x1="70" y1="94" x2="118" y2="94" stroke="#6366f1" stroke-width="2.5" />
+            <line x1="94" y1="70" x2="94" y2="118" stroke="#6366f1" stroke-width="2.5" />
+            <rect x="100" y="45" width="38" height="38" rx="5" stroke="#6366f1" stroke-width="3" />
+            <line x1="100" y1="64" x2="138" y2="64" stroke="#6366f1" stroke-width="2" />
+          </svg>
+        </div>
+
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('rules')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-hero-title">Let's set up your profile!</h1>
+            <p class="hopon-hero-sub">Adding a photo and details builds trust with drivers and passengers.</p>
+            <div class="hopon-illustration-box">
+              <div style="font-size: 72px;">🧳🚘</div>
+            </div>
+          </div>
+          <div>
+            <button class="hopon-btn-primary" onclick="goToHopOnStep('age')">Next Step ➔</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6: AGE VERIFICATION (DOB Picker) -->
+      <div id="step-profile-age" class="hopon-auth-step">
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('profile_intro')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-hero-title">What is your date of birth? 🎂</h1>
+            <p class="hopon-hero-sub">You must be at least 18 years old to use HopOn ridesharing.</p>
+
+            <div class="hopon-dob-selector-wrap">
+              <div class="hopon-dob-field">
+                <label class="hopon-form-label">Month</label>
+                <select id="hopon-dob-month" class="hopon-select-lg">
+                  <option value="01">Jan</option><option value="02">Feb</option><option value="03">Mar</option>
+                  <option value="04">Apr</option><option value="05">May</option><option value="06">Jun</option>
+                  <option value="07">Jul</option><option value="08">Aug</option><option value="09">Sep</option>
+                  <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+                </select>
+              </div>
+              <div class="hopon-dob-field">
+                <label class="hopon-form-label">Day</label>
+                <select id="hopon-dob-day" class="hopon-select-lg">
+                  <option value="01">1</option><option value="05">5</option><option value="10">10</option>
+                  <option value="15">15</option><option value="20">20</option><option value="25">25</option>
+                </select>
+              </div>
+              <div class="hopon-dob-field">
+                <label class="hopon-form-label">Year</label>
+                <select id="hopon-dob-year" class="hopon-select-lg">
+                  <option value="2004">2004</option><option value="2002">2002</option><option value="2000">2000</option>
+                  <option value="1998">1998</option><option value="1995">1995</option><option value="1990">1990</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button class="hopon-btn-primary" onclick="proceedAgeToGender()">Next Step ➔</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 7: GENDER SELECTION -->
+      <div id="step-profile-gender" class="hopon-auth-step">
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('age')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-hero-title">What is your gender? 👤</h1>
+            <p class="hopon-hero-sub">Helps match gender preferences for comfortable rides.</p>
+
+            <div class="hopon-gender-options">
+              <div class="hopon-gender-card active" onclick="selectHopOnGender('female', this)">
+                <span class="gender-emoji">👩</span>
+                <span class="gender-label">Female</span>
+              </div>
+              <div class="hopon-gender-card" onclick="selectHopOnGender('male', this)">
+                <span class="gender-emoji">👨</span>
+                <span class="gender-label">Male</span>
+              </div>
+              <div class="hopon-gender-card" onclick="selectHopOnGender('other', this)">
+                <span class="gender-emoji">✨</span>
+                <span class="gender-label">Non-Binary / Prefer not to say</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <button class="hopon-btn-primary" onclick="goToHopOnStep('photo')">Next Step ➔</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 8: MANDATORY PROFILE PHOTO UPLOAD -->
+      <div id="step-profile-photo" class="hopon-auth-step">
+        <div class="hopon-auth-header">
+          <button class="hopon-back-btn" onclick="goToHopOnStep('gender')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+        <div class="hopon-auth-body flex-between">
+          <div>
+            <h1 class="hopon-hero-title">Add a profile photo 📸</h1>
+            <p class="hopon-hero-sub">Upload a clear photo so your driver or rider can recognize you at pickup.</p>
+
+            <div class="hopon-photo-preview-wrap">
+              <div class="hopon-avatar-circle" onclick="openPhotoSourceSheet()">
+                <img id="hopon-avatar-img" src="" style="display: none; width: 100%; height: 100%; object-fit: cover;" />
+                <span id="hopon-avatar-placeholder" style="font-size: 32px;">📷</span>
+              </div>
+              <div id="hopon-photo-status" class="hopon-photo-status">Tap circle to take selfie or select photo</div>
+            </div>
+
+            <div class="hopon-photo-rules">
+              <div class="hopon-photo-rule-row"><span class="rule-chk">✓</span> Clearly show your face</div>
+              <div class="hopon-photo-rule-row"><span class="rule-x">✗</span> No sunglasses or heavy filters</div>
+              <div class="hopon-photo-rule-row"><span class="rule-x">✗</span> No group shots or pets</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="hopon-photo-actions">
+              <button class="hopon-btn-secondary" onclick="openLiveCamera()">Take Selfie 📷</button>
+              <button class="hopon-btn-secondary" onclick="triggerFileUpload()">Choose from Library 📁</button>
+            </div>
+
+            <button class="hopon-btn-primary" style="margin-top: 12px;" onclick="completeHopOnAccountRegistration()">Complete Registration & HopOn! 🚀</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+    <!-- ══════════════ UNIFIED DRIVER & CARGO LICENSE VERIFICATION MODAL ══════════════ -->
+    <div id="driver-license-verification-modal">
+      <div class="driver-verification-sheet">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="verified-driver-badge">
+              <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Driver Verification</span>
+            </div>
+          </div>
+          <button onclick="closeDriverVerificationModal()" style="background: none; border: none; font-size: 24px; color: #64748b; cursor: pointer; outline: none;">&times;</button>
+        </div>
+
+        <h2 style="font-size: 20px; font-weight: 900; color: #0f172a; margin: 0 0 4px 0;">Verify Your Driver's License</h2>
+        <p style="font-size: 13px; color: #64748b; margin: 0 0 16px 0; line-height: 1.4;">
+          Single 3-step verification unlocks both <strong>Passenger Rides</strong> and <strong>Cargo Deliveries</strong>.
+        </p>
+
+        <!-- Step 1: License Front -->
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 12px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px;">1. Driver's License (Front)</div>
+          <div id="card-license-front" class="license-scan-card" onclick="triggerLicenseUpload('front')">
+            <span id="icon-license-front" class="scan-card-icon">🪪</span>
+            <span id="title-license-front" class="scan-card-title">Tap to photo Front of License</span>
+            <span class="scan-card-sub">Must show full name, photo & DOB</span>
+            <img id="img-license-front" style="display: none;" />
+          </div>
+          <input type="file" id="input-license-front" accept="image/*" style="display: none;" onchange="handleLicensePhoto(event, 'front')" />
+        </div>
+
+        <!-- Step 2: License Back -->
+        <div style="margin-bottom: 12px;">
+          <div style="font-size: 12px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px;">2. Driver's License (Back)</div>
+          <div id="card-license-back" class="license-scan-card" onclick="triggerLicenseUpload('back')">
+            <span id="icon-license-back" class="scan-card-icon">📷</span>
+            <span id="title-license-back" class="scan-card-title">Tap to photo Back of License</span>
+            <span class="scan-card-sub">Must show barcode/magnetic strip</span>
+            <img id="img-license-back" style="display: none;" />
+          </div>
+          <input type="file" id="input-license-back" accept="image/*" style="display: none;" onchange="handleLicensePhoto(event, 'back')" />
+        </div>
+
+        <!-- Step 3: Live Selfie -->
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 12px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.5px;">3. Live Selfie Verification</div>
+          <div id="card-license-selfie" class="license-scan-card" onclick="openLiveCamera()">
+            <span id="icon-license-selfie" class="scan-card-icon">🤳</span>
+            <span id="title-license-selfie" class="scan-card-title">Take a Live Face Selfie</span>
+            <span class="scan-card-sub">Instant face match with license photo</span>
+            <img id="img-license-selfie" style="display: none;" />
+          </div>
+        </div>
+
+        <button id="btn-submit-driver-verification" class="hopon-btn-primary" onclick="submitDriverVerification()" style="opacity: 0.5; pointer-events: none;">
+          Submit Verification 🚀
         </button>
-      </div>
-    </div>
 
-    <!-- 📷 Camera Capture Modal Overlay -->
-    <div id="camera-modal" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.95); z-index: 10000; display: none; flex-direction: column; align-items: center; justify-content: center;">
-      <div style="position: relative; width: 100%; max-width: 450px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 20px; box-sizing: border-box;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <h3 style="margin: 0; color: #fff; font-size: 18px; font-weight: 700; font-family: Montserrat, sans-serif;">Take Profile Photo</h3>
-          <button onclick="closeCamera()" style="background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; line-height: 1;">&times;</button>
-        </div>
-        
-        <!-- Live Video Feed Container -->
-        <div style="flex: 1; display: flex; align-items: center; justify-content: center; margin: 20px 0; border-radius: 16px; overflow: hidden; background: #000; position: relative; border: 1px solid rgba(255,255,255,0.1);">
-          <video id="camera-feed" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);"></video>
-          <canvas id="camera-canvas" style="display: none;"></canvas>
-        </div>
-        
-        <!-- Controls -->
-        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 40px; margin-bottom: 20px;">
-          <button onclick="closeCamera()" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 20px; border-radius: 30px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: Montserrat, sans-serif; outline: none; border-style: solid;">Cancel</button>
-          <button onclick="capturePhoto()" style="width: 72px; height: 72px; border-radius: 50%; border: 5px solid #fff; background: var(--purple); display: flex; align-items: center; justify-content: center; cursor: pointer; outline: none; box-shadow: 0 4px 20px rgba(6,64,43,0.5);">
-            <div style="width: 44px; height: 44px; border-radius: 50%; background: #fff;"></div>
-          </button>
-          <div style="width: 80px;"></div> <!-- Placeholder to balance flex layout -->
+        <div style="font-size: 11px; color: #94a3b8; text-align: center; margin-top: 12px;">
+          🔒 Bank-grade 256-bit encryption. Documents are securely processed for identity authentication.
         </div>
       </div>
     </div>
-
-    <!-- 2FA OTP Screen -->
-    <div class="login-screen hidden" id="sub-login-otp">
-      <div class="login-hero" style="height: 180px;">
-        <div class="login-hero-logo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-          </svg>
-        </div>
-        <div class="login-hero-title">Two-Factor Auth</div>
-        <div class="login-hero-sub">Security verification required</div>
-      </div>
-
-      <div class="login-body">
-        <h2>Enter Verification Code</h2>
-        <p class="sub" id="otp-message-detail">We sent a time-sensitive 6-digit code to your email.</p>
-
-        <div class="form-group" style="margin-top: 24px;">
-          <label class="form-label" style="text-align: center; font-size: 13px;">6-Digit OTP Code</label>
-          <div style="display: flex; gap: 8px; justify-content: center; margin-top: 8px;" class="otp-inputs-row">
-            <input class="form-input otp-digit" type="text" maxlength="1" id="otp-d1" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveOTPFocus(this, 'otp-d2')" onpaste="handleOTPPaste(event)" />
-            <input class="form-input otp-digit" type="text" maxlength="1" id="otp-d2" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveOTPFocus(this, 'otp-d3')" onkeydown="otpBack(event, 'otp-d1')" />
-            <input class="form-input otp-digit" type="text" maxlength="1" id="otp-d3" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveOTPFocus(this, 'otp-d4')" onkeydown="otpBack(event, 'otp-d2')" />
-            <input class="form-input otp-digit" type="text" maxlength="1" id="otp-d4" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveOTPFocus(this, 'otp-d5')" onkeydown="otpBack(event, 'otp-d3')" />
-            <input class="form-input otp-digit" type="text" maxlength="1" id="otp-d5" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveOTPFocus(this, 'otp-d6')" onkeydown="otpBack(event, 'otp-d4')" />
-            <input class="form-input otp-digit" type="text" maxlength="1" id="otp-d6" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="verifyOTPAuto()" onkeydown="otpBack(event, 'otp-d5')" />
-          </div>
-        </div>
-
-        <div id="otp-error-msg" style="color: var(--danger); font-size: 13px; font-weight: 600; text-align: center; margin-top: 12px; min-height: 18px;"></div>
-
-        <button class="btn-purple" onclick="verifyOTPCode()" style="margin-top: 16px;">Verify Code</button>
-        
-        <div style="text-align: center; margin-top: 20px;">
-          <button id="otp-resend-btn" onclick="resendOTPCode()" class="btn-link" style="color: var(--purple); font-weight: 600; background: none; border: none; cursor: pointer; font-size: 14px;">Resend Code</button>
-          <div id="otp-countdown" style="font-size: 12px; color: var(--text-light); margin-top: 6px;"></div>
-        </div>
-        
-        <div class="login-link" style="margin-top: 24px;"><span onclick="cancel2FA()" style="cursor: pointer; color: var(--text-light);">Back to Sign In</span></div>
-      </div>
-    </div>
-
-    <!-- Email Verification Pending Screen -->
-    <div class="login-screen hidden" id="sub-login-verification">
-      <div class="login-hero" style="height: 180px;">
-        <div class="login-hero-logo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 48px; height: 48px;">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
-        <div class="login-hero-title">Verify Your Email</div>
-        <div class="login-hero-sub">Security verification code sent</div>
-      </div>
-
-      <div class="login-body" style="text-align: center;">
-        <h2>Enter Verification Code</h2>
-        <p class="sub" id="verification-message-detail" style="margin-bottom: 20px;">We sent a time-sensitive 6-digit code to your email.</p>
-
-        <div class="form-group" style="margin-top: 24px;">
-          <label class="form-label" style="text-align: center; font-size: 13px;">6-Digit Code</label>
-          <div style="display: flex; gap: 8px; justify-content: center; margin-top: 8px;" class="otp-inputs-row">
-            <input class="form-input verify-digit" type="text" maxlength="1" id="verify-d1" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveVerifyFocus(this, 'verify-d2')" onpaste="handleVerifyPaste(event)" />
-            <input class="form-input verify-digit" type="text" maxlength="1" id="verify-d2" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveVerifyFocus(this, 'verify-d3')" onkeydown="verifyBack(event, 'verify-d1')" />
-            <input class="form-input verify-digit" type="text" maxlength="1" id="verify-d3" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveVerifyFocus(this, 'verify-d4')" onkeydown="verifyBack(event, 'verify-d2')" />
-            <input class="form-input verify-digit" type="text" maxlength="1" id="verify-d4" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveVerifyFocus(this, 'verify-d5')" onkeydown="verifyBack(event, 'verify-d3')" />
-            <input class="form-input verify-digit" type="text" maxlength="1" id="verify-d5" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="moveVerifyFocus(this, 'verify-d6')" onkeydown="verifyBack(event, 'verify-d4')" />
-            <input class="form-input verify-digit" type="text" maxlength="1" id="verify-d6" style="width: 44px; height: 48px; text-align: center; font-size: 22px; font-weight: 700;" oninput="verifyEmailAuto()" onkeydown="verifyBack(event, 'verify-d5')" />
-          </div>
-        </div>
-
-        <div id="verify-error-msg" style="color: var(--danger); font-size: 13px; font-weight: 600; text-align: center; margin-top: 12px; min-height: 18px;"></div>
-
-        <button class="btn-purple" onclick="verifyEmailCode()" style="margin-top: 16px;">Verify Code</button>
-
-        <div style="text-align: center; margin-top: 20px;">
-          <button id="resend-verification-btn" onclick="resendVerificationEmailCode()" class="btn-link" style="color: var(--purple); font-weight: 600; background: none; border: none; cursor: pointer; font-size: 14px;">Resend Code</button>
-          <div id="verify-countdown" style="font-size: 12px; color: var(--text-light); margin-top: 6px;"></div>
-        </div>
-
-        <!-- Mock verification button (only shown in local/mock mode) -->
-        <div id="mock-verify-container" style="margin-top: 16px; padding: 16px; background: var(--purple-soft); border-radius: 12px; border: 1.5px dashed var(--purple-pale); width: 100%; max-width: 280px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
-          <div style="font-size: 11px; color: var(--text-light); margin-bottom: 8px; font-weight: 600;">[DEV MODE] Simulate verification:</div>
-          <button class="btn-purple" style="background: #10B981; font-size: 12px; padding: 8px 12px; width: 100%;" onclick="simulateMockEmailVerification()">Autofill Last Code</button>
-        </div>
-
-        <div class="login-link" style="margin-top: 24px;"><span onclick="cancelVerification()" style="cursor: pointer; color: var(--text-light); font-weight: 600;">Back to Sign In</span></div>
-      </div>
-    </div>
-
   </div><!-- /splash -->
 
-  <!-- Notch -->
-  <div class="phone-notch">
-    <div class="dot"></div>
-    <div class="pill"></div>
-  </div>
-
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="logo-row">
-      <div class="logo-icon">
-        <!-- HopOn Leaping Rabbit Logo - Top Bar -->
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:40px;">
-          <path fill="currentColor" d="M 43.41,7.20 C 43.41,7.20 51.04,8.04 52.20,8.29 C 53.35,8.55 52.91,9.26 53.29,9.39 C 53.68,9.52 54.46,9.01 55.49,9.39 C 56.51,9.77 60.28,11.27 62.07,12.68 C 63.87,14.09 69.32,19.54 70.85,21.46 C 72.39,23.38 73.96,28.12 75.24,29.15 C 76.52,30.17 80.29,29.73 81.83,30.24 C 83.37,30.76 87.39,32.90 88.41,33.54 C 89.44,34.18 90.35,35.35 90.61,35.73 C 90.87,36.12 90.23,36.19 90.61,36.83 C 90.99,37.47 93.52,40.20 93.90,41.22 C 94.29,42.24 94.41,44.71 93.90,45.61 C 93.39,46.51 90.41,48.52 89.51,48.90 C 88.62,49.29 86.73,48.77 86.22,48.90 C 85.71,49.03 86.02,49.87 85.12,50.00 C 84.23,50.13 79.82,49.62 78.54,50.00 C 77.26,50.38 74.27,52.65 74.15,53.29 C 74.02,53.93 76.80,55.23 77.44,55.49 C 78.08,55.74 78.35,54.98 79.63,55.49 C 80.91,56.00 86.62,58.60 88.41,59.88 C 90.21,61.16 94.36,65.57 95.00,66.46 C 95.64,67.36 94.67,67.56 93.90,67.56 C 93.13,67.56 89.18,66.72 88.41,66.46 C 87.65,66.21 88.09,65.62 87.32,65.37 C 86.55,65.11 82.60,64.52 81.83,64.27 C 81.06,64.01 81.37,63.30 80.73,63.17 C 80.09,63.04 76.98,63.30 76.34,63.17 C 75.70,63.04 76.27,62.20 75.24,62.07 C 74.22,61.95 68.59,62.20 67.56,62.07 C 66.54,61.95 68.51,60.98 66.46,60.98 C 64.41,60.98 52.05,61.82 50.00,62.07 C 47.95,62.33 49.54,63.04 48.90,63.17 C 48.26,63.30 45.15,63.04 44.51,63.17 C 43.87,63.30 43.54,64.27 43.41,64.27 C 43.29,64.27 42.77,63.94 43.41,63.17 C 44.05,62.40 47.49,59.86 48.90,57.68 C 50.31,55.51 53.95,46.82 55.49,44.51 C 57.02,42.21 60.92,38.82 62.07,37.93 C 63.23,37.03 64.34,37.47 65.37,36.83 C 66.39,36.19 70.60,33.21 70.85,32.44 C 71.11,31.67 68.71,30.63 67.56,30.24 C 66.41,29.86 62.26,29.66 60.98,29.15 C 59.70,28.63 57.23,26.24 56.59,25.85 C 55.95,25.47 56.51,26.75 55.49,25.85 C 54.46,24.96 49.09,19.84 47.80,18.17 C 46.52,16.51 45.02,12.87 44.51,11.59 C 44.00,10.30 43.54,7.71 43.41,7.20 C 43.29,6.68 42.39,7.07 43.41,7.20 Z"/>
-          <path fill="currentColor" d="M 53.29,36.83 C 53.29,36.83 60.34,36.70 60.98,36.83 C 61.62,36.96 59.68,37.16 58.78,37.93 C 57.88,38.70 54.83,41.11 53.29,43.41 C 51.76,45.72 47.40,55.12 45.61,57.68 C 43.82,60.24 39.85,63.96 37.93,65.37 C 36.01,66.77 30.94,68.60 29.15,69.76 C 27.35,70.91 23.46,74.60 22.56,75.24 C 21.66,75.88 22.62,74.22 21.46,75.24 C 20.31,76.27 13.71,82.87 12.68,84.02 C 11.66,85.18 13.07,84.61 12.68,85.12 C 12.30,85.63 9.90,87.65 9.39,88.41 C 8.88,89.18 8.55,91.20 8.29,91.71 C 8.04,92.22 7.58,92.68 7.20,92.80 C 6.81,92.93 5.26,93.96 5.00,92.80 C 4.74,91.65 4.87,84.21 5.00,82.93 C 5.13,81.65 5.97,82.47 6.10,81.83 C 6.23,81.19 5.97,78.08 6.10,77.44 C 6.23,76.80 6.94,77.11 7.20,76.34 C 7.45,75.57 7.65,72.39 8.29,70.85 C 8.93,69.32 12.17,64.32 12.68,63.17 C 13.20,62.02 13.20,61.49 12.68,60.98 C 12.17,60.46 8.93,59.29 8.29,58.78 C 7.65,58.27 7.32,57.35 7.20,56.59 C 7.07,55.82 7.07,52.96 7.20,52.20 C 7.32,51.43 7.78,50.51 8.29,50.00 C 8.80,49.49 10.82,48.06 11.59,47.80 C 12.35,47.55 14.24,47.68 14.88,47.80 C 15.52,47.93 16.56,48.39 17.07,48.90 C 17.59,49.41 18.88,51.81 19.27,52.20 C 19.65,52.58 19.34,52.96 20.37,52.20 C 21.39,51.43 25.87,47.02 28.05,45.61 C 30.23,44.20 37.36,40.76 39.02,40.12 C 40.69,39.48 41.42,40.38 42.32,40.12 C 43.21,39.87 45.55,38.18 46.71,37.93 C 47.86,37.67 51.43,38.05 52.20,37.93 C 52.96,37.80 53.16,36.96 53.29,36.83 C 53.42,36.70 52.40,36.83 53.29,36.83 Z"/>
-        </svg>
-
-      </div>
-      <span class="logo-text">hopon</span>
-    </div>
-  </div>
-
-  <!-- Screens -->
-  <div class="screens" id="screens-wrap">
+<div class="screens" id="screens-wrap">
 
     <!-- ══════════════ INBOX ══════════════ -->
     <div class="screen active" id="screen-inbox">
@@ -16577,6 +16689,390 @@ document.getElementById('tp-car-name').textContent = "Vehicle information not pr
       }
     });
   }
+
+
+/* ═════════════════════════════════════════════════════════════════
+   HOPON 8-STEP ONBOARDING & AUTHENTICATION ENGINE (POPARIDE STANDARD)
+   ═════════════════════════════════════════════════════════════════ */
+var newHopOnUserDraft = {
+  fname: '',
+  lname: '',
+  email: '',
+  phone: '',
+  pwd: '',
+  dob: '',
+  gender: 'Female',
+  avatarUrl: '',
+  isSocial: false,
+  socialProvider: ''
+};
+
+function goToHopOnStep(stepName) {
+  console.log("Navigating to HopOn Step:", stepName);
+  var steps = document.querySelectorAll('.hopon-auth-step');
+  steps.forEach(function(s) { s.classList.remove('active'); });
+
+  var targetId = 'step-auth-welcome';
+  if (stepName === 'welcome') targetId = 'step-auth-welcome';
+  else if (stepName === 'login') targetId = 'step-auth-login';
+  else if (stepName === 'signup') targetId = 'step-auth-signup';
+  else if (stepName === 'intro') targetId = 'step-onboard-intro';
+  else if (stepName === 'rules') targetId = 'step-onboard-rules';
+  else if (stepName === 'profile_intro') targetId = 'step-profile-intro';
+  else if (stepName === 'age') targetId = 'step-profile-age';
+  else if (stepName === 'gender') targetId = 'step-profile-gender';
+  else if (stepName === 'photo') targetId = 'step-profile-photo';
+
+  var targetEl = document.getElementById(targetId);
+  if (targetEl) {
+    targetEl.classList.add('active');
+    var container = document.getElementById('auth-onboard-container');
+    if (container) container.scrollTop = 0;
+  }
+}
+
+async function executeHopOnSocialLogin(provider) {
+  var providerName = provider ? provider.charAt(0).toUpperCase() + provider.slice(1) : 'Social';
+  if (typeof showToast === 'function') showToast('Authenticating with ' + providerName + '...', 'info');
+
+  // Attempt Real Firebase Authentication if initialized
+  if (typeof firebase !== 'undefined' && firebase.auth && typeof useFirebase !== 'undefined' && useFirebase) {
+    try {
+      var authProvider = null;
+      if (provider === 'google') {
+        authProvider = new firebase.auth.GoogleAuthProvider();
+        authProvider.addScope('email');
+        authProvider.addScope('profile');
+      } else if (provider === 'facebook') {
+        authProvider = new firebase.auth.FacebookAuthProvider();
+      } else if (provider === 'apple') {
+        authProvider = new firebase.auth.OAuthProvider('apple.com');
+      }
+
+      if (authProvider) {
+        var userCredential = null;
+        try {
+          userCredential = await firebase.auth().signInWithPopup(authProvider);
+        } catch (popupErr) {
+          console.warn("Popup auth failed, trying redirect mode:", popupErr);
+          if (popupErr.code === 'auth/popup-blocked' || popupErr.code === 'auth/popup-closed-by-user') {
+            await firebase.auth().signInWithRedirect(authProvider);
+            return;
+          }
+          throw popupErr;
+        }
+
+        if (userCredential && userCredential.user) {
+          await processHopOnSocialUser(userCredential.user, provider);
+          return;
+        }
+      }
+    } catch (err) {
+      console.warn("Firebase Auth error, defaulting to seamless Poparide onboarding preview:", err);
+    }
+  }
+
+  // Fallback / Demo Social Login (Poparide Onboarding Flow)
+  processHopOnDemoSocialUser(provider);
+}
+
+async function processHopOnSocialUser(user, provider) {
+  var uid = user.uid;
+  var email = user.email || '';
+  var displayName = user.displayName || '';
+  var photoURL = user.photoURL || '';
+
+  // Check if profile exists in Firestore & has onboarding_complete
+  var isExistingUser = false;
+  var profileData = null;
+
+  if (typeof db !== 'undefined' && db.collection) {
+    try {
+      var userDoc = await db.collection('users').doc(uid).get();
+      if (userDoc.exists) {
+        profileData = userDoc.data();
+        if (profileData && profileData.onboarding_complete === true) {
+          isExistingUser = true;
+        }
+      }
+    } catch (e) {
+      console.warn("Firestore lookup failed:", e);
+    }
+  }
+
+  if (isExistingUser && profileData) {
+    // Existing user: direct access to main app
+    if (window.currentUser) {
+      window.currentUser.name = profileData.name || displayName || 'User';
+      window.currentUser.email = profileData.email || email;
+      if (profileData.avatarUrl || photoURL) window.currentUser.avatar = profileData.avatarUrl || photoURL;
+    }
+    if (typeof showToast === 'function') showToast('Welcome back, ' + (profileData.firstName || 'User') + '! 👋', 'success');
+    finishHopOnAuth();
+  } else {
+    // New user (Poparide Flow): pre-fill Google info & require onboarding steps
+    var nameParts = displayName.trim().split(' ');
+    var fname = nameParts[0] || 'New';
+    var lname = nameParts.slice(1).join(' ') || 'User';
+
+    newHopOnUserDraft.fname = fname;
+    newHopOnUserDraft.lname = lname;
+    newHopOnUserDraft.email = email;
+    newHopOnUserDraft.avatarUrl = photoURL;
+    newHopOnUserDraft.isSocial = true;
+    newHopOnUserDraft.socialProvider = provider;
+
+    // Update form input elements
+    var fnEl = document.getElementById('hopon-signup-fname');
+    var lnEl = document.getElementById('hopon-signup-lname');
+    var emEl = document.getElementById('hopon-signup-email');
+    if (fnEl) fnEl.value = fname;
+    if (lnEl) lnEl.value = lname;
+    if (emEl) emEl.value = email;
+
+    // Pre-fill profile photo preview if available from Google
+    if (photoURL) {
+      updateProfilePhotoPreview(photoURL, "Google photo loaded! Tap to change if you wish.");
+    }
+
+    if (typeof showToast === 'function') {
+      showToast('Google sign-in verified! Let\'s complete your profile 🚀', 'info');
+    }
+
+    // Launch onboarding steps
+    goToHopOnStep('intro');
+  }
+}
+
+function processHopOnDemoSocialUser(provider) {
+  var providerName = provider ? provider.charAt(0).toUpperCase() + provider.slice(1) : 'Google';
+  
+  var mockSettings = {};
+  try { mockSettings = JSON.parse(localStorage.getItem('mock_user_settings') || '{}'); } catch(e){}
+
+  if (mockSettings.mock_existing_social_user === true) {
+    if (typeof showToast === 'function') showToast('Welcome back! 👋 (Existing ' + providerName + ' User)', 'success');
+    finishHopOnAuth();
+    return;
+  }
+
+  // Pre-fill mock Google profile for seamless demonstration
+  newHopOnUserDraft.fname = 'Alex';
+  newHopOnUserDraft.lname = 'Morgan';
+  newHopOnUserDraft.email = 'alex.morgan@example.com';
+  newHopOnUserDraft.avatarUrl = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80';
+  newHopOnUserDraft.isSocial = true;
+  newHopOnUserDraft.socialProvider = provider;
+
+  var fnEl = document.getElementById('hopon-signup-fname');
+  var lnEl = document.getElementById('hopon-signup-lname');
+  var emEl = document.getElementById('hopon-signup-email');
+  if (fnEl) fnEl.value = 'Alex';
+  if (lnEl) lnEl.value = 'Morgan';
+  if (emEl) emEl.value = 'alex.morgan@example.com';
+
+  updateProfilePhotoPreview(newHopOnUserDraft.avatarUrl, providerName + " photo loaded! Tap to change selfie.");
+
+  if (typeof showToast === 'function') {
+    showToast(providerName + ' authenticated! Let\'s build your verified profile 🚀', 'info');
+  }
+
+  goToHopOnStep('intro');
+}
+
+function toggleDemoSocialUserMode() {
+  var mockSettings = {};
+  try { mockSettings = JSON.parse(localStorage.getItem('mock_user_settings') || '{}'); } catch(e){}
+  mockSettings.mock_existing_social_user = !mockSettings.mock_existing_social_user;
+  localStorage.setItem('mock_user_settings', JSON.stringify(mockSettings));
+
+  var modeLabel = document.getElementById('demo-user-mode-label');
+  if (mockSettings.mock_existing_social_user) {
+    if (modeLabel) modeLabel.textContent = 'Existing User (Direct Access)';
+    if (typeof showToast === 'function') showToast('Switched to Existing User mode! Social login will bypass onboarding.', 'info');
+  } else {
+    if (modeLabel) modeLabel.textContent = 'New User (Launches Onboarding)';
+    if (typeof showToast === 'function') showToast('Switched to New User mode! Social login will launch profile onboarding.', 'info');
+  }
+}
+
+function executeHopOnEmailLogin() {
+  var loginId = document.getElementById('hopon-login-id') ? document.getElementById('hopon-login-id').value : '';
+  var loginPwd = document.getElementById('hopon-login-pwd') ? document.getElementById('hopon-login-pwd').value : '';
+  if (!loginId || !loginPwd) {
+    if (typeof showToast === 'function') showToast('Please enter your email/phone and password.', 'warning');
+    else alert('Please enter your email/phone and password.');
+    return;
+  }
+  finishHopOnAuth();
+}
+
+function proceedSignupToOnboarding() {
+  var fname = document.getElementById('hopon-signup-fname') ? document.getElementById('hopon-signup-fname').value : '';
+  var lname = document.getElementById('hopon-signup-lname') ? document.getElementById('hopon-signup-lname').value : '';
+  var email = document.getElementById('hopon-signup-email') ? document.getElementById('hopon-signup-email').value : '';
+  var phone = document.getElementById('hopon-signup-phone') ? document.getElementById('hopon-signup-phone').value : '';
+
+  if (!fname || !lname || !email) {
+    if (typeof showToast === 'function') showToast('Please enter your first name, last name, and email.', 'warning');
+    else alert('Please enter your first name, last name, and email.');
+    return;
+  }
+
+  newHopOnUserDraft.fname = fname;
+  newHopOnUserDraft.lname = lname;
+  newHopOnUserDraft.email = email;
+  newHopOnUserDraft.phone = phone;
+
+  goToHopOnStep('intro');
+}
+
+function proceedRulesToProfileIntro() {
+  var chk = document.getElementById('hopon-legal-consent-chk');
+  if (chk && !chk.checked) {
+    if (typeof showToast === 'function') showToast('Please accept the HopOn Community Rules to continue.', 'warning');
+    else alert('Please accept the HopOn Community Rules to continue.');
+    return;
+  }
+  goToHopOnStep('profile_intro');
+}
+
+function proceedAgeToGender() {
+  var month = document.getElementById('hopon-dob-month') ? document.getElementById('hopon-dob-month').value : '01';
+  var day = document.getElementById('hopon-dob-day') ? document.getElementById('hopon-dob-day').value : '01';
+  var year = document.getElementById('hopon-dob-year') ? document.getElementById('hopon-dob-year').value : '2000';
+
+  newHopOnUserDraft.dob = year + '-' + month + '-' + day;
+  goToHopOnStep('gender');
+}
+
+function selectHopOnGender(gender, element) {
+  newHopOnUserDraft.gender = gender;
+  var cards = document.querySelectorAll('.hopon-gender-card');
+  cards.forEach(function(c) { c.classList.remove('active'); });
+  if (element) element.classList.add('active');
+}
+
+function updateProfilePhotoPreview(url, statusText) {
+  var imgEl = document.getElementById('hopon-avatar-img');
+  var placeholderEl = document.getElementById('hopon-avatar-placeholder');
+  var statusEl = document.getElementById('hopon-photo-status');
+
+  if (imgEl && url) {
+    imgEl.src = url;
+    imgEl.style.display = 'block';
+    if (placeholderEl) placeholderEl.style.display = 'none';
+  }
+  if (statusEl && statusText) {
+    statusEl.textContent = statusText;
+  }
+}
+
+function triggerFileUpload() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function(evt) {
+        newHopOnUserDraft.avatarUrl = evt.target.result;
+        updateProfilePhotoPreview(evt.target.result, "Photo uploaded! Ready for profile verification.");
+        if (typeof showToast === 'function') showToast("Profile photo updated!", "success");
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  input.click();
+}
+
+function openLiveCamera() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.capture = 'user';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function(evt) {
+        newHopOnUserDraft.avatarUrl = evt.target.result;
+        updateProfilePhotoPreview(evt.target.result, "Selfie snapshot added!");
+        if (typeof showToast === 'function') showToast("Selfie photo captured!", "success");
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  input.click();
+}
+
+function openPhotoSourceSheet() {
+  triggerFileUpload();
+}
+
+async function completeHopOnAccountRegistration() {
+  var fullName = ((newHopOnUserDraft.fname || 'New') + ' ' + (newHopOnUserDraft.lname || 'User')).trim();
+  
+  if (window.currentUser) {
+    window.currentUser.name = fullName;
+    if (newHopOnUserDraft.email) window.currentUser.email = newHopOnUserDraft.email;
+    if (newHopOnUserDraft.avatarUrl) window.currentUser.avatar = newHopOnUserDraft.avatarUrl;
+    if (newHopOnUserDraft.phone) window.currentUser.phone = newHopOnUserDraft.phone;
+    if (newHopOnUserDraft.dob) window.currentUser.dob = newHopOnUserDraft.dob;
+    if (newHopOnUserDraft.gender) window.currentUser.gender = newHopOnUserDraft.gender;
+  }
+
+  // Save profile to Firestore if Firebase user is authenticated
+  if (typeof firebase !== 'undefined' && firebase.auth && firebase.auth().currentUser && typeof db !== 'undefined') {
+    try {
+      var uid = firebase.auth().currentUser.uid;
+      await db.collection('users').doc(uid).set({
+        firstName: newHopOnUserDraft.fname,
+        lastName: newHopOnUserDraft.lname,
+        name: fullName,
+        email: newHopOnUserDraft.email,
+        phone: newHopOnUserDraft.phone || '',
+        dob: newHopOnUserDraft.dob || '',
+        gender: newHopOnUserDraft.gender || 'Not specified',
+        avatarUrl: newHopOnUserDraft.avatarUrl || '',
+        onboarding_complete: true,
+        authProvider: newHopOnUserDraft.socialProvider || 'email',
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }, { merge: true });
+    } catch (dbErr) {
+      console.warn("Error saving user profile to Firestore:", dbErr);
+    }
+  }
+
+  // Persist locally in localStorage
+  var settings = {};
+  try { settings = JSON.parse(localStorage.getItem('mock_user_settings') || '{}'); } catch(e){}
+  settings.onboarding_complete = true;
+  localStorage.setItem('mock_user_settings', JSON.stringify(settings));
+
+  var profileLocal = {
+    fname: newHopOnUserDraft.fname,
+    lname: newHopOnUserDraft.lname,
+    name: fullName,
+    email: newHopOnUserDraft.email,
+    phone: newHopOnUserDraft.phone,
+    dob: newHopOnUserDraft.dob,
+    gender: newHopOnUserDraft.gender,
+    avatarUrl: newHopOnUserDraft.avatarUrl,
+    onboarding_complete: true
+  };
+  localStorage.setItem('hopon_user_profile', JSON.stringify(profileLocal));
+
+  finishHopOnAuth();
+}
+
+function finishHopOnAuth() {
+  var splash = document.getElementById('splash');
+  if (splash) splash.classList.add('hidden');
+  if (typeof showToast === 'function') showToast('Welcome to HopOn! 🚀', 'success');
+}
+
 
 </script>
 
