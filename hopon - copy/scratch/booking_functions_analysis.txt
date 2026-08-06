@@ -1,0 +1,786 @@
+=== Matches for openTripPreview (function openTripPreview) ===
+Line 5600: function openTripPreview(rideId) {
+--- Context ---
+  Line 5600:   function openTripPreview(rideId) {
+  Line 5601:     const ride = ridesList.find(r => r.id === rideId);
+  Line 5602:     if (!ride) return;
+  Line 5603: 
+  Line 5604:     // Reset map preview to blurred state initially
+  Line 5605:     const wrap = document.getElementById('tp-map-preview-wrap');
+  Line 5606:     const overlay = document.getElementById('tp-map-overlay');
+  Line 5607:     if (wrap && overlay) {
+  Line 5608:       wrap.style.filter = 'blur(3px) brightness(0.9)';
+  Line 5609:       overlay.style.display = 'flex';
+  Line 5610:     }
+  Line 5611: 
+  Line 5612:     // 1. Populate Cities & Locations
+  Line 5613:     document.getElementById('tp-from-city').textContent = ride.from.split(',')[0].trim();
+  Line 5614:     document.getElementById('tp-from-full').textContent = ride.from;
+  Line 5615:     document.getElementById('tp-to-city').textContent = ride.to.split(',')[0].trim();
+  Line 5616:     document.getElementById('tp-to-full').textContent = ride.to;
+  Line 5617:     
+  Line 5618:     // 2. Populate Date & Times
+  Line 5619:     document.getElementById('tp-depart-time').textContent = `${ride.date} at ${ride.time}`;
+  Line 5620:     document.getElementById('tp-arrival-time').textContent = `est. Arrival`;
+  Line 5621: 
+  Line 5622:     // 3. Seats & Price
+  Line 5623:     document.getElementById('tp-seats-left').textContent = `${ride.seats} of 4 seats left`;
+  Line 5624:     document.getElementById('tp-price-per-seat').textContent = `$${parseFloat(ride.price).toFixed(2)} per seat`;
+  Line 5625: 
+  Line 5626:     // 4. Description/Notes
+  Line 5627:     const pickupDropoff = ride.notes || 'Verified student ride';
+  Line 5628:     document.getElementById('tp-description').textContent = `Pickup:\n- ${ride.from.split(',')[0]} Transit Hub\n- Contact driver for details\n\nDropoff:\n- ${ride.to.split(',')[0]} Main Gates\n- Near dropoff zones\n\nDriver Notes:\n- ${pickupDropoff}`;
+  Line 5629: 
+---------------
+
+=== Matches for DRIVER_PROFILES ((const|let|var)\s+DRIVER_PROFILES) ===
+Line 3109: const DRIVER_PROFILES = {
+--- Context ---
+  Line 3109:   const DRIVER_PROFILES = {
+  Line 3110:     'Alex Rivera':  { initial:'A', color:'linear-gradient(135deg,#7B2FBE,#9B4FDE)', rating:'4.9', rides:128, accept:'99%', verified:true, member:'Jan 2024', bio:"Hey! I'm Alex, a Computer Science student at Fanshawe. I drive Monday–Friday mornings. Clean car, chill vibes — your comfort is my priority! 🎵", car:'2021 Toyota Camry · White', plate:'ARV·2021', mutualCount:3, faculty:'Computer Science', ratingsBreakdown:[90, 8, 2, 0, 0], reviews:[{name:'Sarah K.',stars:5,text:'Alex was super professional and on time. The car was spotless!'},{name:'Mike T.',stars:5,text:'Great driver! Very smooth ride, would definitely book again.'},{name:'Priya M.',stars:4,text:'Friendly and punctual. Music was great too!'}] },
+  Line 3111:     'Jordan Lee':   { initial:'J', color:'linear-gradient(135deg,#3B82F6,#2563EB)', rating:'4.7', rides:64,  accept:'95%', verified:false, member:'Mar 2024', bio:"Hey it's Jordan! Communications major and part-time driver. I love meeting new people and always make sure the ride is comfortable. 😊", car:'2019 Honda Civic · Blue', plate:'JDL·1995', mutualCount:1, faculty:'Communications', ratingsBreakdown:[75, 20, 5, 0, 0], reviews:[{name:'Chris W.',stars:5,text:'Jordan was super friendly! Great conversation the whole way.'},{name:'Aisha B.',stars:4,text:'On time and professional. Would book again!'}] },
+  Line 3112:     'Sam Patel':    { initial:'S', color:'linear-gradient(135deg,#22C55E,#16A34A)', rating:'5.0', rides:212, accept:'99%', verified:true, member:'Sep 2023', bio:"Hi! I'm Sam, an engineering student and part-time driver. I love helping students save on their daily commute. Safety is my absolute priority. Car is always clean and ready to go! 🚗", car:'2022 Hyundai Elantra · Grey', plate:'SMP·2022', mutualCount:4, faculty:'Software Engineering', ratingsBreakdown:[98, 2, 0, 0, 0], reviews:[{name:'Tom R.',stars:5,text:"Sam is the best driver I've had on HopOn. Super safe and polite!"},{name:'Jessica L.',stars:5,text:'Amazing experience. Car was clean and Sam was professional.'}] },
+  Line 3113:     'Casey Monroe': { initial:'C', color:'linear-gradient(135deg,#3B82F6,#2563EB)', rating:'4.7', rides:52,  accept:'94%', verified:false, member:'Feb 2024', bio:"Hi, I'm Casey! Psychology student and casual driver. Always happy to help fellow students get to campus. I play great music! 🎧", car:'2018 Mazda 3 · Grey', plate:'CSY·2018', mutualCount:2, faculty:'Psychology', ratingsBreakdown:[78, 15, 7, 0, 0], reviews:[{name:'Dan H.',stars:5,text:'Casey was super chill. Good music and a comfortable ride!'},{name:'Zoe L.',stars:4,text:'On time, clean car, good conversation.'}] },
+  Line 3114:     'Morgan Chen':  { initial:'M', color:'linear-gradient(135deg,#EC4899,#BE185D)', rating:'4.8', rides:89,  accept:'96%', verified:true, member:'Oct 2023', bio:"Hey there! I'm Morgan, a sociology major and active ridesharer. I travel between campus and downtown frequently. Let's share a ride, chat, and save some gas! 🚗✨", car:'2021 Honda Accord · White', plate:'MGC·2021', mutualCount:3, faculty:'Sociology', ratingsBreakdown:[85, 12, 3, 0, 0], reviews:[{name:'Ryan K.',stars:5,text:'Great conversation and very punctual. Highly recommend Morgan!'},{name:'Ella S.',stars:5,text:'Smooth driving and very polite. Will definitely book again.'}] },
+  Line 3115:     'Alex Chen':    { initial:'A', color:'linear-gradient(135deg,#10B981,#059669)', rating:'4.8', rides:97,  accept:'97%', verified:true, member:'Nov 2023', bio:"Alex here! Business student who loves helping people get around. Always punctual and happy to chat or stay quiet — your choice! ✌️", car:'2020 Kia Sportage · Black', plate:'ACN·2020', mutualCount:2, faculty:'Business Administration', ratingsBreakdown:[82, 14, 4, 0, 0], reviews:[{name:'Olivia P.',stars:5,text:'Super smooth ride! Alex was respectful and the car was clean.'},{name:'David M.',stars:4,text:'Great experience overall. Would recommend!'}] },
+  Line 3116:     'Taylor Kim':   { initial:'T', color:'linear-gradient(135deg,#F59E0B,#D97706)', rating:'4.6', rides:41,  accept:'92%', verified:false, member:'May 2024', bio:"Taylor here — nursing student and part-time driver. I keep the car clean and the vibe positive. Let's go! 🎶", car:'2018 Nissan Sentra · Red', plate:'TKM·2018', mutualCount:0, faculty:'Nursing', ratingsBreakdown:[70, 20, 10, 0, 0], reviews:[{name:'Lena S.',stars:5,text:'Taylor was great! Super energetic and fun ride.'},{name:'Ben O.',stars:4,text:'Good driver, got me there on time.'}] }
+  Line 3117:   };
+  Line 3118: 
+  Line 3119:   let searchFromValue = "📍 Current Location";
+  Line 3120:   let searchToValue = "Where to?";
+  Line 3121:   let searchDateValue = new Date();
+  Line 3122:   let locationSearchMode = "from";
+  Line 3123:   
+  Line 3124:   // Coordinates database for popular locations
+  Line 3125:   const popularLocationsCoords = {
+  Line 3126:     "Fanshawe College (Main Campus)": { lat: 43.0121, lng: -81.2003 },
+  Line 3127:     "Fanshawe College (Downtown Campus)": { lat: 42.9837, lng: -81.2497 },
+  Line 3128:     "Western University (UWO)": { lat: 43.0096, lng: -81.2737 },
+  Line 3129:     "Downtown London (Dundas St)": { lat: 42.9833, lng: -81.2500 },
+  Line 3130:     "Masonville Mall": { lat: 43.0267, lng: -81.2783 },
+  Line 3131:     "White Oaks Mall": { lat: 42.9372, lng: -81.2269 },
+  Line 3132:     "London International Airport (YXU)": { lat: 43.0331, lng: -81.1539 },
+  Line 3133:     "Richmond Row": { lat: 42.9917, lng: -81.2514 },
+  Line 3134:     "Sherwood Forest Mall": { lat: 43.0167, lng: -81.3014 }
+  Line 3135:   };
+  Line 3136: 
+  Line 3137:   let searchFromCoords = { lat: 43.0121, lng: -81.2003 }; // Default start
+  Line 3138:   let searchToCoords = { lat: null, lng: null };
+---------------
+
+=== Matches for booking_flow (function .*book.*|function .*request.*|function .*confirm.*|submitBooking) ===
+Line 3559: function showBooking(driver, route, price) {
+--- Context ---
+  Line 3559:   function showBooking(driver, route, price) {
+  Line 3560:     document.getElementById('confirm-text').innerHTML =
+  Line 3561:       `Ride booked with <strong>${driver}</strong>.<br/>${route} for <strong>${price}</strong>`;
+  Line 3562:     document.getElementById('booking-confirm').classList.add('show');
+  Line 3563:   }
+  Line 3564:   function hideBooking() {
+  Line 3565:     document.getElementById('booking-confirm').classList.remove('show');
+  Line 3566:   }
+  Line 3567: 
+  Line 3568:   // ── Sub-screen Navigation ──
+  Line 3569:   function openSubScreen(id) {
+  Line 3570:     document.getElementById(id).classList.add('show');
+  Line 3571:     if (id === 'sub-notifications') {
+  Line 3572:       markNotificationsAsRead();
+  Line 3573:     }
+  Line 3574:   }
+  Line 3575:   function closeSubScreen(id) {
+  Line 3576:     document.getElementById(id).classList.remove('show');
+  Line 3577:   }
+  Line 3578: 
+  Line 3579:   let loadedLegalDocs = {};
+  Line 3580: 
+  Line 3581:   async function openLegalScreen(type) {
+  Line 3582:     const titleEl = document.getElementById('legal-title');
+  Line 3583:     const contentEl = document.getElementById('legal-content');
+  Line 3584:     
+  Line 3585:     if (type === 'terms') {
+  Line 3586:       titleEl.textContent = 'Terms & Conditions';
+  Line 3587:     } else {
+  Line 3588:       titleEl.textContent = 'Privacy Policy';
+---------------
+
+Line 3564: function hideBooking() {
+--- Context ---
+  Line 3564:   function hideBooking() {
+  Line 3565:     document.getElementById('booking-confirm').classList.remove('show');
+  Line 3566:   }
+  Line 3567: 
+  Line 3568:   // ── Sub-screen Navigation ──
+  Line 3569:   function openSubScreen(id) {
+  Line 3570:     document.getElementById(id).classList.add('show');
+  Line 3571:     if (id === 'sub-notifications') {
+  Line 3572:       markNotificationsAsRead();
+  Line 3573:     }
+  Line 3574:   }
+  Line 3575:   function closeSubScreen(id) {
+  Line 3576:     document.getElementById(id).classList.remove('show');
+  Line 3577:   }
+  Line 3578: 
+  Line 3579:   let loadedLegalDocs = {};
+  Line 3580: 
+  Line 3581:   async function openLegalScreen(type) {
+  Line 3582:     const titleEl = document.getElementById('legal-title');
+  Line 3583:     const contentEl = document.getElementById('legal-content');
+  Line 3584:     
+  Line 3585:     if (type === 'terms') {
+  Line 3586:       titleEl.textContent = 'Terms & Conditions';
+  Line 3587:     } else {
+  Line 3588:       titleEl.textContent = 'Privacy Policy';
+  Line 3589:     }
+  Line 3590:     
+  Line 3591:     openSubScreen('sub-legal');
+  Line 3592:     
+  Line 3593:     // Check if cached in memory
+---------------
+
+Line 4300: async function bookRide(rideId, driverId, driverName, routeText, priceText) {
+--- Context ---
+  Line 4300:   async function bookRide(rideId, driverId, driverName, routeText, priceText) {
+  Line 4301:     const ride = ridesList.find(r => r.id === rideId);
+  Line 4302:     let resolvedDriverId = driverId || (ride ? ride.driverId : 'mock_driver');
+  Line 4303:     let from = ride ? ride.from : (routeText ? routeText.split('→')[0].trim() : 'Downtown');
+  Line 4304:     let to = ride ? ride.to : (routeText ? routeText.split('→')[1].trim() : 'University');
+  Line 4305:     let date = ride ? ride.date : 'Jun 19, 2026';
+  Line 4306:     let time = ride ? ride.time : '10:30 AM';
+  Line 4307:     let price = ride ? `$${parseFloat(ride.price).toFixed(2)}` : (priceText || '$6.00');
+  Line 4308:     const seatsToBook = typeof checkoutSeatsCount !== 'undefined' ? checkoutSeatsCount : 1;
+  Line 4309:     
+  Line 4310:     showToast('✉️ Submitting booking request to server... 🕒', 'info');
+  Line 4311:     await new Promise(resolve => setTimeout(resolve, 1500)); // Wait for server confirmation simulation
+  Line 4312: 
+  Line 4313:     if (useFirebase) {
+  Line 4314:       try {
+  Line 4315:         const rideRef = db.collection("rides").doc(rideId);
+  Line 4316:         await db.runTransaction(async (transaction) => {
+  Line 4317:           const sfDoc = await transaction.get(rideRef);
+  Line 4318:           if (!sfDoc.exists) {
+  Line 4319:             throw new Error("Ride does not exist!");
+  Line 4320:           }
+  Line 4321:           const currentSeats = sfDoc.data().seats;
+  Line 4322:           if (currentSeats < seatsToBook) {
+  Line 4323:             throw new Error(`Only ${currentSeats} seats left on this ride!`);
+  Line 4324:           }
+  Line 4325:           
+  Line 4326:           // Decrement seats immediately
+  Line 4327:           transaction.update(rideRef, { seats: currentSeats - seatsToBook });
+  Line 4328: 
+  Line 4329:           const bookingRef = db.collection("bookings").doc();
+---------------
+
+Line 4422: function openChatFromTrip(bookingId) {
+--- Context ---
+  Line 4422:   function openChatFromTrip(bookingId) {
+  Line 4423:     let booking = null;
+  Line 4424:     if (useFirebase) {
+  Line 4425:       booking = tripsList.find(b => b.id === bookingId);
+  Line 4426:     } else {
+  Line 4427:       booking = mockBookings.find(b => b.id === bookingId);
+  Line 4428:     }
+  Line 4429:     if (!booking) {
+  Line 4430:       showToast("Trip not found.");
+  Line 4431:       return;
+  Line 4432:     }
+  Line 4433:     switchTab('inbox');
+  Line 4434:     const isPassenger = booking.passengerId === currentUser.uid;
+  Line 4435:     const targetName = isPassenger ? booking.driverName : booking.passengerName;
+  Line 4436:     const targetId = isPassenger ? booking.driverId : booking.passengerId;
+  Line 4437:     const initial = targetName ? targetName.charAt(0) : '?';
+  Line 4438:     openChat(targetName, initial, 'var(--purple)', targetId);
+  Line 4439:   }
+  Line 4440: 
+  Line 4441:   async function cancelTrip(bookingId) {
+  Line 4442:     if (!confirm("Are you sure you want to cancel this trip?")) return;
+  Line 4443:     
+  Line 4444:     showToast("Cancelling trip...");
+  Line 4445:     
+  Line 4446:     if (useFirebase && auth.currentUser) {
+  Line 4447:       try {
+  Line 4448:         const bookingRef = db.collection("bookings").doc(bookingId);
+  Line 4449:         const bookingDoc = await bookingRef.get();
+  Line 4450:         if (!bookingDoc.exists) {
+  Line 4451:           showToast("Trip not found.");
+---------------
+
+Line 4441: async function cancelTrip(bookingId) {
+--- Context ---
+  Line 4441:   async function cancelTrip(bookingId) {
+  Line 4442:     if (!confirm("Are you sure you want to cancel this trip?")) return;
+  Line 4443:     
+  Line 4444:     showToast("Cancelling trip...");
+  Line 4445:     
+  Line 4446:     if (useFirebase && auth.currentUser) {
+  Line 4447:       try {
+  Line 4448:         const bookingRef = db.collection("bookings").doc(bookingId);
+  Line 4449:         const bookingDoc = await bookingRef.get();
+  Line 4450:         if (!bookingDoc.exists) {
+  Line 4451:           showToast("Trip not found.");
+  Line 4452:           return;
+  Line 4453:         }
+  Line 4454:         
+  Line 4455:         const bookingData = bookingDoc.data();
+  Line 4456:         if (bookingData.status === 'Cancelled' || bookingData.status === 'Completed') {
+  Line 4457:           showToast(`This trip is already ${bookingData.status.toLowerCase()}.`);
+  Line 4458:           return;
+  Line 4459:         }
+  Line 4460:         
+  Line 4461:         const rideId = bookingData.rideId;
+  Line 4462:         const driverId = bookingData.driverId;
+  Line 4463:         const driverName = bookingData.driverName;
+  Line 4464:         
+  Line 4465:         // Calculate refund amount: Driver Portion (Base Fare) only
+  Line 4466:         const refundAmount = parseFloat(bookingData.price.replace('$', '')) || 0;
+  Line 4467:         
+  Line 4468:         await db.runTransaction(async (transaction) => {
+  Line 4469:           const bDoc = await transaction.get(bookingRef);
+  Line 4470:           if (bDoc.data().status === 'Cancelled' || bDoc.data().status === 'Completed') {
+---------------
+
+Line 4941: function confirmStudentCode() {
+--- Context ---
+  Line 4941:   function confirmStudentCode() {
+  Line 4942:     const code = document.getElementById('student-verification-code').value.trim();
+  Line 4943:     if (code !== String(currentStudentVerificationCode) && code !== '123456') {
+  Line 4944:       alert('Incorrect verification code. Please check the code sent to your email.');
+  Line 4945:       return;
+  Line 4946:     }
+  Line 4947:     currentUser.studentVerified = true;
+  Line 4948:     if (useFirebase && auth.currentUser) {
+  Line 4949:       db.collection('users').doc(auth.currentUser.uid).update({ studentVerified: true })
+  Line 4950:         .catch(err => console.error(err));
+  Line 4951:     }
+  Line 4952:     localStorage.setItem('mock_student_verified', 'true');
+  Line 4953:     document.getElementById('student-code-step').style.display = 'none';
+  Line 4954:     document.getElementById('student-confirmed').style.display = 'block';
+  Line 4955:     
+  Line 4956:     const badge = document.querySelector('.profile-item-right .badge');
+  Line 4957:     if (badge) {
+  Line 4958:       badge.textContent = 'Verified';
+  Line 4959:       badge.className = 'badge badge-green';
+  Line 4960:     }
+  Line 4961:     showToast('Student status verified successfully! 15% discount applied.');
+  Line 4962:     updateUserProfileUI();
+  Line 4963:   }
+  Line 4964: 
+  Line 4965:   // Close booking overlay on backdrop click
+  Line 4966:   document.getElementById('booking-confirm').addEventListener('click', function(e) {
+  Line 4967:     if (e.target === this) hideBooking();
+  Line 4968:   });
+  Line 4969: 
+  Line 4970:   // ── Onboarding Carousel ──
+---------------
+
+Line 5789: function startBookingWizard(rideId) {
+--- Context ---
+  Line 5789:   function startBookingWizard(rideId) {
+  Line 5790:     const ride = ridesList.find(r => r.id === rideId);
+  Line 5791:     if (!ride) return;
+  Line 5792:     
+  Line 5793:     wizardRideId = rideId;
+  Line 5794:     wizardSeats = 1;
+  Line 5795:     wizardPricePerSeat = parseFloat(ride.price) || 0;
+  Line 5796:     wizardAppliedDiscount = 0;
+  Line 5797:     
+  Line 5798:     // Reset Checkbox & Wizard UI
+  Line 5799:     document.getElementById('pop-rules-checkbox').checked = false;
+  Line 5800:     toggleRulesNextBtn();
+  Line 5801:     
+  Line 5802:     // Open Booking Rules
+  Line 5803:     openSubScreen('sub-booking-rules');
+  Line 5804:   }
+  Line 5805:   
+  Line 5806:   function toggleRulesNextBtn() {
+  Line 5807:     const checked = document.getElementById('pop-rules-checkbox').checked;
+  Line 5808:     const btn = document.getElementById('pop-rules-next-btn');
+  Line 5809:     if (btn) {
+  Line 5810:       btn.style.opacity = checked ? '1' : '0.5';
+  Line 5811:       btn.style.pointerEvents = checked ? 'auto' : 'none';
+  Line 5812:     }
+  Line 5813:   }
+  Line 5814:   
+  Line 5815:   function goToSeatsScreen() {
+  Line 5816:     closeSubScreen('sub-booking-rules');
+  Line 5817:     
+  Line 5818:     // Populate Seats Screen
+---------------
+
+Line 5954: async function confirmPaymentAndBook() {
+--- Context ---
+  Line 5954:   async function confirmPaymentAndBook() {
+  Line 5955:     const confirmBtn = document.getElementById('checkout-confirm-btn');
+  Line 5956:     if (confirmBtn) confirmBtn.disabled = true;
+  Line 5957:     
+  Line 5958:     const priceText = document.getElementById('checkout-total-price').textContent;
+  Line 5959:     const finalPriceVal = parseFloat(priceText.replace('$', '')) || 0.0;
+  Line 5960:     
+  Line 5961:     // 1. Process payment based on selected method
+  Line 5962:     if (checkoutPaymentMethod === 'hopon_cash') {
+  Line 5963:       if (hoponCashBalance < finalPriceVal) {
+  Line 5964:         showToast("Insufficient HopOn Cash balance. Please add cash or select another payment method.", "error");
+  Line 5965:         if (confirmBtn) confirmBtn.disabled = false;
+  Line 5966:         return;
+  Line 5967:       }
+  Line 5968:       hoponCashBalance -= finalPriceVal;
+  Line 5969:       localStorage.setItem('hopon_cash_balance', hoponCashBalance.toFixed(2));
+  Line 5970:       updateHopOnCashDOM();
+  Line 5971:       showToast("Paid successfully using HopOn Cash! 💰");
+  Line 5972:     } else if (checkoutPaymentMethod === 'applepay') {
+  Line 5973:       showToast("Apple Pay: Authenticating with Face ID... ");
+  Line 5974:       await new Promise(resolve => setTimeout(resolve, 1500));
+  Line 5975:       showToast("Payment captured successfully! 🎉");
+  Line 5976:     } else if (isStripeActive && checkoutPaymentMethod !== 'cash') {
+  Line 5977:       const selectedRef = linkedCards.find(c => c.id === checkoutPaymentMethod);
+  Line 5978:       if (!selectedRef || !selectedRef.id.startsWith('pm_')) {
+  Line 5979:         showToast("Please select a valid tokenized credit card to continue.", "error");
+  Line 5980:         if (confirmBtn) confirmBtn.disabled = false;
+  Line 5981:         return;
+  Line 5982:       }
+  Line 5983:       
+---------------
+
+Line 6433: async function requestDriverPayout() {
+--- Context ---
+  Line 6433:   async function requestDriverPayout() {
+  Line 6434:     if (!linkedBankAccount) {
+  Line 6435:       alert("Please link a bank account before requesting a payout.");
+  Line 6436:       showBankLinkForm();
+  Line 6437:       return;
+  Line 6438:     }
+  Line 6439:     let payments = [];
+  Line 6440:     let payouts = [];
+  Line 6441:     if (useFirebase) {
+  Line 6442:       try {
+  Line 6443:         const snapPayments = await db.collection("payments").where("driverId", "==", currentUser.uid).get();
+  Line 6444:         payments = snapPayments.docs.map(doc => doc.data());
+  Line 6445:         const snapPayouts = await db.collection("payouts").where("driverId", "==", currentUser.uid).get();
+  Line 6446:         payouts = snapPayouts.docs.map(doc => doc.data());
+  Line 6447:       } catch (e) {
+  Line 6448:         console.error(e);
+  Line 6449:       }
+  Line 6450:     } else {
+  Line 6451:       payments = mockPayments.filter(p => p.driverId === currentUser.uid);
+  Line 6452:       payouts = mockPayouts.filter(p => p.driverId === currentUser.uid);
+  Line 6453:     }
+  Line 6454:     
+  Line 6455:     // Calculate withdrawable balance
+  Line 6456:     const now = new Date();
+  Line 6457:     const threeDaysAgo = new Date(now.getTime() - (3 * 24 * 60 * 60 * 1000));
+  Line 6458:     
+  Line 6459:     const totalEarnings = payments.reduce((sum, p) => sum + (parseFloat(p.price) || 0), 0);
+  Line 6460:     const totalPayouts = payouts.reduce((sum, p) => sum + (parseFloat(p.amount) || 0), 0);
+  Line 6461:     
+  Line 6462:     const clearedEarnings = payments
+---------------
+
+Line 8023: function confirmPickedLocation() {
+--- Context ---
+  Line 8023:   function confirmPickedLocation() {
+  Line 8024:     if (!pickedLocationAddress) {
+  Line 8025:       pickedLocationAddress = "Selected Location";
+  Line 8026:     }
+  Line 8027:     selectLocation(pickedLocationAddress, pickedLocationCoords);
+  Line 8028:   }
+  Line 8029: 
+  Line 8030:   // ── Custom Calendar Date Picker ──
+  Line 8031:   function openCustomDatePicker() {
+  Line 8032:     calendarSelectedDate = searchDateValue || new Date();
+  Line 8033:     calendarCurrentMonth = calendarSelectedDate.getMonth();
+  Line 8034:     calendarCurrentYear = calendarSelectedDate.getFullYear();
+  Line 8035:     renderCalendarGrid();
+  Line 8036:     document.getElementById("sub-date-picker").classList.add("show");
+  Line 8037:   }
+  Line 8038: 
+  Line 8039:   function closeCustomDatePicker(event) {
+  Line 8040:     if (!event || event.target.id === "sub-date-picker") {
+  Line 8041:       document.getElementById("sub-date-picker").classList.remove("show");
+  Line 8042:     }
+  Line 8043:   }
+  Line 8044: 
+  Line 8045:   function renderCalendarGrid() {
+  Line 8046:     const monthLabel = document.getElementById("calendar-month-label");
+  Line 8047:     const gridBody = document.getElementById("calendar-grid-body");
+  Line 8048:     if (!monthLabel || !gridBody) return;
+  Line 8049:     
+  Line 8050:     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  Line 8051:     monthLabel.textContent = `${months[calendarCurrentMonth]} ${calendarCurrentYear}`;
+  Line 8052:     
+---------------
+
+Line 8102: function confirmSelectedDate() {
+--- Context ---
+  Line 8102:   function confirmSelectedDate() {
+  Line 8103:     searchDateValue = calendarSelectedDate;
+  Line 8104:     
+  Line 8105:     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  Line 8106:     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  Line 8107:     
+  Line 8108:     const formatted = `${days[searchDateValue.getDay()]}, ${months[searchDateValue.getMonth()]} ${searchDateValue.getDate()}`;
+  Line 8109:     document.getElementById("search-date-val").textContent = formatted;
+  Line 8110:     
+  Line 8111:     document.getElementById("sub-date-picker").classList.remove("show");
+  Line 8112:     filterRides();
+  Line 8113:   }
+  Line 8114: 
+  Line 8115:   function formatDateString(d) {
+  Line 8116:     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  Line 8117:     return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  Line 8118:   }
+  Line 8119: 
+  Line 8120:   let activeAdvancedFilters = {
+  Line 8121:     femaleOnly: false,
+  Line 8122:     music: false,
+  Line 8123:     quiet: false,
+  Line 8124:     luggage: false,
+  Line 8125:     topRated: false,
+  Line 8126:     studentDriver: false
+  Line 8127:   };
+  Line 8128: 
+  Line 8129:   function openAdvancedFilters() {
+  Line 8130:     document.getElementById('filter-female-only').checked = activeAdvancedFilters.femaleOnly;
+  Line 8131:     document.getElementById('filter-music').checked = activeAdvancedFilters.music;
+---------------
+
+Line 8713: function showRating(initial, name, bookingId, driverId) {
+--- Context ---
+  Line 8713:   function showRating(initial, name, bookingId, driverId) {
+  Line 8714:     document.getElementById('rating-avatar').textContent = initial;
+  Line 8715:     document.getElementById('rating-sub').innerHTML = `How was your trip with <strong>${name}</strong>?`;
+  Line 8716:     document.getElementById('rating-comment').value = '';
+  Line 8717:     currentRating = 0;
+  Line 8718:     currentRatingBookingId = bookingId;
+  Line 8719:     currentRatingDriverId = driverId;
+  Line 8720:     document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('lit'));
+  Line 8721:     document.getElementById('rating-modal').classList.add('show');
+  Line 8722:   }
+  Line 8723:   function setRating(n) {
+  Line 8724:     currentRating = n;
+  Line 8725:     document.querySelectorAll('.star-btn').forEach((b,i) => b.classList.toggle('lit', i < n));
+  Line 8726:   }
+  Line 8727:   async function submitRating() {
+  Line 8728:     if (!currentRating) {
+  Line 8729:       const row = document.getElementById('stars-row');
+  Line 8730:       row.style.animation = 'none'; row.offsetHeight;
+  Line 8731:       row.style.animation = 'shakeX 0.4s ease'; return;
+  Line 8732:     }
+  Line 8733:     hideRating();
+  Line 8734: 
+  Line 8735:     const bookingId = currentRatingBookingId;
+  Line 8736:     const driverId = currentRatingDriverId;
+  Line 8737: 
+  Line 8738:     if (useFirebase) {
+  Line 8739:       try {
+  Line 8740:         if (bookingId) {
+  Line 8741:           await db.collection("bookings").doc(bookingId).update({
+  Line 8742:             driverRating: currentRating,
+---------------
+
+Line 9530: async function cancelCargoRequest(cargoId) {
+--- Context ---
+  Line 9530:   async function cancelCargoRequest(cargoId) {
+  Line 9531:     if (!confirm("Are you sure you want to cancel this cargo shipment request?")) return;
+  Line 9532: 
+  Line 9533:     showToast("Cancelling request...");
+  Line 9534:     if (useFirebase) {
+  Line 9535:       try {
+  Line 9536:         await db.collection("cargo").doc(cargoId).delete();
+  Line 9537:         showToast("Cargo request cancelled successfully!");
+  Line 9538:       } catch (err) {
+  Line 9539:         console.error("Error deleting cargo request:", err);
+  Line 9540:         showToast("Error cancelling request: " + err.message);
+  Line 9541:       }
+  Line 9542:     } else {
+  Line 9543:       const idx = mockCargo.findIndex(c => c.id === cargoId);
+  Line 9544:       if (idx !== -1) {
+  Line 9545:         mockCargo.splice(idx, 1);
+  Line 9546:         renderCargoUI();
+  Line 9547:         showToast("Cargo request cancelled successfully!");
+  Line 9548:       }
+  Line 9549:     }
+  Line 9550:   }
+  Line 9551: 
+  Line 9552:   // ── Secure Cargo P2P JavaScript Support ──
+  Line 9553: 
+  Line 9554:   function switchCargoMode(mode) {
+  Line 9555:     const shipperBtn = document.getElementById("cargo-toggle-btn-shipper");
+  Line 9556:     const driverBtn = document.getElementById("cargo-toggle-btn-driver");
+  Line 9557:     const shipperView = document.getElementById("cargo-shipper-view");
+  Line 9558:     const driverView = document.getElementById("cargo-driver-view");
+  Line 9559:     
+---------------
+
+Line 9679: function bookDriverCargo(offerId) {
+--- Context ---
+  Line 9679:   function bookDriverCargo(offerId) {
+  Line 9680:     const offers = useFirebase ? cargoOffersList : mockCargoOffers;
+  Line 9681:     const offer = offers.find(o => o.id === offerId);
+  Line 9682:     if (!offer) {
+  Line 9683:       showToast("❌ Driver trip offer not found!");
+  Line 9684:       return;
+  Line 9685:     }
+  Line 9686: 
+  Line 9687:     activeCargoBookingOfferId = offerId;
+  Line 9688: 
+  Line 9689:     // Pre-populate cargo shipment form fields
+  Line 9690:     const pickupVal = document.getElementById("cargo-pickup-val");
+  Line 9691:     const dropoffVal = document.getElementById("cargo-dropoff-val");
+  Line 9692:     const dateInput = document.getElementById("cargo-date");
+  Line 9693: 
+  Line 9694:     if (pickupVal) {
+  Line 9695:       pickupVal.value = offer.from;
+  Line 9696:       cargoPickupValue = offer.from;
+  Line 9697:       cargoPickupCoords = { lat: 42.9849, lng: -81.2453 }; // London ON centroid
+  Line 9698:     }
+  Line 9699:     if (dropoffVal) {
+  Line 9700:       dropoffVal.value = offer.to;
+  Line 9701:       cargoDropoffValue = offer.to;
+  Line 9702:       cargoDropoffCoords = { lat: 43.6532, lng: -79.3832 }; // Toronto ON centroid
+  Line 9703:     }
+  Line 9704:     if (dateInput) {
+  Line 9705:       dateInput.value = offer.date;
+  Line 9706:     }
+  Line 9707: 
+  Line 9708:     // Switch view mode back to form
+---------------
+
+Line 9950: async function openParcelScanner(callback, guideText = "Capture package confirmation") {
+--- Context ---
+  Line 9950:   async function openParcelScanner(callback, guideText = "Capture package confirmation") {
+  Line 9951:     activeParcelScanCallback = callback;
+  Line 9952:     document.getElementById('parcel-scanner-guide-text').textContent = guideText;
+  Line 9953:     
+  Line 9954:     const modal = document.getElementById('parcel-scanner-modal');
+  Line 9955:     modal.style.display = 'flex';
+  Line 9956:     document.getElementById('parcel-scanner-status').textContent = 'Initializing camera...';
+  Line 9957:     
+  Line 9958:     try {
+  Line 9959:       const stream = await navigator.mediaDevices.getUserMedia({
+  Line 9960:         video: { facingMode: 'environment', width: { ideal: 640 }, height: { ideal: 640 } }
+  Line 9961:       });
+  Line 9962:       parcelScannerStream = stream;
+  Line 9963:       const video = document.getElementById('parcel-scanner-video');
+  Line 9964:       video.srcObject = stream;
+  Line 9965:       video.onloadedmetadata = () => {
+  Line 9966:         video.play().catch(e => console.warn("Video play failed:", e));
+  Line 9967:       };
+  Line 9968:       document.getElementById('parcel-scanner-status').textContent = 'Camera active. Position package inside the frame.';
+  Line 9969:     } catch (err) {
+  Line 9970:       console.error("Camera access failed:", err);
+  Line 9971:       document.getElementById('parcel-scanner-status').textContent = 'Camera blocked. Starting snapshot simulation...';
+  Line 9972:       setTimeout(() => {
+  Line 9973:         if (modal.style.display === 'flex') {
+  Line 9974:           snapParcelPhoto(); // Auto simulation fallback
+  Line 9975:         }
+  Line 9976:       }, 1200);
+  Line 9977:     }
+  Line 9978:   }
+  Line 9979: 
+---------------
+
+Line 10229: async function confirmAccountDeletion() {
+--- Context ---
+  Line 10229:   async function confirmAccountDeletion() {
+  Line 10230:     const confirmation = confirm("⚠️ Are you sure you want to permanently delete your HopOn account?\n\nThis action is irreversible. All of your personal profile data, ride history, and active bookings will be permanently deleted from our servers.");
+  Line 10231:     if (!confirmation) return;
+  Line 10232:     
+  Line 10233:     showToast('🗑️ Deleting account...');
+  Line 10234:     
+  Line 10235:     if (useFirebase) {
+  Line 10236:       const user = auth.currentUser;
+  Line 10237:       if (user) {
+  Line 10238:         const userId = user.uid;
+  Line 10239:         try {
+  Line 10240:           // 1. Delete Firestore user document
+  Line 10241:           await db.collection("users").doc(userId).delete();
+  Line 10242:           
+  Line 10243:           // 2. Delete the actual Auth account
+  Line 10244:           await user.delete();
+  Line 10245:           
+  Line 10246:           showToast('✅ Account deleted successfully.');
+  Line 10247:           
+  Line 10248:           // Clear local overrides
+  Line 10249:           const sessionKey = 'hopon_2fa_verified_' + userId;
+  Line 10250:           localStorage.removeItem(sessionKey);
+  Line 10251:           localStorage.removeItem('hopon_email_verified_' + userId);
+  Line 10252:           
+  Line 10253:           setTimeout(() => {
+  Line 10254:             location.reload();
+  Line 10255:           }, 1500);
+  Line 10256:         } catch (err) {
+  Line 10257:           console.error("Error deleting account:", err);
+  Line 10258:           if (err.code === 'auth/requires-recent-login') {
+---------------
+
+Line 11053: function confirmPhoneCall() {
+--- Context ---
+  Line 11053:   function confirmPhoneCall() {
+  Line 11054:     let booking = null;
+  Line 11055:     if (useFirebase) {
+  Line 11056:       booking = tripsList.find(b => 
+  Line 11057:         (b.passengerId === currentUser.uid && b.driverId === activeChatOtherUserId) ||
+  Line 11058:         (b.passengerId === activeChatOtherUserId && b.driverId === currentUser.uid)
+  Line 11059:       );
+  Line 11060:       if (!booking) {
+  Line 11061:         const activeCargo = cargoListOwner.concat(cargoListDriver);
+  Line 11062:         const cargoItem = activeCargo.find(c => 
+  Line 11063:           (c.userId === currentUser.uid && c.driverId === activeChatOtherUserId) ||
+  Line 11064:           (c.userId === activeChatOtherUserId && c.driverId === currentUser.uid)
+  Line 11065:         );
+  Line 11066:         if (cargoItem) {
+  Line 11067:           booking = {
+  Line 11068:             status: cargoItem.status,
+  Line 11069:             driverId: cargoItem.driverId,
+  Line 11070:             passengerId: cargoItem.userId
+  Line 11071:           };
+  Line 11072:         }
+  Line 11073:       }
+  Line 11074:     } else {
+  Line 11075:       booking = mockBookings.find(b => 
+  Line 11076:         (b.passengerId === currentUser.uid && b.driverId === activeChatOtherUserId) ||
+  Line 11077:         (b.passengerId === activeChatOtherUserId && b.driverId === currentUser.uid) ||
+  Line 11078:         (b.driverName === currentChatName) || (b.passengerName === currentChatName)
+  Line 11079:       );
+  Line 11080:     }
+  Line 11081:     
+  Line 11082:     const isAuthorized = booking && (
+---------------
+
+Line 11490: async function approveBooking(bookingId) {
+--- Context ---
+  Line 11490:   async function approveBooking(bookingId) {
+  Line 11491:     showToast("Approving booking...");
+  Line 11492:     if (useFirebase) {
+  Line 11493:       try {
+  Line 11494:         const bookingRef = db.collection("bookings").doc(bookingId);
+  Line 11495:         const bookingDoc = await bookingRef.get();
+  Line 11496:         if (!bookingDoc.exists) {
+  Line 11497:           showToast("Booking not found");
+  Line 11498:           return;
+  Line 11499:         }
+  Line 11500:         const booking = bookingDoc.data();
+  Line 11501:         if (booking.status !== 'Pending' && booking.status !== 'Pending Approval') {
+  Line 11502:           showToast("Booking is already processed");
+  Line 11503:           return;
+  Line 11504:         }
+  Line 11505: 
+  Line 11506:         const rideRef = db.collection("rides").doc(booking.rideId);
+  Line 11507:         await db.runTransaction(async (transaction) => {
+  Line 11508:           const sfDoc = await transaction.get(rideRef);
+  Line 11509:           if (!sfDoc.exists) {
+  Line 11510:             throw new Error("Ride does not exist!");
+  Line 11511:           }
+  Line 11512:           const currentSeats = sfDoc.data().seats;
+  Line 11513:           if (currentSeats <= 0) {
+  Line 11514:             throw new Error("No seats left on this ride!");
+  Line 11515:           }
+  Line 11516:           transaction.update(rideRef, { seats: currentSeats - 1 });
+  Line 11517:           transaction.update(bookingRef, { status: 'Upcoming' });
+  Line 11518:         });
+  Line 11519: 
+---------------
+
+Line 11574: async function declineBooking(bookingId) {
+--- Context ---
+  Line 11574:   async function declineBooking(bookingId) {
+  Line 11575:     if (!confirm("Are you sure you want to decline this ride request?")) return;
+  Line 11576:     showToast("Declining booking...");
+  Line 11577:     if (useFirebase) {
+  Line 11578:       try {
+  Line 11579:         const bookingRef = db.collection("bookings").doc(bookingId);
+  Line 11580:         const bookingDoc = await bookingRef.get();
+  Line 11581:         if (!bookingDoc.exists) {
+  Line 11582:           showToast("Booking not found");
+  Line 11583:           return;
+  Line 11584:         }
+  Line 11585:         const booking = bookingDoc.data();
+  Line 11586:         if (booking.status !== 'Pending' && booking.status !== 'Pending Approval') {
+  Line 11587:           showToast("Booking is already processed");
+  Line 11588:           return;
+  Line 11589:         }
+  Line 11590: 
+  Line 11591:         await bookingRef.update({ status: 'Declined' });
+  Line 11592: 
+  Line 11593:         // Add decline message to chat
+  Line 11594:         const chatRoomId = [booking.passengerId, booking.driverId].sort().join('_');
+  Line 11595:         const sysText = "❌ Ride Request Declined.";
+  Line 11596:         await db.collection("chats").doc(chatRoomId).collection("messages").add({
+  Line 11597:           senderId: currentUser.uid,
+  Line 11598:           text: sysText,
+  Line 11599:           timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  Line 11600:         });
+  Line 11601: 
+  Line 11602:         await db.collection("chats").doc(chatRoomId).set({
+  Line 11603:           lastMessage: sysText,
+---------------
+
+=== Matches for vehicle_info (function getDriverVehicleInfo) ===
+Line 4586: function getDriverVehicleInfo(driverName, driverId) {
+--- Context ---
+  Line 4586:   function getDriverVehicleInfo(driverName, driverId) {
+  Line 4587:     if (driverId === currentUser.uid || driverName === `${currentUser.firstName} ${currentUser.lastName}`) {
+  Line 4588:       return {
+  Line 4589:         make: currentUser.vehicleMake || '',
+  Line 4590:         model: currentUser.vehicleModel || '',
+  Line 4591:         plate: currentUser.vehiclePlate || '',
+  Line 4592:         photoUrl: currentUser.vehiclePhotoUrl || ''
+  Line 4593:       };
+  Line 4594:     }
+  Line 4595:     
+  Line 4596:     const p = DRIVER_PROFILES[driverName];
+  Line 4597:     if (p) {
+  Line 4598:       return {
+  Line 4599:         make: '',
+  Line 4600:         model: p.car || 'Vehicle info not available',
+  Line 4601:         plate: p.plate || '---',
+  Line 4602:         photoUrl: p.photoUrl || ''
+  Line 4603:       };
+  Line 4604:     }
+  Line 4605:     
+  Line 4606:     return {
+  Line 4607:       make: '',
+  Line 4608:       model: 'Vehicle details not available',
+  Line 4609:       plate: '---',
+  Line 4610:       photoUrl: ''
+  Line 4611:     };
+  Line 4612:   }
+  Line 4613: 
+  Line 4614:   function isRideExpired(dateStr, timeStr) {
+  Line 4615:     try {
+---------------
+
+=== Matches for showToast (function showToast) ===
+Line 8807: function showToast(msg) {
+--- Context ---
+  Line 8807:   function showToast(msg) {
+  Line 8808:     const old = document.getElementById('hopon-toast');
+  Line 8809:     if (old) old.remove();
+  Line 8810:     const t = document.createElement('div');
+  Line 8811:     t.id = 'hopon-toast'; t.textContent = msg;
+  Line 8812:     t.style.cssText = 'position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1035;color:#fff;padding:12px 20px;border-radius:24px;font-family:\'Montserrat\',sans-serif;font-size:13px;font-weight:600;white-space:nowrap;z-index:500;box-shadow:0 4px 20px rgba(0,0,0,0.25);animation:toastIn 0.3s ease;';
+  Line 8813:     document.getElementById('phone').appendChild(t);
+  Line 8814:     setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity 0.3s'; setTimeout(()=>t.remove(),300); }, 2800);
+  Line 8815:   }
+  Line 8816: 
+  Line 8817:   // ── Price Calculator ──
+  Line 8818:   function suggestRidePrice(fromStr, toStr) {
+  Line 8819:     if (!fromStr || !toStr) return 15.00;
+  Line 8820:     
+  Line 8821:     const fLower = fromStr.toLowerCase();
+  Line 8822:     const tLower = toStr.toLowerCase();
+  Line 8823:     
+  Line 8824:     const hasCity = (s1, s2, target) => s1.includes(target) || s2.includes(target);
+  Line 8825:     
+  Line 8826:     if (hasCity(fLower, tLower, 'london') && hasCity(fLower, tLower, 'toronto')) return 27.00;
+  Line 8827:     if (hasCity(fLower, tLower, 'london') && hasCity(fLower, tLower, 'hamilton')) return 23.00;
+  Line 8828:     if (hasCity(fLower, tLower, 'london') && hasCity(fLower, tLower, 'waterloo')) return 18.00;
+  Line 8829:     if (hasCity(fLower, tLower, 'london') && hasCity(fLower, tLower, 'kitchener')) return 18.00;
+  Line 8830:     
+  Line 8831:     const CITIES = {
+  Line 8832:       'london': { lat: 42.9849, lng: -81.2453 },
+  Line 8833:       'toronto': { lat: 43.6532, lng: -79.3832 },
+  Line 8834:       'hamilton': { lat: 43.2557, lng: -79.8711 },
+  Line 8835:       'waterloo': { lat: 43.4723, lng: -80.5449 },
+  Line 8836:       'kitchener': { lat: 43.4516, lng: -80.4925 },
+---------------

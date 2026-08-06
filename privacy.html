@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – HopOn</title>
+  <meta name="description" content="HopOn Privacy Policy – How we collect, use, and protect your personal data." />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#06402B" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #06402B;
+      --purple-light: #0d5d40;
+      --purple-pale: #e6f0ec;
+      --purple-soft: #f4f9f7;
+      --text-dark: #111827;
+      --text-mid: #374151;
+      --text-light: #6B7280;
+      --gray-100: #F3F4F6;
+      --radius: 16px;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--gray-100);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #021a11 0%, #06402B 100%);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(2,26,17,0.4);
+    }
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .back-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.25); }
+    .back-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .header-logo {
+      display: flex; align-items: center; gap: 10px; flex: 1;
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.20);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-icon svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .logo-text { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+
+    /* Language Selector & Dropdown styles */
+    .lang-selector {
+      position: relative;
+      display: inline-block;
+    }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .lang-btn .arrow-down {
+      font-size: 8px;
+      color: rgba(255,255,255,0.7);
+    }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: #fff;
+      min-width: 170px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .lang-dropdown.show {
+      display: block;
+      animation: fadeIn 0.15s ease-out;
+    }
+    .lang-dropdown a {
+      color: var(--text-dark);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--purple-pale);
+      transition: background 0.15s;
+    }
+    .lang-dropdown a:last-child {
+      border-bottom: none;
+    }
+    .lang-dropdown a:hover {
+      background: var(--purple-soft);
+    }
+    .lang-dropdown a.active {
+      font-weight: 700;
+      color: var(--purple);
+    }
+    .flag-icon-circle {
+      font-size: 16px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Content */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    .hero-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 28px 28px 24px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--purple);
+      box-shadow: 0 2px 16px rgba(6,64,43,0.08);
+    }
+    .hero-card h1 {
+      font-size: 24px; font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .effective-date {
+      font-size: 13px; color: var(--text-light); font-weight: 600;
+      display: flex; align-items: center; gap: 6px; margin-bottom: 14px;
+    }
+    .hero-intro {
+      font-size: 14px; line-height: 1.7; color: var(--text-mid);
+    }
+
+    .section {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 16px rgba(6,64,43,0.06);
+      scroll-margin-top: 80px;
+    }
+    .section-number {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: var(--purple-soft);
+      color: var(--purple);
+      font-size: 13px; font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .section h2 {
+      font-size: 17px; font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section p {
+      font-size: 14px; line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 12px;
+    }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 12px;
+    }
+    .section ul li {
+      font-size: 14px; line-height: 1.7; color: var(--text-mid);
+      padding: 6px 0 6px 22px;
+      position: relative;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .section ul li:last-child { border-bottom: none; }
+    .section ul li::before {
+      content: '✓';
+      position: absolute; left: 0;
+      color: var(--purple); font-weight: 800; font-size: 13px;
+    }
+
+    .highlight-box {
+      background: var(--purple-soft);
+      border: 1.5px solid var(--purple-pale);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-size: 13px; line-height: 1.6;
+      color: var(--text-mid);
+    }
+    .highlight-box strong { color: var(--purple); }
+
+    .contact-card {
+      background: linear-gradient(135deg, var(--purple), var(--purple-light));
+      border-radius: var(--radius);
+      padding: 28px;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .contact-card h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; opacity: 0.85; margin-bottom: 16px; }
+    .contact-email {
+      display: inline-block;
+      background: rgba(255,255,255,0.20);
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 24px;
+      font-weight: 700; font-size: 14px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.30);
+      transition: background 0.2s;
+    }
+    .contact-email:hover { background: rgba(255,255,255,0.30); }
+
+    .footer-nav {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .footer-nav a {
+      font-size: 13px; font-weight: 600;
+      color: var(--purple);
+      text-decoration: none;
+      padding: 8px 16px;
+      background: #fff;
+      border-radius: 20px;
+      border: 1.5px solid var(--purple-pale);
+      transition: all 0.2s;
+    }
+    .footer-nav a:hover { background: var(--purple); color: #fff; }
+    .footer-copy {
+      text-align: center; font-size: 12px; color: var(--text-light);
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+    }
+    .toc-item a {
+      color: var(--purple);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .toc-item a:hover {
+      color: var(--purple-light);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 20px 14px 50px; }
+      .section { padding: 20px 18px; }
+      .hero-card { padding: 22px 18px; }
+      .hero-card h1 { font-size: 20px; }
+      .toc-grid {
+        grid-template-columns: 1fr;
+        gap: 8px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="./index.html" class="back-btn" aria-label="Back to app">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </a>
+      <div class="header-logo">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 12h8M12 8l4 4-4 4"/>
+          </svg>
+        </div>
+        <span class="logo-text">HopOn</span>
+      </div>
+      
+      <!-- Language Selector Dropdown -->
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn" onclick="toggleLangDropdown(event)">
+          <span>🇨🇦 EN</span> <span class="arrow-down">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <a href="#" onclick="setLang('en', event)" class="active" id="lang-en-item">
+            <span class="flag-icon-circle">🇨🇦</span> Canada - English
+          </a>
+          <a href="#" onclick="setLang('fr', event)" id="lang-fr-item">
+            <span class="flag-icon-circle">🇨🇦</span> Canada - Français
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="hero-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <h1 style="margin-bottom:0;" data-lang="en">Privacy Policy</h1>
+        <h1 style="margin-bottom:0; display:none;" data-lang="fr">Politique de confidentialité</h1>
+        <div style="font-size:13px; font-weight:700;">
+          <a href="./terms.html" style="color:var(--purple); text-decoration:none;" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a>
+          <span style="color:var(--text-light); margin:0 8px;">|</span>
+          <a href="#section-10" style="color:var(--purple); text-decoration:none;" data-en="Privacy changes" data-fr="Modifications">Privacy changes</a>
+        </div>
+      </div>
+      <div class="effective-date" style="margin-top:12px; margin-bottom:16px;">
+        <span data-en="Last updated: June 21, 2026" data-fr="Dernière mise à jour : 21 juin 2026">Last updated: June 21, 2026</span><br>
+        Version: 1.00
+      </div>
+      
+      <p class="hero-intro" style="font-weight:700; color:var(--text-dark); margin-bottom:16px;"
+         data-en="At HopOn, we are committed to protecting your privacy and ensuring your personal data is handled securely and transparently."
+         data-fr="Chez HopOn, nous nous engageons à protéger votre vie privée et à garantir que vos données personnelles soient traitées de manière sécurisée et transparente.">
+        At HopOn, we are committed to protecting your privacy and ensuring your personal data is handled securely and transparently.
+      </p>
+      
+      <p class="hero-intro" style="margin-bottom:16px;"
+         data-en="This Privacy Policy describes how we collect, use, process, and disclose your personal information in connection with your access and use of the HopOn platform. By using the platform, you consent to the data collection and use practices described herein."
+         data-fr="Cette politique de confidentialité décrit comment nous collectons, utilisons, traitons et divulguons vos informations personnelles en relation avec votre accès et votre utilisation de la plateforme HopOn. En utilisant la plateforme, vous consentez aux pratiques de collecte et d'utilisation de données décrites ici.">
+        This Privacy Policy describes how we collect, use, process, and disclose your personal information in connection with your access and use of the HopOn platform. By using the platform, you consent to the data collection and use practices described herein.
+      </p>
+      
+      <div style="height:1px; background:var(--purple-pale); margin:24px 0;"></div>
+
+      <nav class="toc-grid" data-lang="en">
+        <div class="toc-item"><a href="#section-1">1 Information We Collect</a></div>
+        <div class="toc-item"><a href="#section-2">2 How We Use Your Information</a></div>
+        <div class="toc-item"><a href="#section-3">3 Data Sharing</a></div>
+        <div class="toc-item"><a href="#section-4">4 Location Data</a></div>
+        <div class="toc-item"><a href="#section-5">5 Data Security</a></div>
+        <div class="toc-item"><a href="#section-6">6 Data Retention</a></div>
+        <div class="toc-item"><a href="#section-7">7 Your Rights</a></div>
+        <div class="toc-item"><a href="#section-8">8 Cookies & CCPA Disclosure</a></div>
+        <div class="toc-item"><a href="#section-9">9 Children's Privacy</a></div>
+        <div class="toc-item"><a href="#section-10">10 Changes to This Policy</a></div>
+        <div class="toc-item"><a href="#section-11">11 CAN-SPAM Compliance</a></div>
+      </nav>
+
+      <nav class="toc-grid" data-lang="fr" style="display:none;">
+        <div class="toc-item"><a href="#section-1">1 Informations collectées</a></div>
+        <div class="toc-item"><a href="#section-2">2 Utilisation des informations</a></div>
+        <div class="toc-item"><a href="#section-3">3 Partage des données</a></div>
+        <div class="toc-item"><a href="#section-4">4 Données de localisation</a></div>
+        <div class="toc-item"><a href="#section-5">5 Sécurité des données</a></div>
+        <div class="toc-item"><a href="#section-6">6 Conservation des données</a></div>
+        <div class="toc-item"><a href="#section-7">7 Vos droits</a></div>
+        <div class="toc-item"><a href="#section-8">8 Cookies & CCPA Déclaration</a></div>
+        <div class="toc-item"><a href="#section-9">9 Vie privée des enfants</a></div>
+        <div class="toc-item"><a href="#section-10">10 Modifications de politique</a></div>
+        <div class="toc-item"><a href="#section-11">11 Conformité CAN-SPAM</a></div>
+      </nav>
+    </div>
+
+    <div class="section" id="section-1">
+      <div class="section-number">1</div>
+      <h2 data-en="Information We Collect" data-fr="Informations collectées">Information We Collect</h2>
+      <p data-en="We collect information you provide directly and information generated when you use HopOn:"
+         data-fr="Nous collectons les informations que vous fournissez directement et celles générées lors de votre utilisation de HopOn :">We collect information you provide directly and information generated when you use HopOn:</p>
+      
+      <ul data-lang="en">
+        <li><strong>Account Info:</strong> Name, email address, phone number, profile photo</li>
+        <li><strong>Student Verification:</strong> University email address (.edu) for identity verification</li>
+        <li><strong>Location Data:</strong> Pickup and drop-off locations when booking rides or posting cargo shipments</li>
+        <li><strong>Cargo Details:</strong> Package descriptions, dimensions, weight, declared value</li>
+        <li><strong>Communications:</strong> Messages sent through the in-app chat feature</li>
+      </ul>
+
+      <ul data-lang="fr" style="display:none;">
+        <li><strong>Infos de compte :</strong> Nom, adresse e-mail, numéro de téléphone, photo de profil</li>
+        <li><strong>Vérification étudiante :</strong> E-mail universitaire (.edu) pour l'accès aux réductions</li>
+        <li><strong>Données de localisation :</strong> Lieux de prise en charge et de dépose pour les trajets/colis</li>
+        <li><strong>Détails du colis :</strong> Description du paquet, dimensions, poids, valeur déclarée</li>
+        <li><strong>Communications :</strong> Messages échangés via la messagerie de l'application</li>
+      </ul>
+    </div>
+
+    <div class="section" id="section-2">
+      <div class="section-number">2</div>
+      <h2 data-en="How We Use Your Information" data-fr="Comment nous utilisons vos informations">How We Use Your Information</h2>
+      <p data-en="Your data helps us deliver a safe, reliable ridesharing and cargo delivery experience:"
+         data-fr="Vos données nous aident à offrir une expérience de covoiturage et de livraison de colis sûre et fiable :">Your data helps us deliver a safe, reliable ridesharing and cargo delivery experience:</p>
+      
+      <ul data-lang="en">
+        <li>Matching passengers and cargo requests with available drivers on their routes</li>
+        <li>Processing bookings, cargo shipments, and payments securely</li>
+        <li>Sending ride and delivery confirmations, status updates, and safety alerts</li>
+        <li>Improving app performance, safety, and user experience</li>
+      </ul>
+
+      <ul data-lang="fr" style="display:none;">
+        <li>Mettre en correspondance les passagers et les expéditeurs avec les conducteurs disponibles</li>
+        <li>Traiter de manière sécurisée les réservations, les envois de colis et les paiements</li>
+        <li>Envoyer des confirmations de trajet, des mises à jour de statut et des alertes de sécurité</li>
+        <li>Améliorer les performances de l'application, sa sécurité et l'expérience utilisateur</li>
+      </ul>
+
+      <div class="highlight-box">
+        <strong data-en="We never sell your personal data" data-fr="Nous ne vendons jamais vos données personnelles">We never sell your personal data</strong>
+      </div>
+    </div>
+
+    <div class="section" id="section-3">
+      <div class="section-number">3</div>
+      <h2 data-en="Data Sharing" data-fr="Partage des données">Data Sharing</h2>
+      <p data-en="We only share your data with other users (first name and vehicle info), payment processors (Stripe), map services (Google Maps), and safety or legal authorities when required."
+         data-fr="Nous ne partageons vos données qu'avec d'autres utilisateurs (prénom et infos véhicule), les processeurs de paiement (Stripe), Google Maps et les autorités en cas d'obligation légale.">
+        We only share your data with other users (first name and vehicle info), payment processors (Stripe), map services (Google Maps), and safety or legal authorities when required.
+      </p>
+    </div>
+
+    <div class="section" id="section-4">
+      <div class="section-number">4</div>
+      <h2 data-en="Location Data" data-fr="Données de localisation">Location Data</h2>
+      <p data-en="HopOn only accesses your location when you actively use the app to post or book a ride. We do not track your location in the background. You can disable location access at any time in your device settings."
+         data-fr="HopOn accède uniquement à votre position lorsque vous utilisez activement l'application. Nous ne suivons pas votre position en arrière-plan. Vous pouvez désactiver l'accès dans vos réglages.">
+        HopOn only accesses your location when you actively use the app to post or book a ride. We do not track your location in the background. You can disable location access at any time in your device settings.
+      </p>
+    </div>
+
+    <div class="section" id="section-5">
+      <div class="section-number">5</div>
+      <h2 data-en="Data Security" data-fr="Sécurité des données">Data Security</h2>
+      <p data-en="We implement TLS/SSL encryption for data transmission and hash user passwords using bcrypt. Regular security reviews are performed to protect personal information."
+         data-fr="Nous mettons en œuvre le chiffrement TLS/SSL pour les transmissions de données et hachons les mots de passe avec bcrypt. Des examens de sécurité réguliers sont effectués.">
+        We implement TLS/SSL encryption for data transmission and hash user passwords using bcrypt. Regular security reviews are performed to protect personal information.
+      </p>
+    </div>
+
+    <div class="section" id="section-6">
+      <div class="section-number">6</div>
+      <h2 data-en="Data Retention" data-fr="Conservation des données">Data Retention</h2>
+      <p data-en="Profile data is deleted within 30 days of account cancellation. Historical logs (trips, cargo matched routes) can be kept up to 12 months for safety and tax validation. Financial logs are kept for 7 years."
+         data-fr="Les données de profil sont supprimées dans les 30 jours suivant la résiliation du compte. L'historique peut être conservé jusqu'à 12 mois pour des raisons de sécurité.">
+        Profile data is deleted within 30 days of account cancellation. Historical logs (trips, cargo matched routes) can be kept up to 12 months for safety and tax validation. Financial logs are kept for 7 years.
+      </p>
+    </div>
+
+    <div class="section" id="section-7">
+      <div class="section-number">7</div>
+      <h2 data-en="Your Rights" data-fr="Vos droits">Your Rights</h2>
+      <p data-en="You have the right to request access, correction, or deletion of all personal data we hold about you. To exercise these rights, contact us at hoponboardhelp@gmail.com."
+         data-fr="Vous avez le droit de demander l'accès, la correction ou la suppression de vos données personnelles. Pour exercer ces droits, écrivez-nous à hoponboardhelp@gmail.com.">
+        You have the right to request access, correction, or deletion of all personal data we hold about you. To exercise these rights, contact us at hoponboardhelp@gmail.com.
+      </p>
+    </div>
+
+    <div class="section" id="section-8">
+      <div class="section-number">8</div>
+      <h2 data-en="Cookies, Tracking & CCPA Disclosure" data-fr="Cookies & Déclaration CCPA">Cookies, Tracking & CCPA Disclosure</h2>
+      <p data-en="HopOn uses cookies to manage sessions. Under California Consumer Privacy Act (CCPA), you can opt-out of analytical cookies at any time through your browser's DNT headers or settings page."
+         data-fr="HopOn utilise des cookies pour gérer les sessions de connexion. Sous la loi CCPA de Californie, vous pouvez refuser les cookies d'analyse dans vos réglages ou via DNT.">
+        HopOn uses cookies to manage sessions. Under California Consumer Privacy Act (CCPA), you can opt-out of analytical cookies at any time through your browser's DNT headers or settings page.
+      </p>
+    </div>
+
+    <div class="section" id="section-9">
+      <div class="section-number">9</div>
+      <h2 data-en="Children's Privacy" data-fr="Confidentialité des enfants">Children's Privacy</h2>
+      <p data-en="HopOn is intended for users aged 17 and older. We do not knowingly collect personal data from children under 17. If detected, accounts are deleted immediately."
+         data-fr="HopOn est destiné aux utilisateurs de 17 ans et plus. Nous ne collectons pas sciemment de données auprès d'enfants de moins de 17 ans. Le cas échéant, le compte est supprimé.">
+        HopOn is intended for users aged 17 and older. We do not knowingly collect personal data from children under 17. If detected, accounts are deleted immediately.
+      </p>
+    </div>
+
+    <div class="section" id="section-10">
+      <div class="section-number">10</div>
+      <h2 data-en="Changes to This Policy" data-fr="Modifications de la politique">Changes to This Policy</h2>
+      <p data-en="We may update this Privacy Policy. We will send an email or in-app notification to users 14 days before material changes take effect."
+         data-fr="Nous pouvons modifier cette politique. Une notification ou un e-mail sera envoyé aux utilisateurs 14 jours avant l'entrée en vigueur de modifications majeures.">
+        We may update this Privacy Policy. We will send an email or in-app notification to users 14 days before material changes take effect.
+      </p>
+    </div>
+
+    <div class="section" id="section-11">
+      <div class="section-number">11</div>
+      <h2 data-en="Email & CAN-SPAM Compliance" data-fr="Email & Conformité CAN-SPAM">Email & CAN-SPAM Compliance</h2>
+      <p data-en="All automated and promotional emails we send include an unsubscribe link, non-misleading subjects, and physical location information. Opt-out requests are processed within 10 business days."
+         data-fr="Tous les e-mails automatisés comportent un lien de désabonnement, des objets clairs et l'adresse physique de la société. Les demandes d'opt-out sont traitées sous 10 jours.">
+        All automated and promotional emails we send include an unsubscribe link, non-misleading subjects, and physical location information. Opt-out requests are processed within 10 business days.
+      </p>
+    </div>
+
+    <div class="contact-card">
+      <h2 data-en="Questions about your privacy?" data-fr="Des questions sur votre vie privée ?">Questions about your privacy?</h2>
+      <p data-en="Our privacy team responds within 30 days. We take every query seriously." data-fr="Notre équipe chargée de la vie privée répondra sous 30 jours.">Our privacy team responds within 30 days. We take every query seriously.</p>
+      <a href="mailto:hoponboardhelp@gmail.com" class="contact-email">hoponboardhelp@gmail.com</a>
+      <p style="font-size:12px;color:var(--text-light);margin-top:12px;text-align:center;">HopOn Technologies Inc.<br>London, Ontario, Canada</p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="./index.html" data-en="← Back to App" data-fr="← Retour à l'application">← Back to App</a>
+      <a href="./terms.html" data-en="Terms of Service" data-fr="Conditions d'utilisation">Terms of Service</a>
+    </div>
+    <p class="footer-copy">© 2026 HopOn. All rights reserved. · Campus Ridesharing, Reimagined.</p>
+
+  </main>
+
+  <script>
+    function toggleLangDropdown(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('langDropdown').classList.toggle('show');
+    }
+    
+    // Close dropdown on click outside
+    window.addEventListener('click', function() {
+      const dropdown = document.getElementById('langDropdown');
+      if (dropdown && dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+      }
+    });
+    
+    function setLang(lang, e) {
+      if (e) e.preventDefault();
+      
+      // Update dropdown items state
+      document.getElementById('lang-en-item').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-fr-item').classList.toggle('active', lang === 'fr');
+      
+      // Update button label
+      const btnSpan = document.querySelector('#langBtn span');
+      btnSpan.textContent = lang === 'en' ? '🇨🇦 EN' : '🇨🇦 FR';
+
+      // Update text variables (data-en/data-fr attributes)
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.tagName.toLowerCase() === 'html') return;
+        el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-fr');
+      });
+
+      // Toggle visibility of blocks with lang attribute
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        if (el.getAttribute('data-lang') === lang) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+      
+      // Close dropdown
+      const dropdown = document.getElementById('langDropdown');
+      if (dropdown) dropdown.classList.remove('show');
+    }
+  </script>
+
+</body>
+</html>

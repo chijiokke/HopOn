@@ -1,0 +1,352 @@
+Line 2788:     .pop-trip-card {
+  Line 2789:       background: white;
+  Line 2790:       border-radius: 20px;
+  Line 2791:       padding: 18px;
+  Line 2792:       box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+  Line 2793:       border: 1px solid var(--gray-200);
+  Line 2794:       margin-bottom: 14px;
+  Line 2795:       cursor: pointer;
+  Line 2796:       transition: transform 0.2s, box-shadow 0.2s;
+  Line 2797:     }
+  Line 2798:     .pop-trip-card:hover {
+  Line 2799:       transform: translateY(-2px);
+  Line 2800:       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  Line 2801:     }
+  Line 2802:     
+------------------------------
+Line 2798:     .pop-trip-card:hover {
+  Line 2799:       transform: translateY(-2px);
+  Line 2800:       box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  Line 2801:     }
+  Line 2802:     
+  Line 2803:     .pop-trip-card-header {
+  Line 2804:       display: flex;
+  Line 2805:       justify-content: space-between;
+  Line 2806:       align-items: center;
+  Line 2807:       margin-bottom: 12px;
+  Line 2808:     }
+  Line 2809:     
+  Line 2810:     .pop-trip-time {
+  Line 2811:       font-size: 14px;
+  Line 2812:       font-weight: 800;
+------------------------------
+Line 2803:     .pop-trip-card-header {
+  Line 2804:       display: flex;
+  Line 2805:       justify-content: space-between;
+  Line 2806:       align-items: center;
+  Line 2807:       margin-bottom: 12px;
+  Line 2808:     }
+  Line 2809:     
+  Line 2810:     .pop-trip-time {
+  Line 2811:       font-size: 14px;
+  Line 2812:       font-weight: 800;
+  Line 2813:       color: var(--text-dark);
+  Line 2814:     }
+  Line 2815:     
+  Line 2816:     .pop-trip-seats-price {
+  Line 2817:       display: flex;
+------------------------------
+Line 2810:     .pop-trip-time {
+  Line 2811:       font-size: 14px;
+  Line 2812:       font-weight: 800;
+  Line 2813:       color: var(--text-dark);
+  Line 2814:     }
+  Line 2815:     
+  Line 2816:     .pop-trip-seats-price {
+  Line 2817:       display: flex;
+  Line 2818:       align-items: center;
+  Line 2819:       gap: 10px;
+  Line 2820:     }
+  Line 2821:     
+  Line 2822:     .pop-trip-seats-left {
+  Line 2823:       font-size: 12px;
+  Line 2824:       font-weight: 700;
+------------------------------
+Line 2816:     .pop-trip-seats-price {
+  Line 2817:       display: flex;
+  Line 2818:       align-items: center;
+  Line 2819:       gap: 10px;
+  Line 2820:     }
+  Line 2821:     
+  Line 2822:     .pop-trip-seats-left {
+  Line 2823:       font-size: 12px;
+  Line 2824:       font-weight: 700;
+  Line 2825:       color: var(--text-light);
+  Line 2826:     }
+  Line 2827:     
+  Line 2828:     .pop-trip-price {
+  Line 2829:       font-size: 16px;
+  Line 2830:       font-weight: 800;
+------------------------------
+Line 2822:     .pop-trip-seats-left {
+  Line 2823:       font-size: 12px;
+  Line 2824:       font-weight: 700;
+  Line 2825:       color: var(--text-light);
+  Line 2826:     }
+  Line 2827:     
+  Line 2828:     .pop-trip-price {
+  Line 2829:       font-size: 16px;
+  Line 2830:       font-weight: 800;
+  Line 2831:       color: #2563eb;
+  Line 2832:     }
+  Line 2833:     
+  Line 2834:     .pop-trip-route-line-container {
+  Line 2835:       display: flex;
+  Line 2836:       gap: 14px;
+------------------------------
+Line 2828:     .pop-trip-price {
+  Line 2829:       font-size: 16px;
+  Line 2830:       font-weight: 800;
+  Line 2831:       color: #2563eb;
+  Line 2832:     }
+  Line 2833:     
+  Line 2834:     .pop-trip-route-line-container {
+  Line 2835:       display: flex;
+  Line 2836:       gap: 14px;
+  Line 2837:       margin-bottom: 12px;
+  Line 2838:       position: relative;
+  Line 2839:     }
+  Line 2840:     
+  Line 2841:     .pop-trip-route-timeline {
+  Line 2842:       display: flex;
+------------------------------
+Line 2834:     .pop-trip-route-line-container {
+  Line 2835:       display: flex;
+  Line 2836:       gap: 14px;
+  Line 2837:       margin-bottom: 12px;
+  Line 2838:       position: relative;
+  Line 2839:     }
+  Line 2840:     
+  Line 2841:     .pop-trip-route-timeline {
+  Line 2842:       display: flex;
+  Line 2843:       flex-direction: column;
+  Line 2844:       align-items: center;
+  Line 2845:       width: 12px;
+  Line 2846:       position: relative;
+  Line 2847:       margin-top: 4px;
+  Line 2848:     }
+------------------------------
+Line 2841:     .pop-trip-route-timeline {
+  Line 2842:       display: flex;
+  Line 2843:       flex-direction: column;
+  Line 2844:       align-items: center;
+  Line 2845:       width: 12px;
+  Line 2846:       position: relative;
+  Line 2847:       margin-top: 4px;
+  Line 2848:     }
+  Line 2849:     .pop-trip-route-dot {
+  Line 2850:       width: 8px;
+  Line 2851:       height: 8px;
+  Line 2852:       border-radius: 50%;
+  Line 2853:       background: var(--text-dark);
+  Line 2854:     }
+  Line 2855:     .pop-trip-route-connector {
+------------------------------
+Line 2849:     .pop-trip-route-dot {
+  Line 2850:       width: 8px;
+  Line 2851:       height: 8px;
+  Line 2852:       border-radius: 50%;
+  Line 2853:       background: var(--text-dark);
+  Line 2854:     }
+  Line 2855:     .pop-trip-route-connector {
+  Line 2856:       width: 2px;
+  Line 2857:       flex: 1;
+  Line 2858:       min-height: 24px;
+  Line 2859:       background: var(--gray-200);
+  Line 2860:     }
+  Line 2861:     
+  Line 2862:     .pop-trip-route-points {
+  Line 2863:       flex: 1;
+------------------------------
+Line 2855:     .pop-trip-route-connector {
+  Line 2856:       width: 2px;
+  Line 2857:       flex: 1;
+  Line 2858:       min-height: 24px;
+  Line 2859:       background: var(--gray-200);
+  Line 2860:     }
+  Line 2861:     
+  Line 2862:     .pop-trip-route-points {
+  Line 2863:       flex: 1;
+  Line 2864:       display: flex;
+  Line 2865:       flex-direction: column;
+  Line 2866:       gap: 12px;
+  Line 2867:     }
+  Line 2868:     
+  Line 2869:     .pop-trip-route-point {
+------------------------------
+Line 2862:     .pop-trip-route-points {
+  Line 2863:       flex: 1;
+  Line 2864:       display: flex;
+  Line 2865:       flex-direction: column;
+  Line 2866:       gap: 12px;
+  Line 2867:     }
+  Line 2868:     
+  Line 2869:     .pop-trip-route-point {
+  Line 2870:       font-size: 14px;
+  Line 2871:       font-weight: 700;
+  Line 2872:       color: var(--text-dark);
+  Line 2873:       line-height: 1.2;
+  Line 2874:     }
+  Line 2875:     .pop-trip-route-sub {
+  Line 2876:       font-size: 11px;
+------------------------------
+Line 2869:     .pop-trip-route-point {
+  Line 2870:       font-size: 14px;
+  Line 2871:       font-weight: 700;
+  Line 2872:       color: var(--text-dark);
+  Line 2873:       line-height: 1.2;
+  Line 2874:     }
+  Line 2875:     .pop-trip-route-sub {
+  Line 2876:       font-size: 11px;
+  Line 2877:       color: var(--text-light);
+  Line 2878:       font-weight: 500;
+  Line 2879:       margin-top: 1px;
+  Line 2880:     }
+  Line 2881:     
+  Line 2882:     .pop-trip-driver-vehicle-row {
+  Line 2883:       display: flex;
+------------------------------
+Line 2875:     .pop-trip-route-sub {
+  Line 2876:       font-size: 11px;
+  Line 2877:       color: var(--text-light);
+  Line 2878:       font-weight: 500;
+  Line 2879:       margin-top: 1px;
+  Line 2880:     }
+  Line 2881:     
+  Line 2882:     .pop-trip-driver-vehicle-row {
+  Line 2883:       display: flex;
+  Line 2884:       justify-content: space-between;
+  Line 2885:       align-items: center;
+  Line 2886:       border-top: 1.5px solid var(--gray-100);
+  Line 2887:       padding-top: 12px;
+  Line 2888:       margin-top: 4px;
+  Line 2889:     }
+------------------------------
+Line 2882:     .pop-trip-driver-vehicle-row {
+  Line 2883:       display: flex;
+  Line 2884:       justify-content: space-between;
+  Line 2885:       align-items: center;
+  Line 2886:       border-top: 1.5px solid var(--gray-100);
+  Line 2887:       padding-top: 12px;
+  Line 2888:       margin-top: 4px;
+  Line 2889:     }
+  Line 2890:     
+  Line 2891:     .pop-trip-driver-info {
+  Line 2892:       display: flex;
+  Line 2893:       align-items: center;
+  Line 2894:       gap: 10px;
+  Line 2895:     }
+  Line 2896:     .pop-trip-driver-avatar {
+------------------------------
+Line 2891:     .pop-trip-driver-info {
+  Line 2892:       display: flex;
+  Line 2893:       align-items: center;
+  Line 2894:       gap: 10px;
+  Line 2895:     }
+  Line 2896:     .pop-trip-driver-avatar {
+  Line 2897:       width: 32px;
+  Line 2898:       height: 32px;
+  Line 2899:       border-radius: 50%;
+  Line 2900:       object-fit: cover;
+  Line 2901:       background: var(--purple-soft);
+  Line 2902:       display: flex;
+  Line 2903:       align-items: center;
+  Line 2904:       justify-content: center;
+  Line 2905:       font-size: 12px;
+------------------------------
+Line 2896:     .pop-trip-driver-avatar {
+  Line 2897:       width: 32px;
+  Line 2898:       height: 32px;
+  Line 2899:       border-radius: 50%;
+  Line 2900:       object-fit: cover;
+  Line 2901:       background: var(--purple-soft);
+  Line 2902:       display: flex;
+  Line 2903:       align-items: center;
+  Line 2904:       justify-content: center;
+  Line 2905:       font-size: 12px;
+  Line 2906:       font-weight: 800;
+  Line 2907:       color: var(--purple);
+  Line 2908:       border: 1.5px solid var(--purple-pale);
+  Line 2909:     }
+  Line 2910:     .pop-trip-driver-name-rating {
+------------------------------
+Line 2910:     .pop-trip-driver-name-rating {
+  Line 2911:       display: flex;
+  Line 2912:       flex-direction: column;
+  Line 2913:     }
+  Line 2914:     .pop-trip-driver-name {
+  Line 2915:       font-size: 13px;
+  Line 2916:       font-weight: 800;
+  Line 2917:       color: var(--text-dark);
+  Line 2918:     }
+  Line 2919:     .pop-trip-driver-meta {
+  Line 2920:       font-size: 11px;
+  Line 2921:       color: var(--text-light);
+  Line 2922:       font-weight: 600;
+  Line 2923:       display: flex;
+  Line 2924:       align-items: center;
+------------------------------
+Line 2914:     .pop-trip-driver-name {
+  Line 2915:       font-size: 13px;
+  Line 2916:       font-weight: 800;
+  Line 2917:       color: var(--text-dark);
+  Line 2918:     }
+  Line 2919:     .pop-trip-driver-meta {
+  Line 2920:       font-size: 11px;
+  Line 2921:       color: var(--text-light);
+  Line 2922:       font-weight: 600;
+  Line 2923:       display: flex;
+  Line 2924:       align-items: center;
+  Line 2925:       gap: 4px;
+  Line 2926:     }
+  Line 2927:     
+  Line 2928:     .pop-trip-vehicle-info {
+------------------------------
+Line 2919:     .pop-trip-driver-meta {
+  Line 2920:       font-size: 11px;
+  Line 2921:       color: var(--text-light);
+  Line 2922:       font-weight: 600;
+  Line 2923:       display: flex;
+  Line 2924:       align-items: center;
+  Line 2925:       gap: 4px;
+  Line 2926:     }
+  Line 2927:     
+  Line 2928:     .pop-trip-vehicle-info {
+  Line 2929:       font-size: 12px;
+  Line 2930:       font-weight: 700;
+  Line 2931:       color: var(--text-light);
+  Line 2932:       background: var(--gray-100);
+  Line 2933:       padding: 4px 10px;
+------------------------------
+Line 2928:     .pop-trip-vehicle-info {
+  Line 2929:       font-size: 12px;
+  Line 2930:       font-weight: 700;
+  Line 2931:       color: var(--text-light);
+  Line 2932:       background: var(--gray-100);
+  Line 2933:       padding: 4px 10px;
+  Line 2934:       border-radius: 20px;
+  Line 2935:     }
+  Line 2936:     
+  Line 2937:     .pop-trip-card-desc {
+  Line 2938:       font-size: 12px;
+  Line 2939:       color: var(--text-mid);
+  Line 2940:       font-style: italic;
+  Line 2941:       line-height: 1.4;
+  Line 2942:       margin-top: 8px;
+------------------------------
+Line 2937:     .pop-trip-card-desc {
+  Line 2938:       font-size: 12px;
+  Line 2939:       color: var(--text-mid);
+  Line 2940:       font-style: italic;
+  Line 2941:       line-height: 1.4;
+  Line 2942:       margin-top: 8px;
+  Line 2943:       padding-left: 26px;
+  Line 2944:       white-space: pre-line;
+  Line 2945:     }
+  Line 2946:     
+  Line 2947:     /* ── Pop Driver Preferences ── */
+  Line 2948:     .pop-pref-badge {
+  Line 2949:       display: flex;
+  Line 2950:       align-items: center;
+  Line 2951:       gap: 6px;
+------------------------------

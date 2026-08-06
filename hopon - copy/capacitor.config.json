@@ -1,0 +1,6 @@
+{
+  "appId": "com.hoponboard.app",
+  "appName": "HopOn",
+  "webDir": ".",
+  "bundledWebRuntime": false
+}

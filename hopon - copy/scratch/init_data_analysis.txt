@@ -1,0 +1,384 @@
+=== Matches for DOMContentLoaded (DOMContentLoaded) ===
+Line 3757: window.addEventListener('DOMContentLoaded', () => {
+--- Context ---
+  Line 3757:   window.addEventListener('DOMContentLoaded', () => {
+  Line 3758:     renderRecentSearchesUI();
+  Line 3759:     applyContactDetails();
+  Line 3760:     initStripe();
+  Line 3761:     initCard3DTilt();
+  Line 3762:     initChatTypingListener();
+  Line 3763: 
+  Line 3764:     // App Launch Intro Splash Timer (2.2 seconds)
+  Line 3765:     setTimeout(() => {
+  Line 3766:       const intro = document.getElementById('app-intro-splash');
+  Line 3767:       if (intro) {
+  Line 3768:         intro.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  Line 3769:         intro.style.opacity = '0';
+  Line 3770:         intro.style.transform = 'scale(1.04)';
+  Line 3771:         setTimeout(() => {
+---------------
+
+=== Matches for ridesList_push (ridesList\.push) ===
+Line 4056: ridesList.push({ id: doc.id, ...doc.data() });
+--- Context ---
+  Line 4056:         ridesList.push({ id: doc.id, ...doc.data() });
+  Line 4057:       });
+  Line 4058:       renderRidesUI();
+  Line 4059:     }, (err) => {
+  Line 4060:       console.error("Firestore sync error:", err);
+  Line 4061:     });
+  Line 4062:   }
+  Line 4063: 
+  Line 4064:   let passengerTripsList = [];
+  Line 4065:   let driverTripsList = [];
+  Line 4066: 
+  Line 4067:   function syncTripsFromFirestore() {
+  Line 4068:     if (!useFirebase || !currentUser || !currentUser.uid) return;
+  Line 4069:     
+  Line 4070:     if (unsubTripsPassenger) unsubTripsPassenger();
+---------------
+
+=== Matches for mock_rides (mockRides|mock_r) ===
+Line 487: <button class="hop-on-btn" onclick="event.stopPropagation();openCheckoutSheet('mock_r0', 'd1', 'Alex Rivera', 'Downtown → University Ave', '$6.50')">Hop On 🚌</button>
+--- Context ---
+  Line 487:             <button class="hop-on-btn" onclick="event.stopPropagation();openCheckoutSheet('mock_r0', 'd1', 'Alex Rivera', 'Downtown → University Ave', '$6.50')">Hop On 🚌</button>
+  Line 488:           </div>
+  Line 489:           <div class="map-preview" id="map1">
+  Line 490:             <svg viewBox="0 0 340 90" preserveAspectRatio="none">
+  Line 491:               <defs>
+  Line 492:                 <linearGradient id="pg1" x1="0%" y1="0%" x2="100%" y2="0%">
+  Line 493:                   <stop offset="0%" style="stop-color:#7B2FBE"/>
+  Line 494:                   <stop offset="100%" style="stop-color:#9B4FDE"/>
+  Line 495:                 </linearGradient>
+  Line 496:               </defs>
+  Line 497:               <path d="M30,65 C80,65 90,25 170,25 C250,25 260,65 310,65" stroke="url(#pg1)" stroke-width="3" fill="none" stroke-dasharray="6,4"/>
+  Line 498:               <circle cx="30" cy="65" r="6" fill="#7B2FBE"/>
+  Line 499:               <circle cx="310" cy="65" r="6" fill="#9B93B8"/>
+  Line 500:               <text x="170" y="35" text-anchor="middle" font-size="16">🚗</text>
+  Line 501:             </svg>
+---------------
+
+Line 3171: { id: 'p_1', passengerId: 'local_user', passengerName: 'Ike Hmm', driverId: 'd1', driverName: 'Alex Rivera', rideId: 'mock_r1', route: 'Downtown → Airport', price: 12.50, method: 'visa', timestamp: new Date(Date.now() - 4 * 24 * 3600 * 1000).toISOString(), status: 'completed' },
+--- Context ---
+  Line 3171:     { id: 'p_1', passengerId: 'local_user', passengerName: 'Ike Hmm', driverId: 'd1', driverName: 'Alex Rivera', rideId: 'mock_r1', route: 'Downtown → Airport', price: 12.50, method: 'visa', timestamp: new Date(Date.now() - 4 * 24 * 3600 * 1000).toISOString(), status: 'completed' },
+  Line 3172:     { id: 'p_2', passengerId: 'local_user', passengerName: 'Ike Hmm', driverId: 'd3', driverName: 'Sam Patel', rideId: 'mock_r3', route: 'Midtown → Harbor', price: 9.25, method: 'visa', timestamp: new Date(Date.now() - 8 * 24 * 3600 * 1000).toISOString(), status: 'completed' },
+  Line 3173:     // Mock earnings for the current user as driver:
+  Line 3174:     { id: 'p_3', passengerId: 'd1', passengerName: 'Alex Rivera', driverId: 'local_user', driverName: 'Ike Hmm', rideId: 'my_r1', route: 'Fanshawe College → Masonville Mall', price: 15.00, method: 'visa', timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString(), status: 'completed' },
+  Line 3175:     { id: 'p_4', passengerId: 'd2', passengerName: 'Jordan Lee', driverId: 'local_user', driverName: 'Ike Hmm', rideId: 'my_r2', route: 'Western University → Richmond Row', price: 32.25, method: 'visa', timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString(), status: 'completed' }
+  Line 3176:   ];
+  Line 3177:   let mockPayouts = [];
+  Line 3178:   
+  Line 3179:   let mockNotifications = [
+  Line 3180:     { id: 'n_1', userId: 'local_user', title: '🎉 Welcome to HopOn!', text: 'Your campus ridesharing profile has been created successfully. Start sharing rides today!', timestamp: new Date(Date.now() - 3 * 3600 * 1000).toISOString(), read: false, type: 'info' },
+  Line 3181:     { id: 'n_2', userId: 'local_user', title: '⭐ Review Completed', text: 'You received a 5-star rating for your ride to Harbor Station!', timestamp: new Date(Date.now() - 24 * 3600 * 1000).toISOString(), read: true, type: 'review' }
+  Line 3182:   ];
+  Line 3183:   let unreadNotificationsCount = 1;
+  Line 3184: 
+  Line 3185:   let mockBookings = [
+---------------
+
+Line 3172: { id: 'p_2', passengerId: 'local_user', passengerName: 'Ike Hmm', driverId: 'd3', driverName: 'Sam Patel', rideId: 'mock_r3', route: 'Midtown → Harbor', price: 9.25, method: 'visa', timestamp: new Date(Date.now() - 8 * 24 * 3600 * 1000).toISOString(), status: 'completed' },
+--- Context ---
+  Line 3172:     { id: 'p_2', passengerId: 'local_user', passengerName: 'Ike Hmm', driverId: 'd3', driverName: 'Sam Patel', rideId: 'mock_r3', route: 'Midtown → Harbor', price: 9.25, method: 'visa', timestamp: new Date(Date.now() - 8 * 24 * 3600 * 1000).toISOString(), status: 'completed' },
+  Line 3173:     // Mock earnings for the current user as driver:
+  Line 3174:     { id: 'p_3', passengerId: 'd1', passengerName: 'Alex Rivera', driverId: 'local_user', driverName: 'Ike Hmm', rideId: 'my_r1', route: 'Fanshawe College → Masonville Mall', price: 15.00, method: 'visa', timestamp: new Date(Date.now() - 1 * 24 * 3600 * 1000).toISOString(), status: 'completed' },
+  Line 3175:     { id: 'p_4', passengerId: 'd2', passengerName: 'Jordan Lee', driverId: 'local_user', driverName: 'Ike Hmm', rideId: 'my_r2', route: 'Western University → Richmond Row', price: 32.25, method: 'visa', timestamp: new Date(Date.now() - 2 * 24 * 3600 * 1000).toISOString(), status: 'completed' }
+  Line 3176:   ];
+  Line 3177:   let mockPayouts = [];
+  Line 3178:   
+  Line 3179:   let mockNotifications = [
+  Line 3180:     { id: 'n_1', userId: 'local_user', title: '🎉 Welcome to HopOn!', text: 'Your campus ridesharing profile has been created successfully. Start sharing rides today!', timestamp: new Date(Date.now() - 3 * 3600 * 1000).toISOString(), read: false, type: 'info' },
+  Line 3181:     { id: 'n_2', userId: 'local_user', title: '⭐ Review Completed', text: 'You received a 5-star rating for your ride to Harbor Station!', timestamp: new Date(Date.now() - 24 * 3600 * 1000).toISOString(), read: true, type: 'review' }
+  Line 3182:   ];
+  Line 3183:   let unreadNotificationsCount = 1;
+  Line 3184: 
+  Line 3185:   let mockBookings = [
+  Line 3186:     { id: 'b1', rideId: 'r1', passengerId: 'local_user', passengerName: 'Ike Hmm', driverId: 'd1', driverName: 'Alex Rivera', driverAvatar: 'A', driverAvatarUrl: '', from: 'Downtown', to: 'Airport', date: 'Jun 16, 2026', time: '8:00 AM', price: '$12.50', status: 'In Progress' },
+---------------
+
+Line 3909: id: 'mock_r_' + Date.now(),
+--- Context ---
+  Line 3909:           id: 'mock_r_' + Date.now(),
+  Line 3910:           driverId: currentUser.uid,
+  Line 3911:           driverName: currentFullName,
+  Line 3912:           driverAvatar: currentUser.avatar || '👨‍🎓',
+  Line 3913:           driverAvatarUrl: currentUser.avatarUrl || '',
+  Line 3914:           from: from,
+  Line 3915:           to: to,
+  Line 3916:           date: date,
+  Line 3917:           time: time,
+  Line 3918:           seats: isOffer ? parseInt(seats) : 1,
+  Line 3919:           price: parseFloat(price),
+  Line 3920:           notes: notes || (isOffer ? 'Student Ride Offer' : 'Passenger Ride Request'),
+  Line 3921:           type: activeType
+  Line 3922:         };
+  Line 3923:         ridesList.unshift(newRide);
+---------------
+
+Line 10431: bookRide('mock_ride', resolvedDriverId, name, 'Downtown → University Ave', '$10.00');
+--- Context ---
+  Line 10431:         bookRide('mock_ride', resolvedDriverId, name, 'Downtown → University Ave', '$10.00');
+  Line 10432:       }
+  Line 10433:     };
+  Line 10434:     document.getElementById('dp-msg-btn').onclick = () => { 
+  Line 10435:       closeSubScreen('sub-driver-profile'); 
+  Line 10436:       openChat(name, p.initial, p.color, resolvedDriverId); 
+  Line 10437:     };
+  Line 10438:     document.getElementById('sub-driver-profile').classList.add('show');
+  Line 10439:   }
+  Line 10440: 
+  Line 10441:   function openDriverProfileFromChat() {
+  Line 10442:     const name = document.getElementById('chat-name-display').textContent.trim();
+  Line 10443:     openDriverProfile(name, activeChatOtherUserId);
+  Line 10444:   }
+  Line 10445: 
+---------------
+
+Line 10534: { id: 'mock_r1', driverId: 'd1', driverName: 'Alex Rivera', driverAvatar: 'A', driverAvatarUrl: '', from: 'Downtown London', to: 'Fanshawe College (Main Campus)', date: getOffsetDateString(0), time: '8:00 AM', seats: 2, price: 12.50, notes: 'Recommended' },
+--- Context ---
+  Line 10534:       { id: 'mock_r1', driverId: 'd1', driverName: 'Alex Rivera', driverAvatar: 'A', driverAvatarUrl: '', from: 'Downtown London', to: 'Fanshawe College (Main Campus)', date: getOffsetDateString(0), time: '8:00 AM', seats: 2, price: 12.50, notes: 'Recommended' },
+  Line 10535:       { id: 'mock_r2', driverId: 'd2', driverName: 'Jordan Lee', driverAvatar: 'J', driverAvatarUrl: '', from: 'Western University (UWO)', to: 'Fanshawe College (Downtown Campus)', date: getOffsetDateString(1), time: '10:30 AM', seats: 3, price: 6.00, notes: 'Verified' },
+  Line 10536:       { id: 'mock_r3', driverId: 'd3', driverName: 'Sam Patel', driverAvatar: 'S', driverAvatarUrl: '', from: 'Fanshawe College (Main Campus)', to: 'Fanshawe College (Downtown Campus)', date: getOffsetDateString(2), time: '2:15 PM', seats: 1, price: 9.25, notes: 'Verified' }
+  Line 10537:     ];
+  Line 10538:     renderRidesUI();
+  Line 10539:     renderTripsUI();
+  Line 10540:     renderConversationsUI();
+  Line 10541:     syncNotifications();
+  Line 10542:   }
+  Line 10543: 
+  Line 10544:   // Initialize Google Maps API loading
+  Line 10545:   loadGoogleMapsAPI();
+  Line 10546: 
+  Line 10547:   // ── Payouts & Banking JS Integration ──
+  Line 10548:   let linkedBankAccount = null;
+---------------
+
+Line 10535: { id: 'mock_r2', driverId: 'd2', driverName: 'Jordan Lee', driverAvatar: 'J', driverAvatarUrl: '', from: 'Western University (UWO)', to: 'Fanshawe College (Downtown Campus)', date: getOffsetDateString(1), time: '10:30 AM', seats: 3, price: 6.00, notes: 'Verified' },
+--- Context ---
+  Line 10535:       { id: 'mock_r2', driverId: 'd2', driverName: 'Jordan Lee', driverAvatar: 'J', driverAvatarUrl: '', from: 'Western University (UWO)', to: 'Fanshawe College (Downtown Campus)', date: getOffsetDateString(1), time: '10:30 AM', seats: 3, price: 6.00, notes: 'Verified' },
+  Line 10536:       { id: 'mock_r3', driverId: 'd3', driverName: 'Sam Patel', driverAvatar: 'S', driverAvatarUrl: '', from: 'Fanshawe College (Main Campus)', to: 'Fanshawe College (Downtown Campus)', date: getOffsetDateString(2), time: '2:15 PM', seats: 1, price: 9.25, notes: 'Verified' }
+  Line 10537:     ];
+  Line 10538:     renderRidesUI();
+  Line 10539:     renderTripsUI();
+  Line 10540:     renderConversationsUI();
+  Line 10541:     syncNotifications();
+  Line 10542:   }
+  Line 10543: 
+  Line 10544:   // Initialize Google Maps API loading
+  Line 10545:   loadGoogleMapsAPI();
+  Line 10546: 
+  Line 10547:   // ── Payouts & Banking JS Integration ──
+  Line 10548:   let linkedBankAccount = null;
+  Line 10549:   const savedBankLocal = localStorage.getItem('linked_bank_account');
+---------------
+
+Line 10536: { id: 'mock_r3', driverId: 'd3', driverName: 'Sam Patel', driverAvatar: 'S', driverAvatarUrl: '', from: 'Fanshawe College (Main Campus)', to: 'Fanshawe College (Downtown Campus)', date: getOffsetDateString(2), time: '2:15 PM', seats: 1, price: 9.25, notes: 'Verified' }
+--- Context ---
+  Line 10536:       { id: 'mock_r3', driverId: 'd3', driverName: 'Sam Patel', driverAvatar: 'S', driverAvatarUrl: '', from: 'Fanshawe College (Main Campus)', to: 'Fanshawe College (Downtown Campus)', date: getOffsetDateString(2), time: '2:15 PM', seats: 1, price: 9.25, notes: 'Verified' }
+  Line 10537:     ];
+  Line 10538:     renderRidesUI();
+  Line 10539:     renderTripsUI();
+  Line 10540:     renderConversationsUI();
+  Line 10541:     syncNotifications();
+  Line 10542:   }
+  Line 10543: 
+  Line 10544:   // Initialize Google Maps API loading
+  Line 10545:   loadGoogleMapsAPI();
+  Line 10546: 
+  Line 10547:   // ── Payouts & Banking JS Integration ──
+  Line 10548:   let linkedBankAccount = null;
+  Line 10549:   const savedBankLocal = localStorage.getItem('linked_bank_account');
+  Line 10550:   if (savedBankLocal) {
+---------------
+
+Line 11121: recipientId: activeChatOtherUserId || 'mock_recipient',
+--- Context ---
+  Line 11121:         recipientId: activeChatOtherUserId || 'mock_recipient',
+  Line 11122:         timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  Line 11123:       }).catch(err => console.error("Error logging call:", err));
+  Line 11124:     }
+  Line 11125:   }
+  Line 11126: 
+  Line 11127:   const LOCATION_COORDS = {
+  Line 11128:     "Fanshawe College (Main Campus)": { lat: 43.0121, lng: -81.2003 },
+  Line 11129:     "Fanshawe College (Downtown Campus)": { lat: 42.9837, lng: -81.2497 },
+  Line 11130:     "Western University (UWO)": { lat: 43.0096, lng: -81.2737 },
+  Line 11131:     "Downtown London (Dundas St)": { lat: 42.9833, lng: -81.2500 },
+  Line 11132:     "Masonville Mall": { lat: 43.0267, lng: -81.2783 },
+  Line 11133:     "White Oaks Mall": { lat: 42.9372, lng: -81.2269 },
+  Line 11134:     "London International Airport (YXU)": { lat: 43.0331, lng: -81.1539 },
+  Line 11135:     "Richmond Row": { lat: 42.9917, lng: -81.2514 },
+---------------
+
+=== Matches for firebase_init (firebase\.initialize) ===
+Line 2867: firebase.initializeApp(firebaseConfig);
+--- Context ---
+  Line 2867:       firebase.initializeApp(firebaseConfig);
+  Line 2868:       auth = firebase.auth();
+  Line 2869:       db = firebase.firestore();
+  Line 2870:       analytics = firebase.analytics();
+  Line 2871:       useFirebase = true;
+  Line 2872:       console.log("Firebase initialized successfully on your account!");
+  Line 2873:     } catch (e) {
+  Line 2874:       console.error("Firebase failed to initialize:", e);
+  Line 2875:     }
+  Line 2876:   } else {
+  Line 2877:     console.warn("Firebase not configured. Using local mockup fallback.");
+  Line 2878:   }
+  Line 2879: 
+  Line 2880: 
+  Line 2881:   // ── Stripe Global State ──
+---------------
+
+=== Matches for initApp (function init) ===
+Line 3657: async function initStripe() {
+--- Context ---
+  Line 3657:   async function initStripe() {
+  Line 3658:     if (typeof Stripe === 'undefined') {
+  Line 3659:       console.warn("Stripe.js SDK not loaded. Using mock payment gateway.");
+  Line 3660:       return;
+  Line 3661:     }
+  Line 3662:     try {
+  Line 3663:       let publishableKey = '';
+  Line 3664:       try {
+  Line 3665:         const response = await fetch('/.netlify/functions/get-stripe-config');
+  Line 3666:         if (response.ok) {
+  Line 3667:           const config = await response.json();
+  Line 3668:           publishableKey = config.publishableKey;
+  Line 3669:         }
+  Line 3670:       } catch (fetchErr) {
+  Line 3671:         console.log("Netlify serverless functions not running locally. Checking local fallback...");
+---------------
+
+Line 3726: function initCard3DTilt() {
+--- Context ---
+  Line 3726:   function initCard3DTilt() {
+  Line 3727:     const container = document.querySelector('.card-preview-container');
+  Line 3728:     const card = document.getElementById('credit-card-graphic');
+  Line 3729:     if (!container || !card) return;
+  Line 3730: 
+  Line 3731:     container.addEventListener('mousemove', (e) => {
+  Line 3732:       const rect = container.getBoundingClientRect();
+  Line 3733:       const x = e.clientX - rect.left;
+  Line 3734:       const y = e.clientY - rect.top;
+  Line 3735:       const w = rect.width;
+  Line 3736:       const h = rect.height;
+  Line 3737:       
+  Line 3738:       const rotateY = ((x / w) - 0.5) * 30;
+  Line 3739:       const rotateX = -(((y / h) - 0.5) * 30);
+  Line 3740:       
+---------------
+
+Line 4998: (function initSlides() {
+--- Context ---
+  Line 4998:   (function initSlides() {
+  Line 4999:     const slides = slidesWrap ? slidesWrap.querySelectorAll('.onboard-slide') : [];
+  Line 5000:     slides.forEach((s, i) => {
+  Line 5001:       s.style.transform = `translateX(${i * 100}%)`;
+  Line 5002:     });
+  Line 5003:   })();
+  Line 5004: 
+  Line 5005:   // Swipe support
+  Line 5006:   let touchStartX = 0;
+  Line 5007:   if (slidesWrap) {
+  Line 5008:     slidesWrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  Line 5009:     slidesWrap.addEventListener('touchend', e => {
+  Line 5010:       const diff = touchStartX - e.changedTouches[0].clientX;
+  Line 5011:       if (diff > 40 && currentSlide < totalSlides - 1) goToSlide(currentSlide + 1);
+  Line 5012:       if (diff < -40 && currentSlide > 0) goToSlide(currentSlide - 1);
+---------------
+
+Line 7845: function initGoogleMapsAutocomplete() {
+--- Context ---
+  Line 7845:   function initGoogleMapsAutocomplete() {
+  Line 7846:     const input = document.getElementById("location-search-input");
+  Line 7847:     if (!input || !window.google || !window.google.maps || !window.google.maps.places) return;
+  Line 7848:     
+  Line 7849:     google.maps.event.clearInstanceListeners(input);
+  Line 7850:     
+  Line 7851:     gAutocompleteInstance = new google.maps.places.Autocomplete(input);
+  Line 7852:     gAutocompleteInstance.addListener('place_changed', () => {
+  Line 7853:       const place = gAutocompleteInstance.getPlace();
+  Line 7854:       if (place.geometry && place.geometry.location) {
+  Line 7855:         pickedLocationAddress = place.formatted_address || place.name;
+  Line 7856:         pickedLocationCoords = {
+  Line 7857:           lat: place.geometry.location.lat(),
+  Line 7858:           lng: place.geometry.location.lng()
+  Line 7859:         };
+---------------
+
+Line 7901: function initPickerMap() {
+--- Context ---
+  Line 7901:   function initPickerMap() {
+  Line 7902:     let center = { lat: 42.9833, lng: -81.2500 };
+  Line 7903:     
+  Line 7904:     if (locationSearchMode === "from" && searchFromCoords && searchFromCoords.lat) {
+  Line 7905:       center = searchFromCoords;
+  Line 7906:     } else if (locationSearchMode === "to" && searchToCoords && searchToCoords.lat) {
+  Line 7907:       center = searchToCoords;
+  Line 7908:     }
+  Line 7909:     
+  Line 7910:     pickedLocationCoords = center;
+  Line 7911:     
+  Line 7912:     if (window.google && window.google.maps && USE_GOOGLE_MAPS && GOOGLE_MAPS_KEY) {
+  Line 7913:       document.getElementById("location-picker-map").innerHTML = "";
+  Line 7914:       gMapInstance = new google.maps.Map(document.getElementById("location-picker-map"), {
+  Line 7915:         center: center,
+---------------
+
+Line 10447: function initDriverCards() {
+--- Context ---
+  Line 10447:   function initDriverCards() {
+  Line 10448:     document.querySelectorAll('.ride-card').forEach(card => {
+  Line 10449:       const avatar = card.querySelector('.driver-avatar');
+  Line 10450:       const info   = card.querySelector('.driver-info');
+  Line 10451:       const name   = (card.querySelector('.driver-name')?.textContent || '').trim();
+  Line 10452:       [avatar, info].forEach(el => {
+  Line 10453:         if (el && !el.dataset.profileLinked) {
+  Line 10454:           el.dataset.profileLinked = '1';
+  Line 10455:           el.style.cursor = 'pointer';
+  Line 10456:           el.title = 'View driver profile';
+  Line 10457:           el.addEventListener('click', e => { e.stopPropagation(); openDriverProfile(name); });
+  Line 10458:         }
+  Line 10459:       });
+  Line 10460:     });
+  Line 10461: 
+---------------
+
+Line 10477: function initMapLinks() {
+--- Context ---
+  Line 10477:   function initMapLinks() {
+  Line 10478:     document.querySelectorAll('.map-preview').forEach(mp => {
+  Line 10479:       if (mp.dataset.mapsLinked) return;
+  Line 10480:       mp.dataset.mapsLinked = '1';
+  Line 10481:       const card = mp.closest('.ride-card');
+  Line 10482:       const from = (card?.querySelector('.route-from')?.textContent || '').trim();
+  Line 10483:       const rawTo = (card?.querySelector('.route-to')?.textContent || '').trim();
+  Line 10484:       const to = rawTo.replace(/^\u2192\s*/, '').trim();
+  Line 10485:       mp.style.position = 'relative';
+  Line 10486:       mp.style.cursor = 'pointer';
+  Line 10487:       // Add Google Maps badge overlay
+  Line 10488:       const badge = document.createElement('div');
+  Line 10489:       badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right:4px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Open in Maps`;
+  Line 10490:       badge.style.cssText = 'position:absolute;bottom:8px;right:8px;background:rgba(255,255,255,0.96);border-radius:20px;padding:5px 12px;font-size:10px;font-weight:700;color:#4285F4;box-shadow:0 2px 8px rgba(0,0,0,0.18);display:flex;align-items:center;pointer-events:none;font-family:Montserrat,sans-serif;';
+  Line 10491:       mp.appendChild(badge);
+---------------
+
+Line 11292: function initChatTypingListener() {
+--- Context ---
+  Line 11292:   function initChatTypingListener() {
+  Line 11293:     const input = document.getElementById('chat-msg-input');
+  Line 11294:     if (!input) return;
+  Line 11295:     let typingTimeout = null;
+  Line 11296:     input.addEventListener('input', () => {
+  Line 11297:       if (useFirebase && activeChatRoomId) {
+  Line 11298:         db.collection("chats").doc(activeChatRoomId).set({
+  Line 11299:           typing: {
+  Line 11300:             [currentUser.uid]: true
+  Line 11301:           }
+  Line 11302:         }, { merge: true }).catch(err => console.error("Error setting typing status:", err));
+  Line 11303:         
+  Line 11304:         clearTimeout(typingTimeout);
+  Line 11305:         typingTimeout = setTimeout(() => {
+  Line 11306:           db.collection("chats").doc(activeChatRoomId).set({
+---------------

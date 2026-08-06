@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service – HopOn</title>
+  <meta name="description" content="HopOn Terms of Service – Rules, responsibilities and agreements for using the HopOn peer-to-peer ridesharing and cargo delivery platform." />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#06402B" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #06402B;
+      --purple-light: #0d5d40;
+      --purple-pale: #e6f0ec;
+      --purple-soft: #f4f9f7;
+      --text-dark: #111827;
+      --text-mid: #374151;
+      --text-light: #6B7280;
+      --gray-100: #F3F4F6;
+      --radius: 16px;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--gray-100);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+    .header {
+      background: linear-gradient(135deg, #021a11 0%, #06402B 100%);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 20px rgba(2,26,17,0.4);
+    }
+    .header-inner {
+      max-width: 760px; margin: 0 auto;
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .back-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none; transition: background 0.2s; flex-shrink: 0;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.22); }
+    .back-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .logo-text { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.5px; flex: 1; }
+    
+    /* Language Selector & Dropdown styles */
+    .lang-selector {
+      position: relative;
+      display: inline-block;
+    }
+    .lang-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .lang-btn .arrow-down {
+      font-size: 8px;
+      color: rgba(255,255,255,0.7);
+    }
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      background: #fff;
+      min-width: 170px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .lang-dropdown.show {
+      display: block;
+      animation: fadeIn 0.15s ease-out;
+    }
+    .lang-dropdown a {
+      color: var(--text-dark);
+      padding: 12px 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--purple-pale);
+      transition: background 0.15s;
+    }
+    .lang-dropdown a:last-child {
+      border-bottom: none;
+    }
+    .lang-dropdown a:hover {
+      background: var(--purple-soft);
+    }
+    .lang-dropdown a.active {
+      font-weight: 700;
+      color: var(--purple);
+    }
+    .flag-icon-circle {
+      font-size: 16px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hero-card {
+      background: #fff; border-radius: var(--radius);
+      padding: 28px; margin-bottom: 24px;
+      border-left: 4px solid #021a11;
+      box-shadow: 0 2px 16px rgba(2,26,17,0.08);
+    }
+    .hero-card h1 { font-size: 24px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+    .effective-date { font-size: 13px; color: var(--text-light); font-weight: 600; margin-bottom: 14px; }
+    .hero-intro { font-size: 14px; line-height: 1.7; color: var(--text-mid); }
+    .warning-box {
+      background: #FEF3C7; border: 1.5px solid #F59E0B;
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 24px;
+      font-size: 13px; line-height: 1.6; color: #92400E;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .warning-box .warn-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .section {
+      background: #fff; border-radius: var(--radius);
+      padding: 24px 28px; margin-bottom: 16px;
+      box-shadow: 0 2px 16px rgba(6,64,43,0.06);
+      scroll-margin-top: 80px;
+    }
+    .section h2 {
+      font-size: 17px; font-weight: 800; color: var(--text-dark);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .section p { font-size: 14px; line-height: 1.75; color: var(--text-mid); margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 0; list-style: none; margin-bottom: 12px; }
+    .section ul li {
+      font-size: 14px; line-height: 1.7; color: var(--text-mid);
+      padding: 6px 0 6px 22px; position: relative;
+      border-bottom: 1px solid var(--purple-soft);
+    }
+    .section ul li:last-child { border-bottom: none; }
+    .section ul li::before { content: '→'; position: absolute; left: 0; color: var(--purple); font-weight: 800; font-size: 13px; }
+    .section ul.prohibited li::before { content: '✗'; color: #EF4444; }
+    .highlight-box {
+      background: var(--purple-soft); border: 1.5px solid var(--purple-pale);
+      border-radius: 10px; padding: 14px 16px; margin: 14px 0;
+      font-size: 13px; line-height: 1.6; color: var(--text-mid);
+    }
+    .highlight-box strong { color: var(--purple); }
+    .red-box {
+      background: #FEF2F2; border: 1.5px solid #FECACA;
+      border-radius: 10px; padding: 14px 16px; margin: 14px 0;
+      font-size: 13px; line-height: 1.6; color: #991B1B;
+    }
+    .contact-card {
+      background: linear-gradient(135deg, #021a11, #06402B);
+      border-radius: var(--radius); padding: 28px;
+      text-align: center; color: #fff; margin-bottom: 24px;
+    }
+    .contact-card h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; opacity: 0.85; margin-bottom: 16px; }
+    .contact-email {
+      display: inline-block;
+      background: rgba(255,255,255,0.15); color: #fff;
+      padding: 10px 24px; border-radius: 24px;
+      font-weight: 700; font-size: 14px; text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.25); transition: background 0.2s;
+    }
+    .contact-email:hover { background: rgba(255,255,255,0.25); }
+    .footer-nav { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-nav a {
+      font-size: 13px; font-weight: 600; color: var(--purple);
+      text-decoration: none; padding: 8px 16px; background: #fff;
+      border-radius: 20px; border: 1.5px solid var(--purple-pale); transition: all 0.2s;
+    }
+    .footer-nav a:hover { background: var(--purple); color: #fff; }
+    .footer-copy { text-align: center; font-size: 12px; color: var(--text-light); }
+    
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 24px;
+    }
+    .toc-item a {
+      color: var(--purple);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .toc-item a:hover {
+      color: var(--purple-light);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 20px 14px 50px; }
+      .section { padding: 20px 18px; }
+      .hero-card { padding: 22px 18px; }
+      .hero-card h1 { font-size: 20px; }
+      .toc-grid {
+        grid-template-columns: 1fr;
+        gap: 8px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="./index.html" class="back-btn" aria-label="Back to app">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </a>
+      <span class="logo-text">HopOn</span>
+      
+      <!-- Language Selector Dropdown -->
+      <div class="lang-selector">
+        <button class="lang-btn" id="langBtn" onclick="toggleLangDropdown(event)">
+          <span>🇨🇦 EN</span> <span class="arrow-down">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <a href="#" onclick="setLang('en', event)" class="active" id="lang-en-item">
+            <span class="flag-icon-circle">🇨🇦</span> Canada - English
+          </a>
+          <a href="#" onclick="setLang('fr', event)" id="lang-fr-item">
+            <span class="flag-icon-circle">🇨🇦</span> Canada - Français
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="hero-card">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <!-- English title -->
+        <h1 style="margin-bottom:0;" data-lang="en">Terms of Service</h1>
+        <!-- French title -->
+        <h1 style="margin-bottom:0; display:none;" data-lang="fr">Conditions d'utilisation</h1>
+
+        <div style="font-size:13px; font-weight:700;">
+          <a href="./privacy.html" style="color:var(--purple); text-decoration:none;" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+          <span style="color:var(--text-light); margin:0 8px;">|</span>
+          <a href="#section-18" style="color:var(--purple); text-decoration:none;" data-en="Terms changes" data-fr="Modifications">Terms changes</a>
+        </div>
+      </div>
+      <div class="effective-date" style="margin-top:12px; margin-bottom:16px;">
+        <span data-en="Last updated: June 21, 2026" data-fr="Dernière mise à jour : 21 juin 2026">Last updated: June 21, 2026</span><br>
+        Version: 1.00
+      </div>
+      
+      <!-- English Intros -->
+      <div data-lang="en">
+        <p class="hero-intro" style="font-weight:700; color:var(--text-dark); margin-bottom:16px;">
+          Please read carefully the following Terms of Service governing your access and use of the HopOn platform. This includes important information about your legal rights, responsibilities, and liabilities.
+        </p>
+        <p class="hero-intro" style="margin-bottom:16px;">
+          HopOn provides a peer-to-peer marketplace and online platform connecting drivers who have empty seats or extra cargo space with passengers seeking transit, and senders seeking package delivery. By accessing or using our services, you agree to be bound by these Terms of Service. If you do not agree to all of these terms, you must not use or access our platform.
+        </p>
+      </div>
+
+      <!-- French Intros -->
+      <div data-lang="fr" style="display:none;">
+        <p class="hero-intro" style="font-weight:700; color:var(--text-dark); margin-bottom:16px;">
+          Veuillez lire attentivement les conditions d'utilisation suivantes régissant votre accès et votre utilisation de la plateforme HopOn. Cela comprend des informations importantes concernant vos droits légaux, vos responsabilités et vos obligations.
+        </p>
+        <p class="hero-intro" style="margin-bottom:16px;">
+          HopOn fournit un marché de pair à pair et une plateforme en ligne connectant les conducteurs disposant de sièges libres ou d'espace de chargement supplémentaire avec des passagers recherchant un transport, et des expéditeurs cherchant une livraison de colis. En accédant ou en utilisant nos services, vous acceptez d'être lié par ces conditions d'utilisation. Si vous n'acceptez pas toutes ces conditions, vous ne devez pas utiliser ni accéder à notre plateforme.
+        </p>
+      </div>
+      
+      <div style="height:1px; background:var(--purple-pale); margin:24px 0;"></div>
+
+      <!-- English TOC -->
+      <nav class="toc-grid" data-lang="en">
+        <div class="toc-item"><a href="#section-1">1 Common definitions</a></div>
+        <div class="toc-item"><a href="#section-2">2 Eligibility & Registration</a></div>
+        <div class="toc-item"><a href="#section-3">3 Communication & Messaging</a></div>
+        <div class="toc-item"><a href="#section-4">4 Rides & Booking Systems</a></div>
+        <div class="toc-item"><a href="#section-5">5 Cargo Guidelines & Policies</a></div>
+        <div class="toc-item"><a href="#section-6">6 Payments & Fees</a></div>
+        <div class="toc-item"><a href="#section-7">7 Driver Payouts & Conditions</a></div>
+        <div class="toc-item"><a href="#section-8">8 Cancellations & No-Shows</a></div>
+        <div class="toc-item"><a href="#section-9">9 License & Insurance</a></div>
+        <div class="toc-item"><a href="#section-10">10 Driver Priority Responsibility</a></div>
+        <div class="toc-item"><a href="#section-11">11 Safety & Conduct</a></div>
+        <div class="toc-item"><a href="#section-12">12 Community & Anti-Harassment</a></div>
+        <div class="toc-item"><a href="#section-13">13 Identity Verification</a></div>
+        <div class="toc-item"><a href="#section-14">14 Referral Program</a></div>
+        <div class="toc-item"><a href="#section-15">15 Liability & Warranties</a></div>
+        <div class="toc-item"><a href="#section-16">16 Intellectual Property & DMCA</a></div>
+        <div class="toc-item"><a href="#section-17">17 Governing Law & Disagreements</a></div>
+        <div class="toc-item"><a href="#section-18">18 Changes to These Terms</a></div>
+      </nav>
+
+      <!-- French TOC -->
+      <nav class="toc-grid" data-lang="fr" style="display:none;">
+        <div class="toc-item"><a href="#section-1">1 Définitions communes</a></div>
+        <div class="toc-item"><a href="#section-2">2 Éligibilité & Inscription</a></div>
+        <div class="toc-item"><a href="#section-3">3 Communication & Messagerie</a></div>
+        <div class="toc-item"><a href="#section-4">4 Trajets & Systèmes de réservation</a></div>
+        <div class="toc-item"><a href="#section-5">5 Directives de fret & Colis</a></div>
+        <div class="toc-item"><a href="#section-6">6 Paiements & Frais</a></div>
+        <div class="toc-item"><a href="#section-7">7 Versements & Conditions du conducteur</a></div>
+        <div class="toc-item"><a href="#section-8">8 Annulations & Absences</a></div>
+        <div class="toc-item"><a href="#section-9">9 Permis & Assurances</a></div>
+        <div class="toc-item"><a href="#section-10">10 Responsabilité prioritaire du conducteur</a></div>
+        <div class="toc-item"><a href="#section-11">11 Sécurité & Conduite</a></div>
+        <div class="toc-item"><a href="#section-12">12 Communauté & Anti-harcèlement</a></div>
+        <div class="toc-item"><a href="#section-13">13 Vérification d'identité</a></div>
+        <div class="toc-item"><a href="#section-14">14 Programme de parrainage</a></div>
+        <div class="toc-item"><a href="#section-15">15 Responsabilité & Garanties</a></div>
+        <div class="toc-item"><a href="#section-16">16 Propriété intellectuelle & DMCA</a></div>
+        <div class="toc-item"><a href="#section-17">17 Droit applicable & Différends</a></div>
+        <div class="toc-item"><a href="#section-18">18 Modifications des conditions</a></div>
+      </nav>
+    </div>
+
+    <!-- Warning box -->
+    <div class="warning-box">
+      <span data-en="<strong>Important:</strong> HopOn operates a peer-to-peer platform connecting drivers and passengers/senders. We are not a licensed transportation carrier or common carrier. Members act in a private, non-commercial capacity. You use the platform at your own risk."
+            data-fr="<strong>Important :</strong> HopOn exploite une plateforme de pair à pair connectant conducteurs et passagers/expéditeurs. Nous ne sommes pas un transporteur agréé ou public. Les membres agissent à titre privé et non commercial. Vous utilisez la plateforme à vos propres risques.">
+        <strong>Important:</strong> HopOn operates a peer-to-peer platform connecting drivers and passengers/senders. We are not a licensed transportation carrier or common carrier. Members act in a private, non-commercial capacity. You use the platform at your own risk.
+      </span>
+    </div>
+
+    <!-- Sections -->
+    <div class="section" id="section-1">
+      <h2 data-en="1. Common Definitions" data-fr="1. Définitions communes">1. Common Definitions</h2>
+      <p data-en="Throughout these Terms, the following definitions apply:" data-fr="Tout au long de ces conditions, les définitions suivantes s'appliquent :">Throughout these Terms, the following definitions apply:</p>
+      
+      <!-- English definitions -->
+      <ul data-lang="en">
+        <li><strong>Member</strong>: A Driver, a Passenger, a Cargo Sender, or any other registered user of the Service.</li>
+        <li><strong>Driver</strong>: A Member offering empty seats and/or cargo space in their vehicle to share with other Members during a Trip.</li>
+        <li><strong>Passenger</strong>: A Member booking seats in a Driver's vehicle.</li>
+        <li><strong>Account</strong>: A personalized profile created by a Member to access and use the Service.</li>
+        <li><strong>Trip</strong>: A route planned from an origin to a destination at a specific date and time, created and maintained by a Driver.</li>
+        <li><strong>Booking</strong>: The act of paying the Contribution and associated Booking Fee through the Service prior to departure.</li>
+        <li><strong>Request</strong>: A post by a Passenger looking for a ride, or a Sender looking to transport cargo between locations on a specific date.</li>
+        <li><strong>Contribution</strong>: The sum of money agreed and paid by a Passenger or Cargo Sender to a Driver to cover vehicle running costs. Drivers must not make a profit.</li>
+        <li><strong>Booking Fee</strong>: A platform service fee added on top of the Contribution and paid by the Passenger/Sender when booking.</li>
+        <li><strong>Payout</strong>: The cleared Contributions sent to a Driver's linked Payout Method.</li>
+        <li><strong>Payout Method</strong>: The linked financial account (Direct Deposit or PayPal) used to receive Payouts.</li>
+        <li><strong>Cancellation Allowance</strong>: The privilege for Drivers to cancel a maximum of one Trip with approved Bookings (or one approved Booking) every six months without penalty.</li>
+        <li><strong>Carpool / Carpooling</strong>: Sharing a Trip in a private vehicle between a Driver and Passenger(s) in exchange for a Contribution.</li>
+      </ul>
+
+      <!-- French definitions -->
+      <ul data-lang="fr" style="display:none;">
+        <li><strong>Membre</strong> : Un conducteur, un passager, un expéditeur de colis ou tout autre utilisateur enregistré du Service.</li>
+        <li><strong>Conducteur</strong> : Un membre offrant des places libres ou de l'espace de chargement dans son véhicule pour partager avec d'autres membres lors d'un trajet.</li>
+        <li><strong>Passager</strong> : Un membre réservant des places dans le véhicule d'un conducteur.</li>
+        <li><strong>Compte</strong> : Un profil personnalisé créé par un membre pour accéder et utiliser le Service.</li>
+        <li><strong>Trajet</strong> : Un itinéraire planifié d'un point d'origine à une destination à une date et heure précises, créé par un conducteur.</li>
+        <li><strong>Réservation</strong> : L'acte de payer la contribution et les frais de réservation associés via le Service avant le départ.</li>
+        <li><strong>Demande</strong> : Une publication d'un passager cherchant un trajet, ou d'un expéditeur cherchant à transporter un colis.</li>
+        <li><strong>Contribution</strong> : La somme d'argent convenue et payée par un passager ou un expéditeur à un conducteur pour couvrir les frais de fonctionnement du véhicule. Les conducteurs ne doivent pas faire de bénéfices.</li>
+        <li><strong>Frais de réservation</strong> : Des frais de service de la plateforme ajoutés à la contribution et payés par le passager/expéditeur lors de la réservation.</li>
+        <li><strong>Versement</strong> : Les contributions débloquées et envoyées à la méthode de versement liée du conducteur.</li>
+        <li><strong>Méthode de versement</strong> : Le compte financier associé (dépôt direct ou PayPal) utilisé pour recevoir les versements.</li>
+        <li><strong>Marge d'annulation</strong> : Le privilège pour les conducteurs d'annuler au maximum un trajet avec réservations approuvées tous les six mois sans pénalité.</li>
+        <li><strong>Covoiturage</strong> : Le fait de partager un trajet dans un véhicule privé entre un conducteur et des passagers en échange d'une contribution.</li>
+      </ul>
+    </div>
+
+    <div class="section" id="section-2">
+      <h2 data-en="2. Eligibility & Registration" data-fr="2. Éligibilité & Inscription">2. Eligibility & Registration</h2>
+      <p data-en="To use the Service, you must meet and maintain the following criteria:" data-fr="Pour utiliser le Service, vous devez respecter et maintenir les critères suivants :">To use the Service, you must meet and maintain the following criteria:</p>
+      
+      <ul data-lang="en">
+        <li>Be at least 17 years of age and hold the legal capacity to enter into binding contracts.</li>
+        <li>Register via email/password or authorized OAuth methods (Google or Facebook).</li>
+        <li>Provide true, accurate, and complete information (legal name, clear profile photo, age, gender).</li>
+        <li>Verify and maintain access to your registered email and phone number.</li>
+        <li>Agree to be the sole owner of your Account. No credential sharing or multiple accounts.</li>
+      </ul>
+      
+      <ul data-lang="fr" style="display:none;">
+        <li>Avoir au moins 17 ans et détenir la capacité juridique de conclure des contrats contraignants.</li>
+        <li>S'inscrire par e-mail/mot de passe ou via des méthodes OAuth autorisées (Google ou Facebook).</li>
+        <li>Fournir des informations véridiques, exactes et complètes (nom légal, photo claire, âge, sexe).</li>
+        <li>Vérifier et maintenir l'accès à votre adresse e-mail et à votre numéro de téléphone enregistrés.</li>
+        <li>Accepter d'être l'unique propriétaire de votre compte. Pas de partage d'identifiants ni de comptes multiples.</li>
+      </ul>
+    </div>
+
+    <!-- Keep other sections bilingual in headers and text -->
+    <div class="section" id="section-3">
+      <h2 data-en="3. Communication & Messaging Rules" data-fr="3. Règles de communication & Messagerie">3. Communication & Messaging Rules</h2>
+      <p data-en="HopOn provides an in-app messaging tool to facilitate safe coordinates between Members. You are strictly prohibited from exchanging personal contact information (such as phone numbers, email addresses, or external links) prior to a Booking being confirmed. Off-platform contacts before booking can result in account suspension."
+         data-fr="HopOn fournit un outil de messagerie intégré pour faciliter la coordination en toute sécurité. Il est strictement interdit d'échanger des coordonnées personnelles (numéro de téléphone, e-mail, liens externes) avant la confirmation de la réservation.">
+        HopOn provides an in-app messaging tool to facilitate safe coordinates between Members. You are strictly prohibited from exchanging personal contact information (such as phone numbers, email addresses, or external links) prior to a Booking being confirmed. Off-platform contacts before booking can result in account suspension.
+      </p>
+    </div>
+
+    <div class="section" id="section-4">
+      <h2 data-en="4. Rides & Booking Systems" data-fr="4. Trajets & Systèmes de réservation">4. Rides & Booking Systems</h2>
+      <p data-en="Drivers can manage bookings via **Request to Book** (manual approval in 1-24h window) or **Instant Book** (immediate capture). Drivers must be the primary driver, cannot delegate driving without disclosure, and must ensure enough seats and seatbelts are available."
+         data-fr="Les conducteurs gèrent les réservations via **Demande de réservation** (approbation manuelle) ou **Réservation instantanée** (automatique). Le conducteur doit être le conducteur principal et assurer des ceintures pour tous.">
+        Drivers can manage bookings via **Request to Book** (manual approval in 1-24h window) or **Instant Book** (immediate capture). Drivers must be the primary driver, cannot delegate driving without disclosure, and must ensure enough seats and seatbelts are available.
+      </p>
+    </div>
+
+    <div class="section" id="section-5">
+      <h2 data-en="5. Peer-to-Peer (P2P) Cargo Delivery Guidelines & Policies" data-fr="5. Directives de fret & Transport de colis de pair à pair">5. Peer-to-Peer (P2P) Cargo Delivery Guidelines & Policies</h2>
+      <p data-en="HopOn cargo platform allows package delivery matching. Packages must fit easily, be properly labeled, and are subject to inspection. Senders are prohibited from shipping weapons, hazardous chemicals, narcotics, live animals, or items exceeding $1,000 CAD. Drivers hold the absolute right to inspect all cargo before accepting."
+         data-fr="Le transport de colis est basé sur le partage des coûts. Le colis doit rentrer facilement, être étiqueté et peut être inspecté. Les objets dangereux, illégaux, armes, animaux ou de valeur > 1000 CAD sont interdits. Le conducteur a le droit absolu d'ouvrir et inspecter.">
+        HopOn cargo platform allows package delivery matching. Packages must fit easily, be properly labeled, and are subject to inspection. Senders are prohibited from shipping weapons, hazardous chemicals, narcotics, live animals, or items exceeding $1,000 CAD. Drivers hold the absolute right to inspect all cargo before accepting.
+      </p>
+    </div>
+
+    <div class="section" id="section-6">
+      <h2 data-en="6. Payments & Fees" data-fr="6. Paiements & Frais">6. Payments & Fees</h2>
+      <p data-en="All payments are handled online via Stripe. Cash or off-platform payments (like e-transfers) are strictly prohibited and will lead to account closure. HopOn charges booking fees added on top of driver contributions. Held funds do not accrue interest. Users must cooperate with fraud checks."
+         data-fr="Tous les paiements s'effectuent en ligne via Stripe. Les paiements en espèces ou hors plateforme (virements Interac) sont interdits et entraînent la fermeture du compte. Les fonds séquestrés ne génèrent pas d'intérêt.">
+        All payments are handled online via Stripe. Cash or off-platform payments (like e-transfers) are strictly prohibited and will lead to account closure. HopOn charges booking fees added on top of driver contributions. Held funds do not accrue interest. Users must cooperate with fraud checks.
+      </p>
+    </div>
+
+    <div class="section" id="section-7">
+      <h2 data-en="7. Driver Payouts & Conditions" data-fr="7. Versements & Conditions du conducteur">7. Driver Payouts & Conditions</h2>
+      <p data-en="Payouts are sent to Canadian bank accounts ($CAD) or PayPal. Payouts are subject to a **4-day clearing escrow period** to resolve potential passenger disputes. Funds must be claimed within 365 days or are forfeited. Drivers must arrive 5 minutes early, disclose trip changes, and operate safely."
+         data-fr="Les versements s'effectuent sur des comptes bancaires canadiens ou PayPal. Il y a une **période de compensation de 4 jours** pour résoudre les litiges. Les fonds non réclamés sous 365 jours sont perdus.">
+        Payouts are sent to Canadian bank accounts ($CAD) or PayPal. Payouts are subject to a **4-day clearing escrow period** to resolve potential passenger disputes. Funds must be claimed within 365 days or are forfeited. Drivers must arrive 5 minutes early, disclose trip changes, and operate safely.
+      </p>
+    </div>
+
+    <div class="section" id="section-8">
+      <h2 data-en="8. Cancellation & No-Show Policies" data-fr="8. Annulations & Absences">8. Cancellation & No-Show Policies</h2>
+      <p data-en="Passenger cancellations >24 hours receive a full fare refund (HopOn keeps booking fee). Cancellations <24 hours grant the driver 50% fare. Passenger no-shows grant 100% fare. Drivers are limited to one cancellation every six months (Cancellation Allowance); exceeding it leads to review. Disputes must be filed within 4 days."
+         data-fr="Annulation passager >24h : remboursement complet du trajet (frais conservés par HopOn). <24h : le conducteur reçoit 50%. Absence passager : le conducteur reçoit 100%. Marge d'annulation conducteur : 1 par semestre maximum. Litiges sous 4 jours.">
+        Passenger cancellations >24 hours receive a full fare refund (HopOn keeps booking fee). Cancellations <24 hours grant the driver 50% fare. Passenger no-shows grant 100% fare. Drivers are limited to one cancellation every six months (Cancellation Allowance); exceeding it leads to review. Disputes must be filed within 4 days.
+      </p>
+    </div>
+
+    <div class="section" id="section-9">
+      <h2 data-en="9. Driver's License & Insurance Requirements" data-fr="9. Permis de conduire & Assurances">9. Driver's License & Insurance Requirements</h2>
+      <p data-en="Drivers must hold a full, unexpired license (probationary or restricted licenses are not accepted). Vehicles must be fully insured and meet road safety standards. Drivers and passengers are responsible for verifying ridesharing insurance coverage."
+         data-fr="Les conducteurs doivent détenir un permis de conduire complet et valide (les permis d'apprenti ou restrictifs sont refusés). Le véhicule doit être assuré pour le covoiturage.">
+        Drivers must hold a full, unexpired license (probationary or restricted licenses are not accepted). Vehicles must be fully insured and meet road safety standards. Drivers and passengers are responsible for verifying ridesharing insurance coverage.
+      </p>
+    </div>
+
+    <div class="section" id="section-10">
+      <h2 data-en="10. Driver Priority Responsibility" data-fr="10. Responsabilité prioritaire du conducteur">10. Driver Priority Responsibility</h2>
+      <p data-en="The Driver holds the ultimate authority to accept bookings. If a Driver accepts out-of-terms arrangements (like additional cash demands or alternative pick-ups), HopOn will refund passengers and reverse payouts—even if the passenger requested the arrangement."
+         data-fr="Le conducteur détient l'autorité finale. S'il accepte des arrangements hors conditions (frais supplémentaires, trajets alternatifs), HopOn remboursera le passager et annulera le versement.">
+        The Driver holds the ultimate authority to accept bookings. If a Driver accepts out-of-terms arrangements (like additional cash demands or alternative pick-ups), HopOn will refund passengers and reverse payouts—even if the passenger requested the arrangement.
+      </p>
+    </div>
+
+    <div class="section" id="section-11">
+      <h2 data-en="11. Safety & Conduct" data-fr="11. Sécurité & Conduite">11. Safety & Conduct</h2>
+      <p data-en="All members must wear seatbelts, not use substances, and behave respectfully. Drivers must use hands-free devices only. Report unsafe behavior immediately to authorities and support."
+         data-fr="Ceinture obligatoire, pas de consommation de stupéfiants ou d'alcool, conduite prudente et respectueuse. Téléphone en mode mains libres uniquement.">
+        All members must wear seatbelts, not use substances, and behave respectfully. Drivers must use hands-free devices only. Report unsafe behavior immediately to authorities and support.
+      </p>
+    </div>
+
+    <div class="section" id="section-12">
+      <h2 data-en="12. Community Agreement & Policies" data-fr="12. Accord communautaire & Charte">12. Community Agreement & Policies</h2>
+      <p data-en="We operate a zero-tolerance community for discrimination (based on race, age, sex, orientation) or harassment of any form. Sexual harassment will result in permanent account closure. Reports are handled confidentially."
+         data-fr="Tolérance zéro pour la discrimination (race, sexe, orientation) ou le harcèlement. Le harcèlement sexuel entraîne la fermeture définitive du compte. Enquêtes confidentielles.">
+        We operate a zero-tolerance community for discrimination (based on race, age, sex, orientation) or harassment of any form. Sexual harassment will result in permanent account closure. Reports are handled confidentially.
+      </p>
+    </div>
+
+    <div class="section" id="section-13">
+      <h2 data-en="13. Identity Verification" data-fr="13. Vérification d'identité">13. Identity Verification</h2>
+      <p data-en="A 'verified' badge indicates a member passed our database check. It does not represent an endorsement or guarantee of trustworthiness. Exercise common sense."
+         data-fr="Le badge 'vérifié' indique qu'un membre a passé notre procédure. Cela ne constitue pas une garantie ou recommandation de HopOn. Faites preuve de bon sens.">
+        A 'verified' badge indicates a member passed our database check. It does not represent an endorsement or guarantee of trustworthiness. Exercise common sense.
+      </p>
+    </div>
+
+    <div class="section" id="section-14">
+      <h2 data-en="14. Referral Program" data-fr="14. Programme de parrainage">14. Referral Program</h2>
+      <p data-en="Refer new members to earn $CAD 5 promo codes (valid for 6 months). The referred user must sign up within 21 days and complete their first booking. Referrals are capped at the first 500 users."
+         data-fr="Parrainez de nouveaux membres pour gagner 5 $CAD en code promo (valide 6 mois). Le parrainé doit s'inscrire en 21 jours et finaliser son premier trajet. Cible max de 500 invitations.">
+        Refer new members to earn $CAD 5 promo codes (valid for 6 months). The referred user must sign up within 21 days and complete their first booking. Referrals are capped at the first 500 users.
+      </p>
+    </div>
+
+    <div class="section" id="section-15">
+      <h2 data-en="15. Liability, Warranties & Indemnity" data-fr="15. Limites de responsabilité & Garanties">15. Liability, Warranties & Indemnity</h2>
+      <p data-en="HopOn services are provided 'as is'. Unless forbidden by law, we are not liable for direct or indirect damages arising from rides, cargo shipping, or interactions. Total liability is capped at $CAD 25."
+         data-fr="Les services sont fournis 'tels quels'. Sauf restriction de la loi (notamment au Québec), HopOn décline toute responsabilité pour tout dommage. Responsabilité max plafonnée à 25 $CAD.">
+        HopOn services are provided 'as is'. Unless forbidden by law, we are not liable for direct or indirect damages arising from rides, cargo shipping, or interactions. Total liability is capped at $CAD 25.
+      </p>
+    </div>
+
+    <div class="section" id="section-16">
+      <h2 data-en="16. Intellectual Property & Copyright (DMCA)" data-fr="16. Propriété intellectuelle & DMCA">16. Intellectual Property & Copyright (DMCA)</h2>
+      <p data-en="All assets, logos, styles, and code are owned by HopOn. For copyright infringement notices, contact our agent at hoponboardhelp@gmail.com."
+         data-fr="Tous les logos, codes et designs appartiennent à HopOn. Pour toute réclamation de droits d'auteur, écrivez à hoponboardhelp@gmail.com.">
+        All assets, logos, styles, and code are owned by HopOn. For copyright infringement notices, contact our agent at hoponboardhelp@gmail.com.
+      </p>
+    </div>
+
+    <div class="section" id="section-17">
+      <h2 data-en="17. Governing Law, Litigations & Disagreements" data-fr="17. Droit applicable & Arbitrage">17. Governing Law, Litigations & Disagreements</h2>
+      <p data-en="These Terms are governed by Delaware law. Disagreements must first go through informal negotiation (30 days), then binding arbitration. Class action lawsuits are waived. Escrows can be frozen during disputes."
+         data-fr="Ces conditions sont régies par les lois du Delaware. Tout conflit sera soumis à une négociation informelle de 30 jours, puis à un arbitrage exécutoire. Renonciation aux recours collectifs.">
+        These Terms are governed by Delaware law. Disagreements must first go through informal negotiation (30 days), then binding arbitration. Class action lawsuits are waived. Escrows can be frozen during disputes.
+      </p>
+    </div>
+
+    <div class="section" id="section-18">
+      <h2 data-en="18. Changes to These Terms" data-fr="18. Modifications des conditions">18. Changes to These Terms</h2>
+      <p data-en="We may update these terms or booking fees. We will provide 14 days notice. Continued use constitutes acceptance."
+         data-fr="Nous pouvons modifier ces conditions. Un préavis de 14 jours sera envoyé. L'utilisation continue vaut acceptation.">
+        We may update these terms or booking fees. We will provide 14 days notice. Continued use constitutes acceptance.
+      </p>
+    </div>
+
+    <div class="contact-card">
+      <h2 data-en="Questions about these Terms?" data-fr="Des questions sur nos conditions ?">Questions about these Terms?</h2>
+      <p data-en="Our legal team is happy to clarify anything. We respond within 5 business days." data-fr="Notre équipe juridique vous répondra sous 5 jours ouvrés.">Our legal team is happy to clarify anything. We respond within 5 business days.</p>
+      <a href="mailto:hoponboardhelp@gmail.com" class="contact-email">hoponboardhelp@gmail.com</a>
+      <p style="font-size:12px;color:var(--text-light);margin-top:12px;text-align:center;">HopOn Technologies Inc.<br>London, Ontario, Canada</p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="./index.html" data-en="← Back to App" data-fr="← Retour à l'application">← Back to App</a>
+      <a href="./privacy.html" data-en="Privacy Policy" data-fr="Politique de confidentialité">Privacy Policy</a>
+    </div>
+    <p class="footer-copy">© 2026 HopOn. All rights reserved. · Campus Ridesharing, Reimagined.</p>
+
+  </main>
+
+  <script>
+    function toggleLangDropdown(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('langDropdown').classList.toggle('show');
+    }
+    
+    // Close dropdown on click outside
+    window.addEventListener('click', function() {
+      const dropdown = document.getElementById('langDropdown');
+      if (dropdown && dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+      }
+    });
+    
+    function setLang(lang, e) {
+      if (e) e.preventDefault();
+      
+      // Update dropdown items state
+      document.getElementById('lang-en-item').classList.toggle('active', lang === 'en');
+      document.getElementById('lang-fr-item').classList.toggle('active', lang === 'fr');
+      
+      // Update button label
+      const btnSpan = document.querySelector('#langBtn span');
+      btnSpan.textContent = lang === 'en' ? '🇨🇦 EN' : '🇨🇦 FR';
+
+      // Update text variables (data-en/data-fr attributes)
+      document.querySelectorAll('[data-en]').forEach(el => {
+        // Skip tags that are links in the header to avoid layout breaks
+        if (el.tagName.toLowerCase() === 'html') return;
+        el.innerHTML = lang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-fr');
+      });
+
+      // Toggle visibility of blocks with lang attribute
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        if (el.getAttribute('data-lang') === lang) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+      
+      // Close dropdown
+      const dropdown = document.getElementById('langDropdown');
+      if (dropdown) dropdown.classList.remove('show');
+    }
+  </script>
+
+</body>
+</html>

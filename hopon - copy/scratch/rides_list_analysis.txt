@@ -1,0 +1,242 @@
+=== Matches for ridesList ((const|let|var)\s+ridesList\s*=) ===
+Line 4048: let ridesList = [];
+--- Context ---
+  Line 4048:   let ridesList = [];
+  Line 4049: 
+  Line 4050:   function syncRidesFromFirestore() {
+  Line 4051:     if (!useFirebase) return;
+  Line 4052:     if (unsubRides) unsubRides();
+  Line 4053:     unsubRides = db.collection("rides").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+  Line 4054:       ridesList = [];
+  Line 4055:       snapshot.forEach(doc => {
+  Line 4056:         ridesList.push({ id: doc.id, ...doc.data() });
+  Line 4057:       });
+  Line 4058:       renderRidesUI();
+  Line 4059:     }, (err) => {
+  Line 4060:       console.error("Firestore sync error:", err);
+  Line 4061:     });
+  Line 4062:   }
+  Line 4063: 
+  Line 4064:   let passengerTripsList = [];
+  Line 4065:   let driverTripsList = [];
+  Line 4066: 
+  Line 4067:   function syncTripsFromFirestore() {
+  Line 4068:     if (!useFirebase || !currentUser || !currentUser.uid) return;
+  Line 4069:     
+  Line 4070:     if (unsubTripsPassenger) unsubTripsPassenger();
+  Line 4071:     if (unsubTripsDriver) unsubTripsDriver();
+  Line 4072:     
+  Line 4073:     unsubTripsPassenger = db.collection("bookings")
+  Line 4074:       .where("passengerId", "==", currentUser.uid)
+  Line 4075:       .onSnapshot((snapshot) => {
+  Line 4076:         passengerTripsList = [];
+  Line 4077:         snapshot.forEach(doc => {
+---------------
+
+=== Matches for mockRides ((const|let|var)\s+mockRides\s*=) ===
+=== Matches for rides_collection (db\.collection\("rides"\)) ===
+Line 3883: await db.collection("rides").add({
+--- Context ---
+  Line 3883:           await db.collection("rides").add({
+  Line 3884:             driverId: currentUser.uid,
+  Line 3885:             driverName: currentFullName,
+  Line 3886:             driverAvatar: currentUser.avatar || '👨‍🎓',
+  Line 3887:             driverAvatarUrl: currentUser.avatarUrl || '',
+  Line 3888:             from: from,
+  Line 3889:             to: to,
+  Line 3890:             date: date,
+  Line 3891:             time: time,
+  Line 3892:             seats: isOffer ? parseInt(seats) : 1,
+  Line 3893:             price: parseFloat(price),
+  Line 3894:             notes: notes || (isOffer ? 'Student Ride Offer' : 'Passenger Ride Request'),
+  Line 3895:             type: activeType,
+  Line 3896:             timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  Line 3897:           });
+  Line 3898:           showToast(isOffer ? '🚀 Ride offer posted successfully!' : '🙋‍♂️ Ride request posted successfully!');
+  Line 3899:           if (source === 'inline') {
+  Line 3900:             switchRideTab('available');
+  Line 3901:           } else {
+  Line 3902:             closeSubScreen('sub-post-ride');
+  Line 3903:           }
+  Line 3904:         } catch (e) {
+  Line 3905:           alert("Error posting ride: " + e.message);
+  Line 3906:         }
+  Line 3907:       } else {
+  Line 3908:         const newRide = {
+  Line 3909:           id: 'mock_r_' + Date.now(),
+  Line 3910:           driverId: currentUser.uid,
+  Line 3911:           driverName: currentFullName,
+  Line 3912:           driverAvatar: currentUser.avatar || '👨‍🎓',
+---------------
+
+Line 4053: unsubRides = db.collection("rides").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+--- Context ---
+  Line 4053:     unsubRides = db.collection("rides").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+  Line 4054:       ridesList = [];
+  Line 4055:       snapshot.forEach(doc => {
+  Line 4056:         ridesList.push({ id: doc.id, ...doc.data() });
+  Line 4057:       });
+  Line 4058:       renderRidesUI();
+  Line 4059:     }, (err) => {
+  Line 4060:       console.error("Firestore sync error:", err);
+  Line 4061:     });
+  Line 4062:   }
+  Line 4063: 
+  Line 4064:   let passengerTripsList = [];
+  Line 4065:   let driverTripsList = [];
+  Line 4066: 
+  Line 4067:   function syncTripsFromFirestore() {
+  Line 4068:     if (!useFirebase || !currentUser || !currentUser.uid) return;
+  Line 4069:     
+  Line 4070:     if (unsubTripsPassenger) unsubTripsPassenger();
+  Line 4071:     if (unsubTripsDriver) unsubTripsDriver();
+  Line 4072:     
+  Line 4073:     unsubTripsPassenger = db.collection("bookings")
+  Line 4074:       .where("passengerId", "==", currentUser.uid)
+  Line 4075:       .onSnapshot((snapshot) => {
+  Line 4076:         passengerTripsList = [];
+  Line 4077:         snapshot.forEach(doc => {
+  Line 4078:           passengerTripsList.push({ id: doc.id, ...doc.data() });
+  Line 4079:         });
+  Line 4080:         mergeAndRenderTrips();
+  Line 4081:       }, (err) => {
+  Line 4082:         console.error("Firestore passenger trips sync error:", err);
+---------------
+
+Line 4315: const rideRef = db.collection("rides").doc(rideId);
+--- Context ---
+  Line 4315:         const rideRef = db.collection("rides").doc(rideId);
+  Line 4316:         await db.runTransaction(async (transaction) => {
+  Line 4317:           const sfDoc = await transaction.get(rideRef);
+  Line 4318:           if (!sfDoc.exists) {
+  Line 4319:             throw new Error("Ride does not exist!");
+  Line 4320:           }
+  Line 4321:           const currentSeats = sfDoc.data().seats;
+  Line 4322:           if (currentSeats < seatsToBook) {
+  Line 4323:             throw new Error(`Only ${currentSeats} seats left on this ride!`);
+  Line 4324:           }
+  Line 4325:           
+  Line 4326:           // Decrement seats immediately
+  Line 4327:           transaction.update(rideRef, { seats: currentSeats - seatsToBook });
+  Line 4328: 
+  Line 4329:           const bookingRef = db.collection("bookings").doc();
+  Line 4330:           transaction.set(bookingRef, {
+  Line 4331:             rideId: rideId,
+  Line 4332:             passengerId: currentUser.uid,
+  Line 4333:             passengerName: `${currentUser.firstName} ${currentUser.lastName}`,
+  Line 4334:             driverId: resolvedDriverId,
+  Line 4335:             driverName: driverName,
+  Line 4336:             from: from,
+  Line 4337:             to: to,
+  Line 4338:             date: date,
+  Line 4339:             time: time,
+  Line 4340:             price: price,
+  Line 4341:             seatsBooked: seatsToBook,
+  Line 4342:             status: 'Upcoming', // Auto-confirmed
+  Line 4343:             timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  Line 4344:           });
+---------------
+
+Line 4475: const rideRef = db.collection("rides").doc(rideId);
+--- Context ---
+  Line 4475:             const rideRef = db.collection("rides").doc(rideId);
+  Line 4476:             const rDoc = await transaction.get(rideRef);
+  Line 4477:             if (rDoc.exists) {
+  Line 4478:               const currentSeats = rDoc.data().seats || 0;
+  Line 4479:               transaction.update(rideRef, { seats: currentSeats + 1 });
+  Line 4480:             }
+  Line 4481:           }
+  Line 4482:           
+  Line 4483:           transaction.update(bookingRef, { status: 'Cancelled' });
+  Line 4484:         });
+  Line 4485: 
+  Line 4486:         // Add cash back to passenger's wallet
+  Line 4487:         if (refundAmount > 0) {
+  Line 4488:           try {
+  Line 4489:             const passengerRef = db.collection("users").doc(bookingData.passengerId);
+  Line 4490:             const passSnap = await passengerRef.get();
+  Line 4491:             let passBal = 0.00;
+  Line 4492:             if (passSnap.exists) {
+  Line 4493:               passBal = parseFloat(passSnap.data().hoponCashBalance || 0);
+  Line 4494:             }
+  Line 4495:             const newBal = passBal + refundAmount;
+  Line 4496:             await passengerRef.update({ hoponCashBalance: newBal });
+  Line 4497:             
+  Line 4498:             // If the cancelling user is the logged-in passenger, update local state
+  Line 4499:             if (bookingData.passengerId === currentUser.uid) {
+  Line 4500:               hoponCashBalance = newBal;
+  Line 4501:               localStorage.setItem('hopon_cash_balance', hoponCashBalance.toFixed(2));
+  Line 4502:               updateHopOnCashDOM();
+  Line 4503:             }
+  Line 4504: 
+---------------
+
+Line 11330: const rideRef = db.collection("rides").doc(rideId);
+--- Context ---
+  Line 11330:         const rideRef = db.collection("rides").doc(rideId);
+  Line 11331:         batch.delete(rideRef);
+  Line 11332:         
+  Line 11333:         for (const doc of bookingsSnap.docs) {
+  Line 11334:           const booking = doc.data();
+  Line 11335:           const bookingRef = db.collection("bookings").doc(doc.id);
+  Line 11336:           batch.update(bookingRef, { status: 'Cancelled' });
+  Line 11337:           
+  Line 11338:           // Full refund (100% refund of base fare + service fee + HST)
+  Line 11339:           try {
+  Line 11340:             const paySnap = await db.collection("payments")
+  Line 11341:               .where("rideId", "==", rideId)
+  Line 11342:               .where("passengerId", "==", booking.passengerId)
+  Line 11343:               .get();
+  Line 11344:             
+  Line 11345:             let fullRefund = 0.00;
+  Line 11346:             if (!paySnap.empty) {
+  Line 11347:               paySnap.forEach(pDoc => {
+  Line 11348:                 const pData = pDoc.data();
+  Line 11349:                 if (pData.status !== 'refunded') {
+  Line 11350:                   fullRefund += parseFloat(pData.price || 0);
+  Line 11351:                 }
+  Line 11352:               });
+  Line 11353:             } else {
+  Line 11354:               const base = parseFloat(booking.price.replace('$', '')) || 0;
+  Line 11355:               const fee = parseFloat((base * 0.12).toFixed(2));
+  Line 11356:               const tax = parseFloat(((base + fee) * 0.13).toFixed(2));
+  Line 11357:               fullRefund = base + fee + tax;
+  Line 11358:             }
+  Line 11359: 
+---------------
+
+Line 11506: const rideRef = db.collection("rides").doc(booking.rideId);
+--- Context ---
+  Line 11506:         const rideRef = db.collection("rides").doc(booking.rideId);
+  Line 11507:         await db.runTransaction(async (transaction) => {
+  Line 11508:           const sfDoc = await transaction.get(rideRef);
+  Line 11509:           if (!sfDoc.exists) {
+  Line 11510:             throw new Error("Ride does not exist!");
+  Line 11511:           }
+  Line 11512:           const currentSeats = sfDoc.data().seats;
+  Line 11513:           if (currentSeats <= 0) {
+  Line 11514:             throw new Error("No seats left on this ride!");
+  Line 11515:           }
+  Line 11516:           transaction.update(rideRef, { seats: currentSeats - 1 });
+  Line 11517:           transaction.update(bookingRef, { status: 'Upcoming' });
+  Line 11518:         });
+  Line 11519: 
+  Line 11520:         // Add confirmation message to chat
+  Line 11521:         const chatRoomId = [booking.passengerId, booking.driverId].sort().join('_');
+  Line 11522:         const sysText = "✅ Ride Request Approved!";
+  Line 11523:         await db.collection("chats").doc(chatRoomId).collection("messages").add({
+  Line 11524:           senderId: currentUser.uid,
+  Line 11525:           text: sysText,
+  Line 11526:           timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  Line 11527:         });
+  Line 11528: 
+  Line 11529:         await db.collection("chats").doc(chatRoomId).set({
+  Line 11530:           lastMessage: sysText,
+  Line 11531:           lastTimestamp: firebase.firestore.FieldValue.serverTimestamp()
+  Line 11532:         }, { merge: true });
+  Line 11533: 
+  Line 11534:         showToast("🎉 Booking approved!");
+  Line 11535:         await addNotification('📅 Booking Confirmed', `Your booking request with ${booking.driverName} has been approved!`, 'booking', booking.passengerId);
+---------------
+
+=== Matches for addRide (function addRide) ===

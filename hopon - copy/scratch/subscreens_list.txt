@@ -1,0 +1,47 @@
+Line 249: <div id="photo-source-sheet" class="checkout-sheet-modal" style="z-index: 9999;" onclick="closePhotoSourceSheet(event)">
+Line 250: <div class="checkout-sheet" style="background: #110e20; border-top: 1px solid rgba(123,47,190,0.3); border-radius: 20px 20px 0 0; padding: 20px; box-sizing: border-box;">
+Line 292: <div class="login-screen hidden" id="sub-login-otp">
+Line 334: <div class="login-screen hidden" id="sub-login-verification">
+Line 1318: <div class="date-picker-modal" id="advanced-filters-modal" style="z-index: 1100; display: none;" onclick="if(event.target===this)closeAdvancedFilters()">
+Line 1319: <div class="checkout-sheet" style="padding: 24px; border-radius: 20px 20px 0 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
+Line 1369: <div class="sub-screen" id="sub-location-search" style="padding: 0; flex-direction: column;">
+Line 1418: <div class="date-picker-modal" id="sub-date-picker" onclick="closeCustomDatePicker(event)">
+Line 1419: <div class="date-picker-sheet">
+Line 1448: <div class="sub-screen" id="sub-trip-preview" style="overflow-y: auto; background: #f8fafc; font-family: Montserrat, sans-serif; display: none; flex-direction: column;">
+Line 1543: <div class="sub-screen" id="sub-booking-rules" style="overflow-y: auto; background: #f8fafc; font-family: Montserrat, sans-serif; display: none; flex-direction: column;">
+Line 1600: <div class="sub-screen" id="sub-booking-seats" style="overflow-y: auto; background: #f8fafc; font-family: Montserrat, sans-serif; display: none; flex-direction: column;">
+Line 1658: <div class="sub-screen" id="sub-booking-summary" style="overflow-y: auto; background: #f8fafc; font-family: Montserrat, sans-serif; display: none; flex-direction: column;">
+Line 1718: <div class="checkout-sheet-modal" id="sub-checkout" onclick="closeCheckoutSheet(event)">
+Line 1719: <div class="checkout-sheet">
+Line 1725: <div style="font-size:14px; font-weight:700; color:var(--text-dark); margin-bottom:8px;" id="checkout-route">Downtown → Airport</div>
+Line 1726: <div style="font-size:12px; color:var(--text-light); margin-bottom:12px;" id="checkout-datetime">Date: Jun 20, 2026 · Time: 8:00 AM</div>
+Line 1730: <span id="checkout-base-fare">$10.00</span>
+Line 1734: <span id="checkout-service-fee-val">$1.20</span>
+Line 1738: <span id="checkout-hst-val">$1.46</span>
+Line 1740: <div class="checkout-price-row" id="checkout-discount-row" style="color:var(--purple); display:none;">
+Line 1742: <span id="checkout-discount-val">-$1.50</span>
+Line 1746: <span id="checkout-total-price">$11.50</span>
+Line 1767: <button class="btn-purple" style="margin-top: 10px;" id="checkout-confirm-btn" onclick="confirmPaymentAndBook()">Confirm Payment</button>
+Line 1772: <div class="sub-screen" id="sub-vehicle-details" style="overflow-y: auto;">
+Line 1853: <div class="sub-screen" id="sub-settings" style="overflow-y: auto;">
+Line 1926: <div class="sub-screen" id="sub-notifications" style="overflow-y: auto;">
+Line 1948: <div class="sub-screen" id="sub-payment" style="overflow-y: auto;">
+Line 2099: <div class="sub-screen" id="sub-payouts" style="overflow-y: auto;">
+Line 2155: <div class="sub-screen" id="sub-student">
+Line 2210: <div class="sub-screen" id="sub-discounts">
+Line 2221: <div class="sub-screen" id="sub-referral">
+Line 2239: <div class="sub-screen" id="sub-promos">
+Line 2248: <div class="sub-screen" id="sub-safety">
+Line 2265: <div class="sub-screen" id="sub-social">
+Line 2282: <div class="sub-screen" id="sub-about" style="overflow-y:auto;">
+Line 2372: <div class="sub-screen" id="sub-help" style="overflow-y:auto;">
+Line 2406: <div class="sub-screen" id="sub-driver-profile" style="flex-direction:column;overflow:hidden;">
+Line 2488: <div class="chat-screen" id="sub-chat" style="flex-direction:column; position:relative;">
+Line 2540: <div class="rating-modal" id="rating-modal">
+Line 2541: <div class="rating-modal-card">
+Line 2608: <div class="sub-screen" id="sub-driver-verification" style="overflow-y: auto;">
+Line 2651: <div class="sub-screen" id="sub-post-ride" style="overflow-y: auto;">
+Line 2733: <div class="sub-screen" id="sub-legal" style="overflow-y: auto;">
+Line 2744: <div class="sub-screen" id="sub-cargo-dispute" style="overflow-y: auto;">
+Line 5558: discountRow.innerHTML = `<span>${discountLabelText}</span><span id="checkout-discount-val">-$${discount.toFixed(2)}</span>`;
+Line 11676: <div id="parcel-scanner-modal" class="parcel-scanner-modal">

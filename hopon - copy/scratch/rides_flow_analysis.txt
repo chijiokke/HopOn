@@ -1,0 +1,103 @@
+=== renderRidesUI surrounding code (lines 4750 to 4800) ===
+Line 4751:     }
+Line 4752:   }
+Line 4753: 
+Line 4754: function renderRidesUI() {
+Line 4755:     const container1 = document.getElementById('rides-list-container');
+Line 4756:     const container2 = document.getElementById('ride-flow');
+Line 4757:     
+Line 4758:     const query = (document.getElementById('rides-search')?.value || '').toLowerCase();
+Line 4759:     const fromQuery = (searchFromValue === "📍 Current Location" ? "" : searchFromValue).toLowerCase();
+Line 4760:     const toQuery = (searchToValue === "Where to?" ? "" : searchToValue).toLowerCase();
+Line 4761:     const dateQuery = searchDateValue ? formatDateString(searchDateValue) : "";
+Line 4762:     
+Line 4763:     const filtered = ridesList.filter(ride => {
+Line 4764:       if (isRideExpired(ride.date, ride.time)) return false;
+Line 4765: 
+Line 4766:       const matchFrom = fromQuery === "" || ride.from.toLowerCase().includes(fromQuery);
+Line 4767:       const matchTo = toQuery === "" || ride.to.toLowerCase().includes(toQuery);
+Line 4768:       const matchDate = dateQuery === "" || ride.date.includes(dateQuery);
+Line 4769:       
+Line 4770:       const matchQuery = ride.driverName.toLowerCase().includes(query);
+Line 4771:                          
+Line 4772:       let matchChip = true;
+Line 4773:       const isAM = ride.time.toLowerCase().includes('am') || (parseInt(ride.time) < 12 && !ride.time.toLowerCase().includes('pm'));
+Line 4774:       if (activeChip === 'morning') matchChip = isAM;
+Line 4775:       if (activeChip === 'afternoon') matchChip = !isAM;
+Line 4776:       if (activeChip === 'verified') matchChip = true;
+Line 4777:       if (activeChip === 'seats') matchChip = ride.seats > 0;
+Line 4778:       
+Line 4779:       // Apply Advanced Filters
+Line 4780:       let matchAdvanced = true;
+Line 4781:       const dp = DRIVER_PROFILES[ride.driverName] || {};
+Line 4782:       if (activeAdvancedFilters.femaleOnly && !(dp.femaleOnly || ride.driverName === 'Morgan Chen')) matchAdvanced = false;
+Line 4783:       if (activeAdvancedFilters.music && !(dp.music || ride.driverName !== 'Sam Patel')) matchAdvanced = false;
+Line 4784:       if (activeAdvancedFilters.quiet && !(dp.quiet || (ride.driverName === 'Sam Patel' || ride.driverName === 'Taylor Kim'))) matchAdvanced = false;
+Line 4785:       if (activeAdvancedFilters.luggage && !(dp.luggage || ride.driverName === 'Alex Chen')) matchAdvanced = false;
+Line 4786:       if (activeAdvancedFilters.topRated && !(parseFloat(dp.rating || '4.5') >= 4.8)) matchAdvanced = false;
+Line 4787:       if (activeAdvancedFilters.studentDriver && !dp.verified) matchAdvanced = false;
+Line 4788:       
+Line 4789:       return matchFrom && matchTo && matchDate && matchQuery && matchChip && matchAdvanced;
+Line 4790:     });
+Line 4791: 
+Line 4792:     const getCardHtml = (ride) => {
+Line 4793:       const avatarContent = ride.driverAvatarUrl ? 
+Line 4794:         `<img src="${ride.driverAvatarUrl}" class="pop-trip-driver-avatar" />` : 
+Line 4795:         `<div class="pop-trip-driver-avatar" style="background:#5B21B6; color:#fff;">${ride.driverName.charAt(0)}</div>`;
+Line 4796:         
+Line 4797:       const priceText = `$${parseFloat(ride.price).toFixed(2)}`;
+Line 4798:       
+Line 4799:       const vInfo = getDriverVehicleInfo(ride.driverName, ride.driverId);
+Line 4800:       const vehicleName = vInfo && vInfo.model ? `${vInfo.make || ''} ${vInfo.model}` : 'Toyota Grand Highlander 2026';
+Line 4801:       
+Line 4802:       const dp = DRIVER_PROFILES[ride.driverName] || { rating: '5.0', rides: 51, bio: '' };
+Line 4803:       const ratingVal = dp.rating || '5.0';
+Line 4804:       const ridesCount = dp.rides || '51';
+Line 4805:       
+Line 4806:       const shortDesc = ride.notes ? ride.notes : `Round trip to ${ride.to.split(',')[0]}`;
+Line 4807:       
+Line 4808:       return `
+Line 4809:         <div class="pop-trip-card" onclick="openTripPreview('${ride.id}')">
+Line 4810:           <div class="pop-trip-card-header">
+Line 4811:             <span class="pop-trip-time">Today at ${ride.time}</span>
+Line 4812:             <div class="pop-trip-seats-price">
+Line 4813:               <span class="pop-trip-seats-left">${ride.seats} seats left</span>
+Line 4814:               <span class="pop-trip-price">${priceText}</span>
+Line 4815:             </div>
+Line 4816:           </div>
+Line 4817:           
+Line 4818:           <div class="pop-trip-route-line-container">
+Line 4819:             <div class="pop-trip-route-timeline">
+Line 4820:               <div class="pop-trip-route-dot"></div>
+Line 4821:               <div class="pop-trip-route-connector"></div>
+Line 4822:               <div class="pop-trip-route-dot"></div>
+Line 4823:             </div>
+Line 4824:             <div class="pop-trip-route-points">
+Line 4825:               <div class="pop-trip-route-point">
+Line 4826:                 ${ride.from.split(',')[0]}
+Line 4827:                 <div class="pop-trip-route-sub">${ride.from}</div>
+Line 4828:               </div>
+Line 4829:               <div class="pop-trip-route-point">
+Line 4830:                 ${ride.to.split(',')[0]}
+Line 4831:                 <div class="pop-trip-route-sub">${ride.to}</div>
+Line 4832:               </div>
+Line 4833:             </div>
+Line 4834:           </div>
+Line 4835:           
+Line 4836:           <div class="pop-trip-driver-vehicle-row">
+Line 4837:             <div class="pop-trip-driver-info" style="cursor:pointer;" onclick="event.stopPropagation();openDriverProfile('${ride.driverName}', '${ride.driverId}')">
+Line 4838:               ${avatarContent}
+Line 4839:               <div class="pop-trip-driver-name-rating">
+Line 4840:                 <span class="pop-trip-driver-name">${ride.driverName}</span>
+Line 4841:                 <span class="pop-trip-driver-meta">
+Line 4842:                   <span style="color:#F59E0B;">★</span> ${ratingVal} · ${ridesCount} driven
+Line 4843:                 </span>
+Line 4844:               </div>
+Line 4845:             </div>
+Line 4846:             <span class="pop-trip-vehicle-info">${vehicleName}</span>
+Line 4847:           </div>
+Line 4848:           
+Line 4849:           <div class="pop-trip-card-desc">
+Line 4850:             "${shortDesc}"
+
+=== showScreen Definition ===

@@ -1,0 +1,586 @@
+=== Matches for openDriverProfile (function openDriverProfile) ===
+Line 10351: function openDriverProfile(name, driverId) {
+--- Context ---
+  Line 10346:     if (!wasOpen) item.classList.add('open');
+  Line 10347:   }
+  Line 10348: 
+  Line 10349: 
+  Line 10350: 
+  Line 10351:   function openDriverProfile(name, driverId) {
+  Line 10352:     const p = DRIVER_PROFILES[name] || { initial:name[0]||'?', color:'linear-gradient(135deg,#7B2FBE,#9B4FDE)', rating:'4.5', rides:20, accept:'90%', verified:false, member:'2024', bio:`${name} is a community driver on HopOn. Safe, reliable, and community-driven!`, car:'Vehicle info not available', plate:'---', mutualCount:1, faculty:'Student Commuter', ratingsBreakdown:[80, 15, 5, 0, 0], reviews:[] };
+  Line 10353:     // Populate
+  Line 10354:     document.getElementById('dp-avatar-wrap').style.background = p.color;
+  Line 10355:     document.getElementById('dp-avatar-text').textContent = p.initial;
+  Line 10356:     
+  Line 10357:     // Add verified badge click listner
+  Line 10358:     const badge = document.getElementById('dp-verified-badge');
+  Line 10359:     if (badge) {
+  Line 10360:       badge.style.display = p.verified ? 'flex' : 'none';
+  Line 10361:       badge.style.cursor = 'pointer';
+  Line 10362:       badge.onclick = (e) => {
+  Line 10363:         e.stopPropagation();
+  Line 10364:         const institutionalEmail = name.toLowerCase().replace(/\s+/g, '.') + (name.includes('Chen') || name.includes('Rivera') ? '@fanshawec.ca' : '@uwo.ca');
+  Line 10365:         document.getElementById('student-cert-email').textContent = institutionalEmail;
+  Line 10366:         const certModal = document.getElementById('student-cert-modal');
+  Line 10367:         if (certModal) certModal.style.display = 'flex';
+  Line 10368:       };
+  Line 10369:     }
+  Line 10370: 
+  Line 10371:     document.getElementById('dp-name').textContent = name;
+  Line 10372:     document.getElementById('dp-rating').textContent = '★ ' + p.rating;
+  Line 10373:     document.getElementById('dp-rides').textContent = p.rides;
+  Line 10374:     document.getElementById('dp-accept').textContent = p.accept;
+  Line 10375:     document.getElementById('dp-member').textContent = p.member;
+  Line 10376:     document.getElementById('dp-bio').textContent = p.bio;
+  Line 10377:     document.getElementById('dp-car').textContent = p.car;
+  Line 10378:     document.getElementById('dp-plate').textContent = p.plate;
+  Line 10379: 
+  Line 10380:     // Populate Social Connections Widget
+---------------
+
+Line 10441: function openDriverProfileFromChat() {
+--- Context ---
+  Line 10436:       openChat(name, p.initial, p.color, resolvedDriverId); 
+  Line 10437:     };
+  Line 10438:     document.getElementById('sub-driver-profile').classList.add('show');
+  Line 10439:   }
+  Line 10440: 
+  Line 10441:   function openDriverProfileFromChat() {
+  Line 10442:     const name = document.getElementById('chat-name-display').textContent.trim();
+  Line 10443:     openDriverProfile(name, activeChatOtherUserId);
+  Line 10444:   }
+  Line 10445: 
+  Line 10446:   // ── Auto-wire all ride card driver headers to open profile ──
+  Line 10447:   function initDriverCards() {
+  Line 10448:     document.querySelectorAll('.ride-card').forEach(card => {
+  Line 10449:       const avatar = card.querySelector('.driver-avatar');
+  Line 10450:       const info   = card.querySelector('.driver-info');
+  Line 10451:       const name   = (card.querySelector('.driver-name')?.textContent || '').trim();
+  Line 10452:       [avatar, info].forEach(el => {
+  Line 10453:         if (el && !el.dataset.profileLinked) {
+  Line 10454:           el.dataset.profileLinked = '1';
+  Line 10455:           el.style.cursor = 'pointer';
+  Line 10456:           el.title = 'View driver profile';
+  Line 10457:           el.addEventListener('click', e => { e.stopPropagation(); openDriverProfile(name); });
+  Line 10458:         }
+  Line 10459:       });
+  Line 10460:     });
+  Line 10461: 
+  Line 10462:     document.querySelectorAll('.trip-driver').forEach(el => {
+  Line 10463:       if (!el.dataset.profileLinked) {
+  Line 10464:         el.dataset.profileLinked = '1';
+  Line 10465:         el.style.cursor = 'pointer';
+  Line 10466:         el.title = 'View driver profile';
+  Line 10467:         const name = el.textContent.trim();
+  Line 10468:         el.addEventListener('click', e => { e.stopPropagation(); openDriverProfile(name); });
+  Line 10469:       }
+  Line 10470:     });
+---------------
+
+=== Matches for DRIVER_PROFILES_usage (DRIVER_PROFILES\[) ===
+Line 3820: if (!DRIVER_PROFILES[currentFullName]) {
+--- Context ---
+  Line 3815:       }
+  Line 3816:     }
+  Line 3817: 
+  Line 3818:     // Ensure current user has a profile in DRIVER_PROFILES so card rendering doesn't fail
+  Line 3819:     const currentFullName = `${currentUser.firstName} ${currentUser.lastName}`;
+  Line 3820:     if (!DRIVER_PROFILES[currentFullName]) {
+  Line 3821:       DRIVER_PROFILES[currentFullName] = {
+  Line 3822:         rating: '5.0',
+  Line 3823:         rides: 0,
+  Line 3824:         bio: 'HopOn Student Commuter. Always happy to share a ride!',
+  Line 3825:         verified: true,
+  Line 3826:         femaleOnly: false,
+  Line 3827:         music: true,
+  Line 3828:         quiet: false,
+  Line 3829:         luggage: true
+  Line 3830:       };
+  Line 3831:     }
+  Line 3832: 
+  Line 3833:     if (activeType === 'cargo_offer') {
+  Line 3834:       const pkgs = parseInt(document.getElementById('cargo-packages-input').value);
+  Line 3835:       const wt = parseFloat(document.getElementById('cargo-max-weight-input').value);
+  Line 3836: 
+  Line 3837:       if (useFirebase) {
+  Line 3838:         try {
+  Line 3839:           await db.collection("cargo_offers").add({
+  Line 3840:             driverId: currentUser.uid,
+  Line 3841:             driverName: currentFullName,
+  Line 3842:             driverAvatarUrl: currentUser.avatarUrl || '',
+  Line 3843:             from: from,
+  Line 3844:             to: to,
+  Line 3845:             date: date,
+  Line 3846:             time: time,
+  Line 3847:             capacityPackages: pkgs,
+  Line 3848:             maxWeightPerPkg: wt,
+  Line 3849:             price: parseFloat(price),
+---------------
+
+Line 3821: DRIVER_PROFILES[currentFullName] = {
+--- Context ---
+  Line 3816:     }
+  Line 3817: 
+  Line 3818:     // Ensure current user has a profile in DRIVER_PROFILES so card rendering doesn't fail
+  Line 3819:     const currentFullName = `${currentUser.firstName} ${currentUser.lastName}`;
+  Line 3820:     if (!DRIVER_PROFILES[currentFullName]) {
+  Line 3821:       DRIVER_PROFILES[currentFullName] = {
+  Line 3822:         rating: '5.0',
+  Line 3823:         rides: 0,
+  Line 3824:         bio: 'HopOn Student Commuter. Always happy to share a ride!',
+  Line 3825:         verified: true,
+  Line 3826:         femaleOnly: false,
+  Line 3827:         music: true,
+  Line 3828:         quiet: false,
+  Line 3829:         luggage: true
+  Line 3830:       };
+  Line 3831:     }
+  Line 3832: 
+  Line 3833:     if (activeType === 'cargo_offer') {
+  Line 3834:       const pkgs = parseInt(document.getElementById('cargo-packages-input').value);
+  Line 3835:       const wt = parseFloat(document.getElementById('cargo-max-weight-input').value);
+  Line 3836: 
+  Line 3837:       if (useFirebase) {
+  Line 3838:         try {
+  Line 3839:           await db.collection("cargo_offers").add({
+  Line 3840:             driverId: currentUser.uid,
+  Line 3841:             driverName: currentFullName,
+  Line 3842:             driverAvatarUrl: currentUser.avatarUrl || '',
+  Line 3843:             from: from,
+  Line 3844:             to: to,
+  Line 3845:             date: date,
+  Line 3846:             time: time,
+  Line 3847:             capacityPackages: pkgs,
+  Line 3848:             maxWeightPerPkg: wt,
+  Line 3849:             price: parseFloat(price),
+  Line 3850:             notes: notes || 'Cargo delivery capacity',
+---------------
+
+Line 4596: const p = DRIVER_PROFILES[driverName];
+--- Context ---
+  Line 4591:         plate: currentUser.vehiclePlate || '',
+  Line 4592:         photoUrl: currentUser.vehiclePhotoUrl || ''
+  Line 4593:       };
+  Line 4594:     }
+  Line 4595:     
+  Line 4596:     const p = DRIVER_PROFILES[driverName];
+  Line 4597:     if (p) {
+  Line 4598:       return {
+  Line 4599:         make: '',
+  Line 4600:         model: p.car || 'Vehicle info not available',
+  Line 4601:         plate: p.plate || '---',
+  Line 4602:         photoUrl: p.photoUrl || ''
+  Line 4603:       };
+  Line 4604:     }
+  Line 4605:     
+  Line 4606:     return {
+  Line 4607:       make: '',
+  Line 4608:       model: 'Vehicle details not available',
+  Line 4609:       plate: '---',
+  Line 4610:       photoUrl: ''
+  Line 4611:     };
+  Line 4612:   }
+  Line 4613: 
+  Line 4614:   function isRideExpired(dateStr, timeStr) {
+  Line 4615:     try {
+  Line 4616:       let dateTimeStr = dateStr;
+  Line 4617:       if (timeStr) {
+  Line 4618:         dateTimeStr += ' ' + timeStr;
+  Line 4619:       }
+  Line 4620:       const rideDate = new Date(dateTimeStr);
+  Line 4621:       if (isNaN(rideDate.getTime())) {
+  Line 4622:         const justDate = new Date(dateStr);
+  Line 4623:         if (isNaN(justDate.getTime())) {
+  Line 4624:           return false;
+  Line 4625:         }
+---------------
+
+Line 4781: const dp = DRIVER_PROFILES[ride.driverName] || {};
+--- Context ---
+  Line 4776:       if (activeChip === 'verified') matchChip = true;
+  Line 4777:       if (activeChip === 'seats') matchChip = ride.seats > 0;
+  Line 4778:       
+  Line 4779:       // Apply Advanced Filters
+  Line 4780:       let matchAdvanced = true;
+  Line 4781:       const dp = DRIVER_PROFILES[ride.driverName] || {};
+  Line 4782:       if (activeAdvancedFilters.femaleOnly && !(dp.femaleOnly || ride.driverName === 'Morgan Chen')) matchAdvanced = false;
+  Line 4783:       if (activeAdvancedFilters.music && !(dp.music || ride.driverName !== 'Sam Patel')) matchAdvanced = false;
+  Line 4784:       if (activeAdvancedFilters.quiet && !(dp.quiet || (ride.driverName === 'Sam Patel' || ride.driverName === 'Taylor Kim'))) matchAdvanced = false;
+  Line 4785:       if (activeAdvancedFilters.luggage && !(dp.luggage || ride.driverName === 'Alex Chen')) matchAdvanced = false;
+  Line 4786:       if (activeAdvancedFilters.topRated && !(parseFloat(dp.rating || '4.5') >= 4.8)) matchAdvanced = false;
+  Line 4787:       if (activeAdvancedFilters.studentDriver && !dp.verified) matchAdvanced = false;
+  Line 4788:       
+  Line 4789:       return matchFrom && matchTo && matchDate && matchQuery && matchChip && matchAdvanced;
+  Line 4790:     });
+  Line 4791: 
+  Line 4792:     const getCardHtml = (ride) => {
+  Line 4793:       const avatarContent = ride.driverAvatarUrl ? 
+  Line 4794:         `<img src="${ride.driverAvatarUrl}" class="pop-trip-driver-avatar" />` : 
+  Line 4795:         `<div class="pop-trip-driver-avatar" style="background:#5B21B6; color:#fff;">${ride.driverName.charAt(0)}</div>`;
+  Line 4796:         
+  Line 4797:       const priceText = `$${parseFloat(ride.price).toFixed(2)}`;
+  Line 4798:       
+  Line 4799:       const vInfo = getDriverVehicleInfo(ride.driverName, ride.driverId);
+  Line 4800:       const vehicleName = vInfo && vInfo.model ? `${vInfo.make || ''} ${vInfo.model}` : 'Toyota Grand Highlander 2026';
+  Line 4801:       
+  Line 4802:       const dp = DRIVER_PROFILES[ride.driverName] || { rating: '5.0', rides: 51, bio: '' };
+  Line 4803:       const ratingVal = dp.rating || '5.0';
+  Line 4804:       const ridesCount = dp.rides || '51';
+  Line 4805:       
+  Line 4806:       const shortDesc = ride.notes ? ride.notes : `Round trip to ${ride.to.split(',')[0]}`;
+  Line 4807:       
+  Line 4808:       return `
+  Line 4809:         <div class="pop-trip-card" onclick="openTripPreview('${ride.id}')">
+  Line 4810:           <div class="pop-trip-card-header">
+---------------
+
+Line 4802: const dp = DRIVER_PROFILES[ride.driverName] || { rating: '5.0', rides: 51, bio: '' };
+--- Context ---
+  Line 4797:       const priceText = `$${parseFloat(ride.price).toFixed(2)}`;
+  Line 4798:       
+  Line 4799:       const vInfo = getDriverVehicleInfo(ride.driverName, ride.driverId);
+  Line 4800:       const vehicleName = vInfo && vInfo.model ? `${vInfo.make || ''} ${vInfo.model}` : 'Toyota Grand Highlander 2026';
+  Line 4801:       
+  Line 4802:       const dp = DRIVER_PROFILES[ride.driverName] || { rating: '5.0', rides: 51, bio: '' };
+  Line 4803:       const ratingVal = dp.rating || '5.0';
+  Line 4804:       const ridesCount = dp.rides || '51';
+  Line 4805:       
+  Line 4806:       const shortDesc = ride.notes ? ride.notes : `Round trip to ${ride.to.split(',')[0]}`;
+  Line 4807:       
+  Line 4808:       return `
+  Line 4809:         <div class="pop-trip-card" onclick="openTripPreview('${ride.id}')">
+  Line 4810:           <div class="pop-trip-card-header">
+  Line 4811:             <span class="pop-trip-time">Today at ${ride.time}</span>
+  Line 4812:             <div class="pop-trip-seats-price">
+  Line 4813:               <span class="pop-trip-seats-left">${ride.seats} seats left</span>
+  Line 4814:               <span class="pop-trip-price">${priceText}</span>
+  Line 4815:             </div>
+  Line 4816:           </div>
+  Line 4817:           
+  Line 4818:           <div class="pop-trip-route-line-container">
+  Line 4819:             <div class="pop-trip-route-timeline">
+  Line 4820:               <div class="pop-trip-route-dot"></div>
+  Line 4821:               <div class="pop-trip-route-connector"></div>
+  Line 4822:               <div class="pop-trip-route-dot"></div>
+  Line 4823:             </div>
+  Line 4824:             <div class="pop-trip-route-points">
+  Line 4825:               <div class="pop-trip-route-point">
+  Line 4826:                 ${ride.from.split(',')[0]}
+  Line 4827:                 <div class="pop-trip-route-sub">${ride.from}</div>
+  Line 4828:               </div>
+  Line 4829:               <div class="pop-trip-route-point">
+  Line 4830:                 ${ride.to.split(',')[0]}
+  Line 4831:                 <div class="pop-trip-route-sub">${ride.to}</div>
+---------------
+
+Line 5671: const dp = DRIVER_PROFILES[ride.driverName] || { rating: '4.5', rides: 20, bio: 'Student driver.' };
+--- Context ---
+  Line 5666:       }
+  Line 5667:     }
+  Line 5668: 
+  Line 5669:     // 6. Driver Row & Bio
+  Line 5670:     document.getElementById('tp-driver-name').textContent = ride.driverName;
+  Line 5671:     const dp = DRIVER_PROFILES[ride.driverName] || { rating: '4.5', rides: 20, bio: 'Student driver.' };
+  Line 5672:     document.getElementById('tp-driver-rides').textContent = `${dp.rides || 20} rides driven`;
+  Line 5673:     document.getElementById('tp-driver-rating').textContent = `★ ${dp.rating || '4.5'}`;
+  Line 5674:     document.getElementById('tp-driver-bio').textContent = dp.bio || 'Community student driver.';
+  Line 5675:     
+  Line 5676:     const driverAvatarContainer = document.getElementById('tp-driver-avatar');
+  Line 5677:     if (driverAvatarContainer) {
+  Line 5678:       driverAvatarContainer.style.background = 'linear-gradient(135deg, #7B2FBE, #9B4FDE)';
+  Line 5679:       if (ride.driverAvatarUrl) {
+  Line 5680:         driverAvatarContainer.innerHTML = `<img src="${ride.driverAvatarUrl}" style="width: 100%; height: 100%; object-fit: cover;" />`;
+  Line 5681:       } else {
+  Line 5682:         driverAvatarContainer.innerHTML = `<span style="color: #fff; font-size: 18px; font-weight: 800;">${ride.driverName[0]}</span>`;
+  Line 5683:       }
+  Line 5684:     }
+  Line 5685:     
+  Line 5686:     document.getElementById('tp-driver-row').onclick = () => {
+  Line 5687:       openDriverProfile(ride.driverName, ride.driverId);
+  Line 5688:     };
+  Line 5689: 
+  Line 5690:     // 7. Car details
+  Line 5691:     const vInfo = getDriverVehicleInfo(ride.driverName, ride.driverId) || { make: 'Honda', model: 'Civic', color: 'Dark grey', year: '2021', plate: 'CAR-123' };
+  Line 5692:     document.getElementById('tp-car-name').textContent = `${vInfo.make || 'Honda'} ${vInfo.model || 'Civic'}`;
+  Line 5693:     document.getElementById('tp-car-desc').textContent = `${vInfo.color || 'Dark grey'}, ${vInfo.year || '2021'} · Plate: ${vInfo.plate || '---'}`;
+  Line 5694:     
+  Line 5695:     const carAvatar = document.getElementById('tp-car-avatar');
+  Line 5696:     if (carAvatar) {
+  Line 5697:       if (vInfo.photoUrl) {
+  Line 5698:         carAvatar.innerHTML = `<img src="${vInfo.photoUrl}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;" />`;
+  Line 5699:       } else {
+  Line 5700:         carAvatar.innerHTML = `<span style="font-size: 32px;">🚗</span>`;
+---------------
+
+Line 8209: const dp = DRIVER_PROFILES[driverName] || {};
+--- Context ---
+  Line 8204:         if (show && activeChip === 'verified')  show = !!card.querySelector('.verified-badge');
+  Line 8205:         if (show && activeChip === 'seats')     show = !card.innerText.includes('Last seat!');
+  Line 8206:         
+  Line 8207:         // Apply Advanced Filters
+  Line 8208:         if (show) {
+  Line 8209:           const dp = DRIVER_PROFILES[driverName] || {};
+  Line 8210:           if (activeAdvancedFilters.femaleOnly && !(dp.femaleOnly || driverName === 'Morgan Chen')) show = false;
+  Line 8211:           if (activeAdvancedFilters.music && !(dp.music || driverName !== 'Sam Patel')) show = false;
+  Line 8212:           if (activeAdvancedFilters.quiet && !(dp.quiet || (driverName === 'Sam Patel' || driverName === 'Taylor Kim'))) show = false;
+  Line 8213:           if (activeAdvancedFilters.luggage && !(dp.luggage || driverName === 'Alex Chen')) show = false;
+  Line 8214:           if (activeAdvancedFilters.topRated && !(parseFloat(dp.rating || '4.5') >= 4.8)) show = false;
+  Line 8215:           if (activeAdvancedFilters.studentDriver && !dp.verified) show = false;
+  Line 8216:         }
+  Line 8217:         
+  Line 8218:         card.style.display = show ? '' : 'none';
+  Line 8219:       });
+  Line 8220:       const visibleCount = Array.from(document.querySelectorAll('#tab-content-available .ride-card')).filter(c => c.style.display !== 'none').length;
+  Line 8221:       const es = document.getElementById('rides-empty-state');
+  Line 8222:       if (es) es.classList.toggle('show', visibleCount === 0);
+  Line 8223:     }
+  Line 8224:   }
+  Line 8225: 
+  Line 8226:   // ── Chat ──
+  Line 8227:   const CONVOS = {
+  Line 8228:     'Alex Rivera': [
+  Line 8229:       {f:'them', t:'Hey! I can pick you up at 8am tomorrow 👋', ts:'9:02 AM'},
+  Line 8230:       {f:'me',   t:'Perfect, I\'ll be at the Downtown corner 📍', ts:'9:05 AM'},
+  Line 8231:       {f:'them', t:'Great! White Toyota Camry 🚗 Look for plates HOP-ON1', ts:'9:06 AM'},
+  Line 8232:       {f:'me',   t:'Got it, see you then!', ts:'9:07 AM'},
+  Line 8233:       {f:'them', t:'Reminder: leaving 8am sharp ⏰ Don\'t be late!', ts:'Yesterday'},
+  Line 8234:     ],
+  Line 8235:     'Sam Patel': [
+  Line 8236:       {f:'them', t:'Ride confirmed for Thursday! See you then.', ts:'Mon'},
+  Line 8237:       {f:'me',   t:'Awesome, really appreciate it 🙏', ts:'Mon'},
+  Line 8238:       {f:'them', t:'Don\'t forget we\'re leaving from Harbor Station 🚢', ts:'Tue'},
+---------------
+
+Line 8330: let driverDetails = DRIVER_PROFILES[booking.driverName] || { rating: '4.9', rides: 128, car: 'Toyota Camry', plate: 'ARV-2021' };
+--- Context ---
+  Line 8325: 
+  Line 8326:       let isPassenger = booking.passengerId === currentUser.uid;
+  Line 8327:       let roleText = isPassenger ? 'Passenger' : 'Driver';
+  Line 8328:       let otherRoleText = isPassenger ? 'Driver' : 'Passenger';
+  Line 8329:       
+  Line 8330:       let driverDetails = DRIVER_PROFILES[booking.driverName] || { rating: '4.9', rides: 128, car: 'Toyota Camry', plate: 'ARV-2021' };
+  Line 8331:       
+  Line 8332:       let cardAvatarHtml = '';
+  Line 8333:       if (isPassenger) {
+  Line 8334:         cardAvatarHtml = initial && initial.includes('<img') ? initial : `<span>${initial || booking.driverName.charAt(0)}</span>`;
+  Line 8335:       } else {
+  Line 8336:         cardAvatarHtml = `<span>${booking.passengerName.charAt(0)}</span>`;
+  Line 8337:       }
+  Line 8338: 
+  Line 8339:       let actionsHtml = '';
+  Line 8340:       if (booking.status === 'Pending' || booking.status === 'Pending Approval') {
+  Line 8341:         if (!useFirebase) {
+  Line 8342:           actionsHtml = `
+  Line 8343:             <div style="display:flex; flex-direction:column; gap:6px; margin-top:8px; border-top:1px solid rgba(123,47,190,0.1); padding-top:8px;">
+  Line 8344:               <div style="font-size:10px; color:var(--text-light); text-align:center; font-style:italic;">(Simulate Driver Action)</div>
+  Line 8345:               <div style="display:flex; gap:10px;">
+  Line 8346:                 <button onclick="approveBooking('${booking.id}')" style="flex:1; padding:8px 12px; border:none; border-radius:8px; background:#22C55E; color:#fff; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; cursor:pointer; transition:var(--transition); box-shadow:0 2px 6px rgba(34,197,94,0.3);">Approve</button>
+  Line 8347:                 <button onclick="declineBooking('${booking.id}')" style="flex:1; padding:8px 12px; border:none; border-radius:8px; background:#EF4444; color:#fff; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; cursor:pointer; transition:var(--transition); box-shadow:0 2px 6px rgba(239,68,68,0.3);">Decline</button>
+  Line 8348:               </div>
+  Line 8349:             </div>
+  Line 8350:           `;
+  Line 8351:         } else if (currentUser.uid === booking.driverId) {
+  Line 8352:           actionsHtml = `
+  Line 8353:             <div style="display:flex; gap:10px; margin-top:8px; border-top:1px solid rgba(123,47,190,0.1); padding-top:8px;">
+  Line 8354:               <button onclick="approveBooking('${booking.id}')" style="flex:1; padding:8px 12px; border:none; border-radius:8px; background:#22C55E; color:#fff; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; cursor:pointer; transition:var(--transition); box-shadow:0 2px 6px rgba(34,197,94,0.3);">Approve</button>
+  Line 8355:               <button onclick="declineBooking('${booking.id}')" style="flex:1; padding:8px 12px; border:none; border-radius:8px; background:#EF4444; color:#fff; font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700; cursor:pointer; transition:var(--transition); box-shadow:0 2px 6px rgba(239,68,68,0.3);">Decline</button>
+  Line 8356:             </div>
+  Line 8357:           `;
+  Line 8358:         } else {
+  Line 8359:           actionsHtml = `
+---------------
+
+Line 8789: if (DRIVER_PROFILES[driverName]) {
+--- Context ---
+  Line 8784:             count++;
+  Line 8785:           }
+  Line 8786:         });
+  Line 8787:         const newAvg = count ? (sum / count).toFixed(1) : currentRating.toFixed(1);
+  Line 8788: 
+  Line 8789:         if (DRIVER_PROFILES[driverName]) {
+  Line 8790:           DRIVER_PROFILES[driverName].rating = newAvg;
+  Line 8791:           DRIVER_PROFILES[driverName].rides = driverBookings.length;
+  Line 8792:         }
+  Line 8793:         localStorage.setItem('mock_bookings', JSON.stringify(mockBookings));
+  Line 8794:       }
+  Line 8795:     }
+  Line 8796: 
+  Line 8797:     const activeTab = document.getElementById('profile-tab-driver').classList.contains('active') ? 'driver' : 'rider';
+  Line 8798:     updateProfileStats(activeTab);
+  Line 8799:     renderTripsUI();
+  Line 8800: 
+  Line 8801:     showToast(`⭐ ${currentRating}-star rating submitted! Thanks.`);
+  Line 8802:   }
+  Line 8803:   function hideRating() { document.getElementById('rating-modal').classList.remove('show'); }
+  Line 8804:   document.getElementById('rating-modal').addEventListener('click', e => { if (e.target.id === 'rating-modal') hideRating(); });
+  Line 8805: 
+  Line 8806:   // ── Toast ──
+  Line 8807:   function showToast(msg) {
+  Line 8808:     const old = document.getElementById('hopon-toast');
+  Line 8809:     if (old) old.remove();
+  Line 8810:     const t = document.createElement('div');
+  Line 8811:     t.id = 'hopon-toast'; t.textContent = msg;
+  Line 8812:     t.style.cssText = 'position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1035;color:#fff;padding:12px 20px;border-radius:24px;font-family:\'Montserrat\',sans-serif;font-size:13px;font-weight:600;white-space:nowrap;z-index:500;box-shadow:0 4px 20px rgba(0,0,0,0.25);animation:toastIn 0.3s ease;';
+  Line 8813:     document.getElementById('phone').appendChild(t);
+  Line 8814:     setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity 0.3s'; setTimeout(()=>t.remove(),300); }, 2800);
+  Line 8815:   }
+  Line 8816: 
+  Line 8817:   // ── Price Calculator ──
+  Line 8818:   function suggestRidePrice(fromStr, toStr) {
+---------------
+
+Line 8790: DRIVER_PROFILES[driverName].rating = newAvg;
+--- Context ---
+  Line 8785:           }
+  Line 8786:         });
+  Line 8787:         const newAvg = count ? (sum / count).toFixed(1) : currentRating.toFixed(1);
+  Line 8788: 
+  Line 8789:         if (DRIVER_PROFILES[driverName]) {
+  Line 8790:           DRIVER_PROFILES[driverName].rating = newAvg;
+  Line 8791:           DRIVER_PROFILES[driverName].rides = driverBookings.length;
+  Line 8792:         }
+  Line 8793:         localStorage.setItem('mock_bookings', JSON.stringify(mockBookings));
+  Line 8794:       }
+  Line 8795:     }
+  Line 8796: 
+  Line 8797:     const activeTab = document.getElementById('profile-tab-driver').classList.contains('active') ? 'driver' : 'rider';
+  Line 8798:     updateProfileStats(activeTab);
+  Line 8799:     renderTripsUI();
+  Line 8800: 
+  Line 8801:     showToast(`⭐ ${currentRating}-star rating submitted! Thanks.`);
+  Line 8802:   }
+  Line 8803:   function hideRating() { document.getElementById('rating-modal').classList.remove('show'); }
+  Line 8804:   document.getElementById('rating-modal').addEventListener('click', e => { if (e.target.id === 'rating-modal') hideRating(); });
+  Line 8805: 
+  Line 8806:   // ── Toast ──
+  Line 8807:   function showToast(msg) {
+  Line 8808:     const old = document.getElementById('hopon-toast');
+  Line 8809:     if (old) old.remove();
+  Line 8810:     const t = document.createElement('div');
+  Line 8811:     t.id = 'hopon-toast'; t.textContent = msg;
+  Line 8812:     t.style.cssText = 'position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1035;color:#fff;padding:12px 20px;border-radius:24px;font-family:\'Montserrat\',sans-serif;font-size:13px;font-weight:600;white-space:nowrap;z-index:500;box-shadow:0 4px 20px rgba(0,0,0,0.25);animation:toastIn 0.3s ease;';
+  Line 8813:     document.getElementById('phone').appendChild(t);
+  Line 8814:     setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity 0.3s'; setTimeout(()=>t.remove(),300); }, 2800);
+  Line 8815:   }
+  Line 8816: 
+  Line 8817:   // ── Price Calculator ──
+  Line 8818:   function suggestRidePrice(fromStr, toStr) {
+  Line 8819:     if (!fromStr || !toStr) return 15.00;
+---------------
+
+Line 8791: DRIVER_PROFILES[driverName].rides = driverBookings.length;
+--- Context ---
+  Line 8786:         });
+  Line 8787:         const newAvg = count ? (sum / count).toFixed(1) : currentRating.toFixed(1);
+  Line 8788: 
+  Line 8789:         if (DRIVER_PROFILES[driverName]) {
+  Line 8790:           DRIVER_PROFILES[driverName].rating = newAvg;
+  Line 8791:           DRIVER_PROFILES[driverName].rides = driverBookings.length;
+  Line 8792:         }
+  Line 8793:         localStorage.setItem('mock_bookings', JSON.stringify(mockBookings));
+  Line 8794:       }
+  Line 8795:     }
+  Line 8796: 
+  Line 8797:     const activeTab = document.getElementById('profile-tab-driver').classList.contains('active') ? 'driver' : 'rider';
+  Line 8798:     updateProfileStats(activeTab);
+  Line 8799:     renderTripsUI();
+  Line 8800: 
+  Line 8801:     showToast(`⭐ ${currentRating}-star rating submitted! Thanks.`);
+  Line 8802:   }
+  Line 8803:   function hideRating() { document.getElementById('rating-modal').classList.remove('show'); }
+  Line 8804:   document.getElementById('rating-modal').addEventListener('click', e => { if (e.target.id === 'rating-modal') hideRating(); });
+  Line 8805: 
+  Line 8806:   // ── Toast ──
+  Line 8807:   function showToast(msg) {
+  Line 8808:     const old = document.getElementById('hopon-toast');
+  Line 8809:     if (old) old.remove();
+  Line 8810:     const t = document.createElement('div');
+  Line 8811:     t.id = 'hopon-toast'; t.textContent = msg;
+  Line 8812:     t.style.cssText = 'position:absolute;bottom:80px;left:50%;transform:translateX(-50%);background:#1a1035;color:#fff;padding:12px 20px;border-radius:24px;font-family:\'Montserrat\',sans-serif;font-size:13px;font-weight:600;white-space:nowrap;z-index:500;box-shadow:0 4px 20px rgba(0,0,0,0.25);animation:toastIn 0.3s ease;';
+  Line 8813:     document.getElementById('phone').appendChild(t);
+  Line 8814:     setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity 0.3s'; setTimeout(()=>t.remove(),300); }, 2800);
+  Line 8815:   }
+  Line 8816: 
+  Line 8817:   // ── Price Calculator ──
+  Line 8818:   function suggestRidePrice(fromStr, toStr) {
+  Line 8819:     if (!fromStr || !toStr) return 15.00;
+  Line 8820:     
+---------------
+
+Line 9649: const profile = DRIVER_PROFILES[c.driverName] || {};
+--- Context ---
+  Line 9644:       return;
+  Line 9645:     }
+  Line 9646: 
+  Line 9647:     listContainer.innerHTML = offers.map(c => {
+  Line 9648:       // Find avatar from profiles if any, otherwise default
+  Line 9649:       const profile = DRIVER_PROFILES[c.driverName] || {};
+  Line 9650:       const rating = profile.rating || '5.0';
+  Line 9651:       const avatarSymbol = c.driverAvatarSymbol || '🚗';
+  Line 9652: 
+  Line 9653:       return `
+  Line 9654:         <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--gray-200); border-radius: 12px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+  Line 9655:           <div style="display: flex; align-items: center; justify-content: space-between;">
+  Line 9656:             <div style="display: flex; align-items: center; gap: 10px;">
+  Line 9657:               <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--purple-pale); display: flex; align-items: center; justify-content: center; font-size: 18px;">
+  Line 9658:                 ${c.driverAvatarUrl ? `<img src="${c.driverAvatarUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />` : avatarSymbol}
+  Line 9659:               </div>
+  Line 9660:               <div>
+  Line 9661:                 <div style="font-size: 13px; font-weight: 800; color: var(--text-dark);">${c.driverName}</div>
+  Line 9662:                 <div style="font-size: 11px; color: var(--text-light);">★ ${rating} • Driver Verified</div>
+  Line 9663:               </div>
+  Line 9664:             </div>
+  Line 9665:             <div style="font-size: 16px; font-weight: 800; color: var(--purple);">$${parseFloat(c.price).toFixed(2)} <span style="font-size:10px;color:var(--text-light);font-weight:normal;">/ pkg</span></div>
+  Line 9666:           </div>
+  Line 9667:           <div style="border-top: 1px solid var(--gray-100); padding-top: 10px; font-size: 12px; color: var(--text-dark); display: flex; flex-direction: column; gap: 4px; font-family:'Fredoka',sans-serif;">
+  Line 9668:             <div><strong>Route:</strong> ${c.from} ➔ ${c.to}</div>
+  Line 9669:             <div><strong>Schedule:</strong> 📅 ${c.date} at ⏰ ${c.time}</div>
+  Line 9670:             <div><strong>Remaining Space:</strong> 📦 Up to ${c.capacityPackages} pkg (${c.maxWeightPerPkg} kg max each)</div>
+  Line 9671:             ${c.notes ? `<div style="font-size:11px; color:var(--text-light); font-style:italic; margin-top:4px;">"${c.notes}"</div>` : ''}
+  Line 9672:           </div>
+  Line 9673:           <button class="btn-purple" style="margin: 4px 0 0; width: 100%; height: 36px; font-size: 12px; border: none; font-weight: 700;" onclick="bookDriverCargo('${c.id}')">Book Cargo Delivery</button>
+  Line 9674:         </div>
+  Line 9675:       `;
+  Line 9676:     }).join('');
+  Line 9677:   }
+  Line 9678: 
+---------------
+
+Line 10352: const p = DRIVER_PROFILES[name] || { initial:name[0]||'?', color:'linear-gradient(135deg,#7B2FBE,#9B4FDE)', rating:'4.5', rides:20, accept:'90%', verified:false, member:'2024', bio:`${name} is a community driver on HopOn. Safe, reliable, and community-driven!`, car:'Vehicle info not available', plate:'---', mutualCount:1, faculty:'Student Commuter', ratingsBreakdown:[80, 15, 5, 0, 0], reviews:[] };
+--- Context ---
+  Line 10347:   }
+  Line 10348: 
+  Line 10349: 
+  Line 10350: 
+  Line 10351:   function openDriverProfile(name, driverId) {
+  Line 10352:     const p = DRIVER_PROFILES[name] || { initial:name[0]||'?', color:'linear-gradient(135deg,#7B2FBE,#9B4FDE)', rating:'4.5', rides:20, accept:'90%', verified:false, member:'2024', bio:`${name} is a community driver on HopOn. Safe, reliable, and community-driven!`, car:'Vehicle info not available', plate:'---', mutualCount:1, faculty:'Student Commuter', ratingsBreakdown:[80, 15, 5, 0, 0], reviews:[] };
+  Line 10353:     // Populate
+  Line 10354:     document.getElementById('dp-avatar-wrap').style.background = p.color;
+  Line 10355:     document.getElementById('dp-avatar-text').textContent = p.initial;
+  Line 10356:     
+  Line 10357:     // Add verified badge click listner
+  Line 10358:     const badge = document.getElementById('dp-verified-badge');
+  Line 10359:     if (badge) {
+  Line 10360:       badge.style.display = p.verified ? 'flex' : 'none';
+  Line 10361:       badge.style.cursor = 'pointer';
+  Line 10362:       badge.onclick = (e) => {
+  Line 10363:         e.stopPropagation();
+  Line 10364:         const institutionalEmail = name.toLowerCase().replace(/\s+/g, '.') + (name.includes('Chen') || name.includes('Rivera') ? '@fanshawec.ca' : '@uwo.ca');
+  Line 10365:         document.getElementById('student-cert-email').textContent = institutionalEmail;
+  Line 10366:         const certModal = document.getElementById('student-cert-modal');
+  Line 10367:         if (certModal) certModal.style.display = 'flex';
+  Line 10368:       };
+  Line 10369:     }
+  Line 10370: 
+  Line 10371:     document.getElementById('dp-name').textContent = name;
+  Line 10372:     document.getElementById('dp-rating').textContent = '★ ' + p.rating;
+  Line 10373:     document.getElementById('dp-rides').textContent = p.rides;
+  Line 10374:     document.getElementById('dp-accept').textContent = p.accept;
+  Line 10375:     document.getElementById('dp-member').textContent = p.member;
+  Line 10376:     document.getElementById('dp-bio').textContent = p.bio;
+  Line 10377:     document.getElementById('dp-car').textContent = p.car;
+  Line 10378:     document.getElementById('dp-plate').textContent = p.plate;
+  Line 10379: 
+  Line 10380:     // Populate Social Connections Widget
+  Line 10381:     const socialWidget = document.getElementById('dp-social-connections');
+---------------

@@ -1,0 +1,44 @@
+=== Matches for screens (id=["\']screen-[^"\']*["\']) ===
+Line 411: <div class="screen active" id="screen-inbox">
+Line 553: <div class="screen" id="screen-rides">
+Line 702: <div class="screen" id="screen-trips">
+Line 744: <div class="screen" id="screen-cargo">
+Line 988: <div class="screen" id="screen-profile">
+
+=== Matches for render_functions (function render[A-Za-z0-9_]*) ===
+Line 3972: function renderRecentSearchesUI() {
+Line 4150: function renderTripsUI() {
+Line 4224: function renderConversationsUI() {
+Line 4754: function renderRidesUI() {
+Line 6696: function renderPromotionsUI() {
+Line 6721: function renderDiscountsUI() {
+Line 6765: function renderNotificationsUI(list, unreadCount) {
+Line 8045: function renderCalendarGrid() {
+Line 9248: function renderCargoUI() {
+Line 9611: function renderCargoOffersUI() {
+Line 9866: function renderDriverCargoBoard() {
+
+=== Matches for booking_related (Submitting booking request) ===
+Line 4310: showToast('✉️ Submitting booking request to server... 🕒', 'info');
+
+=== Matches for recommended (Recommended for) ===
+Line 452: <div class="ai-text"><p>Recommended for You</p><p>Based on your trips to University Ave</p></div>
+Line 4859: <div class="ai-text"><p>Recommended for You</p><p>Matches your usual commute routes</p></div>
+Line 4899: <div class="ai-text"><p>Recommended for You</p><p>Based on your trips to University Ave</p></div>
+
+=== Matches for vehicle_info (Vehicle.*not available) ===
+Line 4600: model: p.car || 'Vehicle info not available',
+Line 4608: model: 'Vehicle details not available',
+Line 10352: const p = DRIVER_PROFILES[name] || { initial:name[0]||'?', color:'linear-gradient(135deg,#7B2FBE,#9B4FDE)', rating:'4.5', rides:20, accept:'90%', verified:false, member:'2024', bio:`${name} is a community driver on HopOn. Safe, reliable, and community-driven!`, car:'Vehicle info not available', plate:'---', mutualCount:1, faculty:'Student Commuter', ratingsBreakdown:[80, 15, 5, 0, 0], reviews:[] };
+
+=== Matches for empty_states (No rides found) ===
+Line 4865: <div class="empty-title">No rides found</div>
+
+=== script blocks ===
+Line 19: <script src="https://cdn.jsdelivr.net/npm/@sentry/browser@7/build/bundle.min.js"></script>
+Line 21: <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+Line 22: <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+Line 23: <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+Line 24: <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+Line 26: <script src="https://js.stripe.com/v3/"></script>
+Line 2791: <script>

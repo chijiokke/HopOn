@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service – HopOn</title>
+  <meta name="description" content="HopOn Terms of Service – Rules, responsibilities and agreements for using the HopOn peer-to-peer ridesharing and cargo delivery platform." />
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#7B2FBE" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #7B2FBE;
+      --purple-light: #9B4FDE;
+      --purple-pale: #EDE8F8;
+      --purple-soft: #F3EFFE;
+      --text-dark: #1A1035;
+      --text-mid: #4A4068;
+      --text-light: #8A80A8;
+      --gray-100: #F0EDF9;
+      --radius: 16px;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--gray-100);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+    .header {
+      background: linear-gradient(135deg, #1a1035 0%, #7B2FBE 100%);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 20px rgba(26,16,53,0.4);
+    }
+    .header-inner {
+      max-width: 760px; margin: 0 auto;
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .back-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none; transition: background 0.2s; flex-shrink: 0;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.22); }
+    .back-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .logo-text { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.5px; flex: 1; }
+    .header-badge {
+      font-size: 11px; font-weight: 700;
+      background: rgba(255,255,255,0.15); color: #fff;
+      padding: 4px 10px; border-radius: 20px; letter-spacing: 0.5px;
+    }
+    .container { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+    .hero-card {
+      background: #fff; border-radius: var(--radius);
+      padding: 28px; margin-bottom: 24px;
+      border-left: 4px solid #1a1035;
+      box-shadow: 0 2px 16px rgba(26,16,53,0.08);
+    }
+    .hero-card h1 { font-size: 24px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+    .effective-date { font-size: 13px; color: var(--text-light); font-weight: 600; margin-bottom: 14px; }
+    .hero-intro { font-size: 14px; line-height: 1.7; color: var(--text-mid); }
+    .warning-box {
+      background: #FEF3C7; border: 1.5px solid #F59E0B;
+      border-radius: 10px; padding: 14px 16px; margin-bottom: 24px;
+      font-size: 13px; line-height: 1.6; color: #92400E;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .warning-box .warn-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .section {
+      background: #fff; border-radius: var(--radius);
+      padding: 24px 28px; margin-bottom: 16px;
+      box-shadow: 0 2px 16px rgba(123,47,190,0.06);
+    }
+    .section h2 {
+      font-size: 17px; font-weight: 800; color: var(--text-dark);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .section h2 .emoji { font-size: 20px; }
+    .section p { font-size: 14px; line-height: 1.75; color: var(--text-mid); margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul { padding-left: 0; list-style: none; margin-bottom: 12px; }
+    .section ul li {
+      font-size: 14px; line-height: 1.7; color: var(--text-mid);
+      padding: 6px 0 6px 22px; position: relative;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .section ul li:last-child { border-bottom: none; }
+    .section ul li::before { content: '→'; position: absolute; left: 0; color: var(--purple); font-weight: 800; font-size: 13px; }
+    .section ul.prohibited li::before { content: '✗'; color: #EF4444; }
+    .highlight-box {
+      background: var(--purple-soft); border: 1.5px solid var(--purple-pale);
+      border-radius: 10px; padding: 14px 16px; margin: 14px 0;
+      font-size: 13px; line-height: 1.6; color: var(--text-mid);
+    }
+    .highlight-box strong { color: var(--purple); }
+    .red-box {
+      background: #FEF2F2; border: 1.5px solid #FECACA;
+      border-radius: 10px; padding: 14px 16px; margin: 14px 0;
+      font-size: 13px; line-height: 1.6; color: #991B1B;
+    }
+    .contact-card {
+      background: linear-gradient(135deg, #1a1035, #7B2FBE);
+      border-radius: var(--radius); padding: 28px;
+      text-align: center; color: #fff; margin-bottom: 24px;
+    }
+    .contact-card h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .contact-card p { font-size: 14px; opacity: 0.85; margin-bottom: 16px; }
+    .contact-email {
+      display: inline-block;
+      background: rgba(255,255,255,0.15); color: #fff;
+      padding: 10px 24px; border-radius: 24px;
+      font-weight: 700; font-size: 14px; text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.25); transition: background 0.2s;
+    }
+    .contact-email:hover { background: rgba(255,255,255,0.25); }
+    .footer-nav { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-nav a {
+      font-size: 13px; font-weight: 600; color: var(--purple);
+      text-decoration: none; padding: 8px 16px; background: #fff;
+      border-radius: 20px; border: 1.5px solid var(--purple-pale); transition: all 0.2s;
+    }
+    .footer-nav a:hover { background: var(--purple); color: #fff; }
+    .footer-copy { text-align: center; font-size: 12px; color: var(--text-light); }
+    @media (max-width: 600px) {
+      .container { padding: 20px 14px 50px; }
+      .section { padding: 20px 18px; }
+      .hero-card { padding: 22px 18px; }
+      .hero-card h1 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="./index.html" class="back-btn" aria-label="Back to app">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+      </a>
+      <span class="logo-text">HopOn</span>
+      <span class="header-badge">Terms of Service</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="hero-card">
+      <h1>Terms of Service</h1>
+      <div class="effective-date">📅 Effective Date: June 26, 2026 &nbsp;·&nbsp; Last Updated: June 26, 2026</div>
+      <p class="hero-intro">These Terms of Service ("Terms") govern your use of the HopOn peer-to-peer ridesharing and cargo delivery platform. By creating an account or using HopOn, you agree to these Terms. Please read them carefully. If you do not agree, do not use the platform.</p>
+    </div>
+
+    <div class="warning-box">
+      <span class="warn-icon">⚠️</span>
+      <span><strong>Important:</strong> HopOn is a peer-to-peer ridesharing platform. We connect drivers and passengers but are not a licensed transportation carrier. You use the platform at your own risk and must comply with all applicable laws.</span>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">👤</span> 1. Eligibility</h2>
+      <p>To use HopOn you must meet all of the following requirements:</p>
+      <ul>
+        <li>Be at least 17 years of age</li>
+        <li>Have a valid email address (student email verification is optional to unlock student discounts)</li>
+        <li>Agree to and comply with these Terms of Service</li>
+        <li>Not be banned or previously removed from the HopOn platform</li>
+      </ul>
+      <p>Drivers must additionally hold a valid driver's licence and maintain appropriate vehicle insurance as required by law in their jurisdiction.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">🚗</span> 2. Rides & Bookings</h2>
+      <p>HopOn facilitates connections between drivers and passengers. By booking or posting a ride you agree that:</p>
+      <ul>
+        <li>All ride details (route, time, price, seats) must be accurate and not misleading</li>
+        <li>Drivers must arrive at the agreed pickup location within 10 minutes of the scheduled time</li>
+        <li>Passengers must be ready at the pickup point at the agreed time</li>
+        <li><strong>Cancellations & Refunds:</strong> If a passenger cancels a booking, they receive a refund of the driver's base fare only; the HopOn platform service fee and associated HST are non-refundable. If a driver cancels a ride, passengers receive a full refund of all charges (base fare, service fee, and taxes).</li>
+        <li>Drivers may decline passengers at their discretion for safety reasons</li>
+        <li>Ride sharing is limited to the number of available seats listed</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Tip:</strong> Always verify your driver's name, vehicle, and plate number before entering any vehicle. Use the in-app share feature to send your live trip details to a trusted contact.
+      </div>
+      <p><strong>California Booking & Automatic Renewal Disclosures:</strong> If you are booking a ride or purchase any promotional bundles: (1) Pricing and fees are disclosed fully before checkout; (2) You may cancel any upcoming ride booking instantly from the Trips tab with a single tap; and (3) There are no hidden subscription renewals without explicit consent.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">💰</span> 3. Payments & Fees</h2>
+      <p>HopOn operates a peer-to-peer payment model:</p>
+      <ul>
+        <li>Prices are set by drivers and must reflect reasonable cost-sharing (fuel, tolls, parking)</li>
+        <li>Drivers may not charge rates that constitute commercial transportation fares</li>
+        <li>HopOn may charge a small platform service fee on each transaction</li>
+        <li>All payments are processed securely through our payment partner (Stripe)</li>
+        <li><strong>Payout Holding Period:</strong> All driver payouts are subject to a 3-day safety hold (72-hour escrow) from the moment of payment clearance to allow for passenger dispute resolution. Cleared funds can then be withdrawn to a linked bank account.</li>
+        <li>Refunds for cancellations are processed within 5–7 business days</li>
+        <li>Disputed charges must be reported within 48 hours of the ride</li>
+      </ul>
+      <div class="red-box">
+        <strong>No cash payments.</strong> All transactions must be processed through the HopOn platform. Off-platform payments are prohibited and may result in account suspension.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">🛡️</span> 4. Safety Rules</h2>
+      <p>Safety is our highest priority. All users must:</p>
+      <ul>
+        <li>Wear seatbelts at all times during rides</li>
+        <li>Not use HopOn under the influence of alcohol or drugs</li>
+        <li>Report any unsafe behaviour immediately via the in-app Safety Centre or call 911</li>
+        <li>Not carry weapons, illegal substances, or hazardous materials</li>
+        <li>Treat all users with respect — harassment and discrimination are grounds for immediate ban</li>
+        <li>Share live trip details with a trusted contact for personal safety</li>
+      </ul>
+      <p>Drivers specifically must:</p>
+      <ul>
+        <li>Hold a valid, unexpired driver's licence for the vehicle class being driven</li>
+        <li>Maintain comprehensive vehicle insurance covering passenger transport</li>
+        <li>Not use a phone while driving (hands-free use only)</li>
+        <li>Ensure their vehicle passes a basic safety standard (functioning brakes, lights, tyres)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">🚫</span> 5. Prohibited Conduct</h2>
+      <p>The following actions are strictly prohibited on HopOn:</p>
+      <ul class="prohibited">
+        <li>Creating fake accounts or misrepresenting your identity</li>
+        <li>Using HopOn for commercial transportation or profit beyond cost-sharing</li>
+        <li>Harassing, threatening, or discriminating against other users</li>
+        <li>Posting false or misleading ride listings</li>
+        <li>Soliciting personal contact information from other users outside the app</li>
+        <li>Attempting to circumvent platform fees or payments</li>
+        <li>Scraping, copying, or reverse-engineering any part of the platform</li>
+        <li>Sharing your account credentials with another person</li>
+        <li>Using the platform for any illegal purpose</li>
+      </ul>
+      <p>Violations may result in immediate account suspension, permanent ban, and/or referral to law enforcement.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">⚖️</span> 6. Liability Limitations</h2>
+      <p>HopOn is a technology platform connecting users — we are not a transportation provider. Accordingly:</p>
+      <ul>
+        <li>HopOn is not liable for accidents, injuries, or losses occurring during rides</li>
+        <li>Drivers are solely responsible for maintaining valid insurance coverage</li>
+        <li>HopOn does not guarantee the accuracy of user-provided information</li>
+        <li>We are not liable for any indirect, incidental, or consequential damages</li>
+        <li>Our total liability to any user shall not exceed the amount paid to HopOn in the past 3 months</li>
+      </ul>
+      <div class="red-box">
+        <strong>Disclaimer:</strong> Use of HopOn is at your own risk. Always exercise personal safety judgment before, during, and after rides.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">⭐</span> 7. Ratings & Reviews</h2>
+      <p>HopOn uses a mutual rating system to maintain community trust:</p>
+      <ul>
+        <li>Ratings must be honest and based on your actual experience</li>
+        <li>Retaliatory or fake ratings are prohibited and will be removed</li>
+        <li>Users with an average rating below 3.0 may have their account reviewed</li>
+        <li>Drivers with ratings below 3.5 may be temporarily suspended pending review</li>
+        <li>You may dispute a rating within 48 hours by contacting support</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">🔐</span> 8. Account Termination</h2>
+      <p>HopOn reserves the right to suspend or permanently terminate accounts that:</p>
+      <ul>
+        <li>Violate these Terms of Service or our Community Guidelines</li>
+        <li>Receive multiple verified safety complaints</li>
+        <li>Engage in fraudulent payment activity</li>
+        <li>Are found to have provided false identity or verification information</li>
+        <li>Have been inactive for more than 24 months</li>
+      </ul>
+      <p>You may delete your own account at any time from Profile → Settings → Delete Account. Pending rides must be completed or cancelled before deletion.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">📜</span> 9. Intellectual Property & Copyright (DMCA)</h2>
+      <p>All content, design, branding, and code within HopOn is owned by HopOn and protected by copyright law. You may not:</p>
+      <ul>
+        <li>Copy, reproduce, or redistribute any part of the platform</li>
+        <li>Use the HopOn name, logo, or brand without written permission</li>
+        <li>Create derivative works based on HopOn's design or technology</li>
+      </ul>
+      <p>By posting content (photos, messages, reviews) on HopOn, you grant us a non-exclusive licence to display that content within the platform.</p>
+      
+      <p><strong>DMCA Copyright Policy & Takedown Procedure:</strong> If you believe any content on HopOn infringes your copyright, you may submit a DMCA Takedown Notice to our Designated Copyright Agent at:</p>
+      <div class="highlight-box">
+        <strong>HopOn Copyright Agent</strong><br>
+        Email: <a href="mailto:hoponboardhelp@gmail.com" style="color:var(--purple);font-weight:700;">hoponboardhelp@gmail.com</a><br>
+        Address: HopOn Compliance Dept., London, Ontario, Canada
+      </div>
+      <p>To be effective, your notice must include: (1) physical/electronic signature; (2) identification of copyrighted work; (3) identification of infringing material and URL path; (4) your contact details; (5) statement of good faith belief; and (6) statement under penalty of perjury that the info is accurate.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">🌍</span> 10. Governing Law</h2>
+      <p>These Terms are governed by the laws of the State of Delaware, United States, without regard to conflict of law principles.</p>
+      <p>Any disputes arising from these Terms or your use of HopOn shall first be attempted to be resolved through informal negotiation. If unresolved within 30 days, disputes shall be submitted to binding arbitration.</p>
+      <p>By using HopOn you waive your right to participate in class-action lawsuits related to the platform.</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">🔄</span> 11. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. When we make material changes:</p>
+      <ul>
+        <li>We will notify you via in-app notification and email at least 14 days before changes take effect</li>
+        <li>Continued use of HopOn after the effective date constitutes acceptance</li>
+        <li>If you do not agree to updated Terms, you must stop using the platform and delete your account</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2><span class="emoji">📦</span> 12. Peer-to-Peer (P2P) Cargo Delivery Guidelines & Policies</h2>
+      <p>HopOn provides a peer-to-peer parcel and cargo delivery marketplace connecting users (senders) who want to ship items with drivers traveling to the same destination. This service is designed strictly for cost-sharing and community-driven convenience. By posting or accepting a cargo shipment request, you agree to the following policies:</p>
+      <ul>
+        <li><strong>Eligibility & Purpose</strong>: Anyone who meets HopOn's general eligibility requirements can send or transport cargo. Cargo transport must be on a cost-sharing basis. Drivers are not commercial couriers and must not charge commercial courier rates.</li>
+        <li><strong>Package Dimensions & Placement</strong>: Cargo must easily fit in the vehicle’s trunk or backseat. Senders must provide accurate package size and weight details. Parcels must not obstruct the driver’s rear visibility, interfere with passenger seating, or compromise vehicle safety.</li>
+        <li><strong>Secure Packaging & Labeling</strong>: The sender is solely responsible for packing the cargo securely in a sealed box, mailer, or container. The parcel must be clearly labeled with the recipient’s name, delivery address, and telephone number. Drivers are not liable for damage resulting from improper or fragile packaging.</li>
+        <li><strong>Right to Inspect</strong>: To ensure safety and legality, **drivers have the absolute right to open and inspect the contents of any cargo package** before accepting it for transport. Senders must cooperate with this inspection. If a sender refuses inspection, the driver must decline the transport.</li>
+        <li><strong>Prohibited Items</strong>: Senders are strictly prohibited from shipping, and drivers must refuse to transport, the following items:
+          <ul style="margin: 8px 0; padding-left: 16px; list-style-type: circle;" class="prohibited">
+            <li style="border-bottom:none; padding:4px 0 4px 16px;">Hazardous materials, flammables, explosives, fireworks, or toxic/corrosive chemicals.</li>
+            <li style="border-bottom:none; padding:4px 0 4px 16px;">Illegal substances, narcotics, prescription drugs, alcohol, or tobacco products.</li>
+            <li style="border-bottom:none; padding:4px 0 4px 16px;">Weapons, ammunition, or military-grade equipment.</li>
+            <li style="border-bottom:none; padding:4px 0 4px 16px;">Live animals, biological material, or human remains.</li>
+            <li style="border-bottom:none; padding:4px 0 4px 16px;">Perishable food items prone to rapid spoilage, melting, or emitting offensive odors.</li>
+            <li style="border-bottom:none; padding:4px 0 4px 16px;">Items exceeding a combined market value of <strong>$1,000 CAD</strong> (including cash, jewelry, and high-end electronics).</li>
+          </ul>
+        </li>
+        <li><strong>Declared Value & Liability Cap</strong>: Senders must enter an accurate declared value before submitting a cargo request. **The maximum declared value is strictly capped at $1,000 CAD.** HopOn operates solely as a matching marketplace and is not a common carrier. Any damage, loss, or theft during carriage is the responsibility of the driver and sender, and the maximum liability of the driver or HopOn for any cargo-related dispute is capped at the declared value, up to a maximum of <strong>$1,000 CAD</strong>. Senders ship high-value items at their own risk.</li>
+        <li><strong>Pickup & Drop-off Protocol</strong>: Senders must be present at pickup to hand over the parcel, and the recipient must be present at drop-off to receive the parcel. If the recipient does not show up within 10 minutes of the driver’s arrival, the driver may arrange to return the package to the sender (at the sender's cost) or leave it in a safe location after consulting the sender. Additional fees may apply for returned items.</li>
+        <li><strong>Photo Verification</strong>: Senders and drivers must upload a photo confirmation of the parcel at pickup and drop-off to document the condition of the package and verify successful delivery.</li>
+      </ul>
+    </div>
+
+    <div class="contact-card">
+      <h2>Questions about these Terms?</h2>
+      <p>Our legal team is happy to clarify anything. We respond within 5 business days.</p>
+      <a href="mailto:hoponboardhelp@gmail.com" class="contact-email">✉️ hoponboardhelp@gmail.com</a>
+      <p style="font-size:12px;color:var(--text-light);margin-top:12px;text-align:center;">HopOn Technologies Inc.<br>London, Ontario, Canada</p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="./index.html">← Back to App</a>
+      <a href="./privacy.html">Privacy Policy</a>
+    </div>
+    <p class="footer-copy">© 2025 HopOn. All rights reserved. · Campus Ridesharing, Reimagined.</p>
+
+  </main>
+
+</body>
+</html>

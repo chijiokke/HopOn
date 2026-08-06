@@ -1,0 +1,38 @@
+{
+  "name": "HopOn – Campus Ridesharing",
+  "short_name": "HopOn",
+  "description": "Campus ridesharing, reimagined for students.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#7B2FBE",
+  "theme_color": "#7B2FBE",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='42' fill='%237B2FBE'/%3E%3Ccircle cx='96' cy='96' r='52' stroke='white' stroke-width='8' fill='none'/%3E%3Cpath d='M76 96h40M96 76l20 20-20 20' stroke='white' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%237B2FBE'/%3E%3Ccircle cx='256' cy='256' r='140' stroke='white' stroke-width='20' fill='none'/%3E%3Cpath d='M206 256h100M256 206l50 50-50 50' stroke='white' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Find a Ride",
+      "url": "./index.html#rides",
+      "description": "Browse available rides"
+    },
+    {
+      "name": "Post a Ride",
+      "url": "./index.html#post",
+      "description": "Offer your ride to others"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: Checks if the user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper: Checks if the logged-in user is the owner
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // 👤 USERS: Anyone logged in can read profile details. Only the user can write their own profile.
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+      
+      // Sub-collections: Only the specific user can access their cards, bank details, and discounts.
+      match /payment_methods/{id} {
+        allow read, write: if isOwner(userId);
+      }
+      match /payout_methods/{id} {
+        allow read, write: if isOwner(userId);
+      }
+      match /vehicle/{id} {
+        allow read: if isAuthenticated();
+        allow write: if isOwner(userId);
+      }
+      match /discounts/{id} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+    
+    // 🚗 RIDES: Any authenticated user can read or create rides. Only the creator can update or delete.
+    match /rides/{rideId} {
+      allow read, create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && resource.data.driverId == request.auth.uid;
+    }
+    
+    // 📅 BOOKINGS: Authenticated users can create bookings. Only the passenger or driver involved can read/update.
+    match /bookings/{bookingId} {
+      allow create: if isAuthenticated();
+      allow read, update: if isAuthenticated() && 
+        (resource.data.passengerId == request.auth.uid || resource.data.driverId == request.auth.uid);
+    }
+    
+    // 💬 CHATS & MESSAGES: Users can access only if they are one of the participants.
+    match /chats/{chatId} {
+      allow read, write: if isAuthenticated() && request.auth.uid in resource.data.participants;
+      
+      match /messages/{messageId} {
+        allow read, write: if isAuthenticated() && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participants;
+      }
+    }
+    
+    // 📦 CARGO: Users can read and write only their own cargo shipments.
+    match /cargo/{cargoId} {
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    // 🚚 CARGO OFFERS: Any authenticated user can read or create cargo offers. Only the creator can update or delete.
+    match /cargo_offers/{offerId} {
+      allow read, create: if isAuthenticated();
+      allow update, delete: if isAuthenticated() && resource.data.driverId == request.auth.uid;
+    }
+    
+    // 📞 CALLS: Users can log/read calls only if they are the sender or receiver.
+    match /calls/{callId} {
+      allow create: if isAuthenticated();
+      allow read: if isAuthenticated() && 
+        (resource.data.passengerId == request.auth.uid || resource.data.driverId == request.auth.uid);
+    }
+
+    // 💰 PAYMENTS: Users can view their own payments, riders can write payments.
+    match /payments/{paymentId} {
+      allow read: if isAuthenticated() && (resource.data.passengerId == request.auth.uid || resource.data.driverId == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.passengerId == request.auth.uid;
+    }
+
+    // 🏦 PAYOUTS: Drivers can request/view payouts.
+    match /payouts/{payoutId} {
+      allow read: if isAuthenticated() && resource.data.driverId == request.auth.uid;
+      allow create: if isAuthenticated() && request.resource.data.driverId == request.auth.uid;
+    }
+
+    // 🔔 NOTIFICATIONS (Top-level): Users can read their own notifications.
+    match /notifications/{notificationId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated(); // Allows system functions to trigger notifications
+    }
+
+    // 🎁 PROMOTIONS: Global read access for all logged-in students.
+    match /promotions/{promoId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Read-only for users, updated by admin console only
+    }
+
+    // 🔐 OTP VERIFICATIONS (Private): Used by netlify functions to store codes. Private from clients.
+    match /_private_otps/{email} {
+      allow read, write: if false; // Block client-side access completely. Handled by server functions.
+    }
+  }
+}
