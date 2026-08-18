@@ -32,8 +32,9 @@ jobs:
       run: |
         echo "Verifying presence of core files..."
         test -f index.html || (echo "Error: index.html is missing" && exit 1)
-        test -f supabase-compat.js || (echo "Error: supabase-compat.js is missing" && exit 1)
-        test -f supabase_schema.sql || (echo "Error: supabase_schema.sql is missing" && exit 1)
+        test -f index.css || (echo "Error: index.css is missing" && exit 1)
+        test -f sw.js || (echo "Error: sw.js is missing" && exit 1)
+        test -f manifest.json || (echo "Error: manifest.json is missing" && exit 1)
         test -f netlify/functions/create-payment-intent.js || (echo "Error: Payment Netlify function is missing" && exit 1)
         echo "All core full-stack production assets present."
 
@@ -42,6 +43,5 @@ jobs:
         echo "Running syntax check on serverless functions..."
         node --check netlify/functions/create-payment-intent.js
         node --check netlify/functions/get-stripe-config.js
-        node --check retrieve-payment-method.js || true
-        node --check create-setup-intent.js || true
         echo "Syntax validation successful."
+
