@@ -1,12 +1,12 @@
 // HopOn Service Worker — works locally & on GitHub Pages
-const CACHE = 'hopon-v20';
+const CACHE = 'hopon-v50';
 
 // Determine base path dynamically (handles both / and /HopOn/ on GitHub Pages)
 const BASE = self.location.pathname.replace(/sw\.js$/, '');
 
 const ASSETS = [
   BASE + 'index.html',
-  BASE + 'index.css?v=20',
+  BASE + 'index.css?v=50',
   BASE + 'manifest.json',
   'https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap'
 ];
