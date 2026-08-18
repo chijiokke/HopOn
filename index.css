@@ -5359,3 +5359,37 @@ body.dark .swipeable-row-container .msg-row {
   color: #06402b;
 }
 
+
+/* ─── Cargo Screen: Search-first layout ─── */
+#screen-cargo {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px 100px;
+}
+#screen-cargo .screen-title {
+  font-family: 'Fredoka', sans-serif;
+}
+#cargo-search-card {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Cargo sub-screen: shipment form */
+#sub-cargo-shipment {
+  z-index: 210;
+}
+#cargo-shipment-driver-banner {
+  flex-shrink: 0;
+}
+
+/* Cargo driver card: extend pop-trip-card with cargo badge */
+#cargo-drivers-list .pop-trip-card .pop-trip-time {
+  color: #7c3aed;
+  font-weight: 700;
+}
+#cargo-drivers-list .pop-trip-card .pop-trip-seats-left {
+  font-size: 11px;
+  font-weight: 700;
+}

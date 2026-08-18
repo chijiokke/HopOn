@@ -858,239 +858,55 @@
         <button id="cargo-toggle-btn-driver" class="cargo-mode-toggle-btn" onclick="switchCargoMode('driver')">Offer Cargo</button>
       </div>
 
-      <!-- Shipper View: Send Cargo -->
+      <!-- Shipper View: Search-first layout (mirrors Rides) -->
       <div id="cargo-shipper-view">
-        <!-- Sub-tabs for Shipper View -->
-        <div class="tab-row" style="margin-bottom: 16px; display: flex; background: var(--gray-100); border-radius: 12px; padding: 4px; border: none;">
-          <button class="tab-btn active" id="btn-shipper-form-toggle" onclick="setShipperViewMode('form')" style="flex: 1; border: none; border-radius: 8px; font-weight: 700; font-size: 11px; padding: 8px; cursor: pointer; background: var(--white); color: var(--purple);">Request Delivery</button>
-          <button class="tab-btn" id="btn-shipper-browse-toggle" onclick="setShipperViewMode('browse')" style="flex: 1; border: none; border-radius: 8px; font-weight: 700; font-size: 11px; padding: 8px; cursor: pointer; background: transparent; color: var(--text-light);">Browse Driver Trips</button>
-        </div>
 
-        <!-- Mode 1: Request Delivery (Form & Timeline) -->
-        <div id="cargo-shipper-form-container">
-          <!-- Cargo Form -->
-          <div class="card" style="padding: 16px; margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px;">
-            <h3 style="margin: 0 0 4px; font-size: 16px; font-weight: 800; color: var(--text-dark);">Ship Your Cargo</h3>
-            
-            <!-- What are you sending -->
-            <div class="form-group">
-              <label class="form-label" for="cargo-type" style="font-weight: 700;">What are you sending</label>
-              <div style="position: relative; display: flex; align-items: center;">
-                <span style="position: absolute; left: 12px; font-size: 16px; line-height: 1;">📦</span>
-                <select class="form-input" id="cargo-type" style="padding-left: 38px; cursor: pointer; appearance: none; -webkit-appearance: none;" onchange="updateCargoTypePlaceholder()">
-                  <option value="package">Package</option>
-                  <option value="document">Document</option>
-                  <option value="oversized">Oversized / Custom</option>
-                </select>
-                <span style="position: absolute; right: 14px; pointer-events: none; color: var(--text-light); font-size: 10px;">▼</span>
-              </div>
+        <!-- Search Card: always visible (mirrors Rides search card) -->
+        <div class="pop-search-card" id="cargo-search-card" style="margin-bottom: 16px; border: 1.5px solid var(--gray-200); box-shadow: var(--shadow-sm); border-radius: 16px; padding: 6px; background:#fff;">
+          <!-- From field -->
+          <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-from')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
+            <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📍</span>
+            <div class="pop-search-field-content" style="flex:1; text-align:left;">
+              <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">From</div>
+              <div class="pop-search-field-value" id="cargo-browse-from-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">All locations</div>
             </div>
-            <div class="form-group" id="cargo-desc-wrapper">
-              <label class="form-label" for="cargo-desc">Item Description</label>
-              <input type="text" class="form-input" id="cargo-desc" placeholder="What are you shipping? (e.g. Box of books)">
-            </div>
-            
-
-
-            <!-- Dimensions & Units -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; align-items: end;">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label" style="font-weight: 700;">Enter size (L x W x H) <span style="font-size: 12px; color: var(--purple); cursor: help;" title="Length x Width x Height">ⓘ</span></label>
-                <div style="display: flex; align-items: center; gap: 6px;">
-                  <input type="number" class="form-input" id="cargo-length" placeholder="L" min="1" style="text-align: center; padding: 10px 4px; box-sizing: border-box;" oninput="updateCargoCalculations()">
-                  <span style="font-weight: 700; color: var(--text-light); font-size: 12px;">X</span>
-                  <input type="number" class="form-input" id="cargo-width" placeholder="W" min="1" style="text-align: center; padding: 10px 4px; box-sizing: border-box;" oninput="updateCargoCalculations()">
-                  <span style="font-weight: 700; color: var(--text-light); font-size: 12px;">X</span>
-                  <input type="number" class="form-input" id="cargo-height" placeholder="H" min="1" style="text-align: center; padding: 10px 4px; box-sizing: border-box;" oninput="updateCargoCalculations()">
-                </div>
-              </div>
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label" for="cargo-size-unit">Unit</label>
-                <div style="position: relative; display: flex; align-items: center;">
-                  <select class="form-input" id="cargo-size-unit" style="cursor: pointer; appearance: none; -webkit-appearance: none;" onchange="updateCargoCalculations()">
-                    <option value="cm">cm</option>
-                    <option value="in">in</option>
-                  </select>
-                  <span style="position: absolute; right: 12px; pointer-events: none; color: var(--text-light); font-size: 10px;">▼</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- AR Measurement Tool -->
-            <div style="display: flex; gap: 8px; margin-top: 10px; margin-bottom: 12px;">
-              <button type="button" class="measurement-action-btn" onclick="startCargoARMeasurement()" style="flex: 1; justify-content: center; gap: 6px; width: 100%;">
-                📷 Measure with AR
-              </button>
-            </div>
-
-            <!-- Weight & Units -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; align-items: start; margin-top: 4px;">
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label" for="cargo-weight" style="font-weight: 700;">Enter weight (up to 30 kg / 66 lbs)</label>
-                <input type="number" class="form-input" id="cargo-weight" placeholder="0" min="0.1" step="0.1" oninput="updateCargoCalculations()">
-                <div id="cargo-weight-warning" style="display: none; color: #dc2626; font-size: 11px; margin-top: 6px; font-weight: 700; line-height: 1.3;">
-                  ⚠️ Weight cannot exceed <span id="cargo-weight-limit-text">30 kg</span>
-                </div>
-              </div>
-              <div class="form-group" style="margin-bottom: 0;">
-                <label class="form-label" for="cargo-weight-unit">Unit</label>
-                <div style="position: relative; display: flex; align-items: center;">
-                  <select class="form-input" id="cargo-weight-unit" style="cursor: pointer; appearance: none; -webkit-appearance: none;" onchange="updateCargoWeightUnitChange()">
-                    <option value="kg">kg</option>
-                    <option value="lbs">lbs</option>
-                  </select>
-                  <span style="position: absolute; right: 12px; pointer-events: none; color: var(--text-light); font-size: 10px;">▼</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Estimation Helper Links -->
-            <div style="font-size: 11px; color: var(--text-mid); line-height: 1.5; margin-top: 4px;">
-              Get help <span style="color: var(--purple); text-decoration: underline; cursor: pointer; font-weight: 600;" onclick="alert('Average dimensions:\n- Shoebox: 35 x 25 x 15 cm\n- Backpack: 45 x 30 x 20 cm\n- Large Checked Suitcase: 75 x 50 x 30 cm')">estimating the size</span> or <span style="color: var(--purple); text-decoration: underline; cursor: pointer; font-weight: 600;" onclick="alert('Average weights:\n- Textbook: 1 kg (2.2 lbs)\n- School Backpack: 6 kg (13 lbs)\n- Hand Luggage: 10 kg (22 lbs)\n- Standard Airport Limit: 23 kg (50 lbs)')">estimating the weight</span>.
-            </div>
-            <div style="font-size: 11px; margin-top: 2px; margin-bottom: 6px; line-height: 1.5;">
-              <span style="color: var(--purple); text-decoration: underline; cursor: pointer; font-weight: 600;" onclick="alert('Prohibited Items:\nFor safety, you cannot ship dangerous goods, flammable/hazardous materials, explosives, weapons, illegal substances, live animals, or valuables like cash and jewelry.')">Check prohibited items</span>.
-            </div>
-            
-            <!-- Location Pickers -->
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label class="form-label" style="margin-bottom: -4px;">Delivery Route</label>
-              
-              <div class="cargo-loc-picker" onclick="openLocationSearch('cargo-pickup')">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <input type="text" class="cargo-loc-input" id="cargo-pickup-val" placeholder="Where to pick up?" readonly>
-              </div>
-              
-              <div class="cargo-loc-picker" onclick="openLocationSearch('cargo-dropoff')">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <input type="text" class="cargo-loc-input" id="cargo-dropoff-val" placeholder="Where to drop off?" readonly>
-              </div>
-            </div>
-            
-            <!-- Date Selector -->
-            <div class="form-group">
-              <label class="form-label" for="cargo-date">Pickup Date</label>
-              <input type="date" class="form-input" id="cargo-date">
-            </div>
-            
-            <!-- Declared Value Input -->
-            <div class="form-group">
-              <label class="form-label" for="cargo-value">Declared Value (CAD)</label>
-              <div style="position: relative; display: flex; align-items: center;">
-                <span style="position: absolute; left: 12px; color: var(--text-mid); font-weight: 600; font-size: 14px;">$</span>
-                <input type="number" class="form-input" id="cargo-value" placeholder="Declared item value (Max $1,000)" min="1" max="1000" style="padding-left: 28px;" oninput="validateCargoValue()">
-              </div>
-              <span id="cargo-value-warning" style="display: none; color: #ef4444; font-size: 11px; margin-top: 4px; font-weight: 600;">⚠️ Declared value cannot exceed $1,000 CAD!</span>
-              <span style="font-size: 10px; color: var(--text-light); margin-top: 4px; display: block;">Deliveries are capped at $1,000 CAD. Discrepancies above this limit are your responsibility.</span>
-            </div>
-
-            <!-- Item Photo Upload (Optional) -->
-            <div class="form-group">
-              <label class="form-label">Item Photo (Optional)</label>
-              <div style="display: flex; gap: 12px; align-items: center; margin-top: 4px;">
-                <label for="cargo-photo-upload" class="cargo-photo-upload-label">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                  Upload or Snap Photo
-                </label>
-                <input type="file" id="cargo-photo-upload" accept="image/*" style="display: none;" onchange="handleCargoPhoto(this)">
-                <div id="cargo-photo-preview" style="display: none; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); position: relative; flex-shrink: 0;">
-                  <img id="cargo-photo-img" style="width: 100%; height: 100%; object-fit: cover;">
-                  <button onclick="removeCargoPhoto(event)" style="position: absolute; top: -2px; right: -2px; width: 16px; height: 16px; border-radius: 50%; background: rgba(220,38,38,0.85); border: none; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; line-height: 1;">&times;</button>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Fare Breakdown Box -->
-            <div class="cargo-summary-box" style="flex-direction:column;gap:0;padding:0;overflow:hidden;">
-              <!-- Volume header -->
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(6,64,43,0.12);">
-                <span class="cargo-summary-label">Package Volume</span>
-                <span class="cargo-summary-value" id="cargo-volume-calc" style="font-size:12px;">— cm³ (— L)</span>
-              </div>
-              <!-- Breakdown rows (hidden until both locations are set) -->
-              <div id="cargo-breakdown-rows" style="display:none;">
-                <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.08);">
-                  <span style="font-size:12px;color:var(--text-mid);">Base rate (<span id="cargo-tier-label">—</span>)</span>
-                  <span style="font-size:12px;font-weight:700;color:var(--text-dark);" id="cargo-base-line">$0.00</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.08);">
-                  <span style="font-size:12px;color:var(--text-mid);" id="cargo-distance-label">Distance (<span id="cargo-distance-km">0</span> km × $0.08)</span>
-                  <span style="font-size:12px;font-weight:700;color:var(--text-dark);" id="cargo-distance-line">$0.00</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.08);">
-                  <span style="font-size:12px;color:var(--text-mid);">Weight surcharge</span>
-                  <span style="font-size:12px;font-weight:700;color:var(--text-dark);" id="cargo-weight-line">$0.00</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.04);background:rgba(6,64,43,0.04);">
-                  <span style="font-size:12px;color:var(--text-mid);">HopOn fee (12%)</span>
-                  <span style="font-size:12px;font-weight:700;color:var(--text-mid);" id="cargo-fee-line">$0.00</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.12);background:rgba(6,64,43,0.04);">
-                  <span style="font-size:12px;color:var(--text-mid);">HST (13%)</span>
-                  <span style="font-size:12px;font-weight:700;color:var(--text-mid);" id="cargo-hst-line">$0.00</span>
-                </div>
-              </div>
-              <!-- Total + driver earn row -->
-              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;">
-                <div>
-                  <div class="cargo-summary-label">Total (incl. HST)</div>
-                  <div id="cargo-driver-earn-line" style="display:none;font-size:10px;color:#16a34a;font-weight:700;margin-top:2px;">Driver earns: $0.00</div>
-                </div>
-                <span class="cargo-summary-value highlight" id="cargo-price-estimate">$0.00</span>
-              </div>
-            </div>
-            
-            <button class="btn-charcoal" style="width: 100%; margin-top: 4px;" onclick="submitCargo()">Request Cargo Shipment</button>
           </div>
           
-          <!-- Shipment Timeline Dashboard -->
+          <!-- To field -->
+          <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-to')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
+            <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">🏁</span>
+            <div class="pop-search-field-content" style="flex:1; text-align:left;">
+              <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">To</div>
+              <div class="pop-search-field-value" id="cargo-browse-to-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Where to?</div>
+            </div>
+          </div>
+          
+          <!-- Departing Date field -->
+          <div class="pop-search-field" onclick="openCustomDatePicker('cargo')" style="padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
+            <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📅</span>
+            <div class="pop-search-field-content" style="flex:1; display:flex; justify-content:space-between; align-items:center;">
+              <div style="flex:1; text-align:left;">
+                <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">Date (optional)</div>
+                <div class="pop-search-field-value" id="cargo-browse-filter-date-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Any date</div>
+              </div>
+              <button id="cargo-browse-clear-btn" onclick="clearCargoBrowseFilters(event)" style="display:none; background:none; border:1px solid var(--gray-200); border-radius:12px; padding:3px 8px; font-size:10px; font-weight:700; color:var(--text-mid); cursor:pointer; font-family:Montserrat,sans-serif;">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Driver Cargo Cards List (always visible) -->
+        <div id="cargo-drivers-list" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Dynamic driver trip cards rendered here -->
+        </div>
+
+        <!-- Your Shipments Section -->
+        <div id="cargo-shipments-section" style="margin-top: 24px;">
           <h3 style="margin: 0 0 12px; font-size: 16px; font-weight: 800; color: var(--text-dark);">Your Shipments</h3>
           <div id="cargo-timeline-list" style="display: flex; flex-direction: column; gap: 12px;">
             <!-- Dynamically rendered cargo items -->
           </div>
         </div>
 
-        <!-- Mode 2: Browse Driver Trips -->
-        <div id="cargo-shipper-browse-container" style="display: none;">
-          <!-- Route Filter Search Bar for Cargo Drivers -->
-          <!-- Route Filter Search Bar for Cargo Drivers -->
-          <div class="pop-search-card" style="margin-bottom: 16px; border: 1.5px solid var(--gray-200); box-shadow: var(--shadow-sm); border-radius: 16px; padding: 6px; background:#fff;">
-            <!-- From field -->
-            <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-from')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
-              <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📍</span>
-              <div class="pop-search-field-content" style="flex:1; text-align:left;">
-                <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">From</div>
-                <div class="pop-search-field-value" id="cargo-browse-from-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">All locations</div>
-              </div>
-            </div>
-            
-            <!-- To field -->
-            <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-to')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
-              <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">🏁</span>
-              <div class="pop-search-field-content" style="flex:1; text-align:left;">
-                <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">To</div>
-                <div class="pop-search-field-value" id="cargo-browse-to-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Where to?</div>
-              </div>
-            </div>
-            
-            <!-- Departing Date field -->
-            <div class="pop-search-field" onclick="openCustomDatePicker('cargo')" style="padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
-              <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📅</span>
-              <div class="pop-search-field-content" style="flex:1; display:flex; justify-content:space-between; align-items:center;">
-                <div style="flex:1; text-align:left;">
-                  <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">Date (optional)</div>
-                  <div class="pop-search-field-value" id="cargo-browse-filter-date-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Any date</div>
-                </div>
-                <!-- Clear Button if filter is active -->
-                <button id="cargo-browse-clear-btn" onclick="clearCargoBrowseFilters(event)" style="display:none; background:none; border:1px solid var(--gray-200); border-radius:12px; padding:3px 8px; font-size:10px; font-weight:700; color:var(--text-mid); cursor:pointer; font-family:Montserrat,sans-serif;">Clear</button>
-              </div>
-            </div>
-          </div>
-
-          <div id="cargo-drivers-list" style="display: flex; flex-direction: column; gap: 12px;">
-            <!-- Dynamic driver trips cards populated here -->
-          </div>
-        </div>
       </div>
 
       <!-- Driver View: Offer Cargo -->
@@ -3649,6 +3465,72 @@
             </select>
           </div>
         </div>
+      <!-- Cargo Specifications & Rules Section (Cargo Offers only) -->
+      <div id="post-cargo-rules-section" style="border-top:1px solid var(--gray-200); margin-top:16px; padding-top:16px; display:none; flex-direction:column; gap:12px;">
+        <p class="profile-section-label" style="margin-bottom:4px;">Cargo Specifications &amp; Preferences</p>
+        
+        <div class="form-group">
+          <label class="form-label">Delivery &amp; Driver Instructions <span style="font-size:10px; color:var(--text-light); font-weight:600;">(senders will see this on the trip detail page)</span></label>
+          <textarea class="form-input" id="post-cargo-instructions" placeholder="e.g. Meet at vehicle trunk at Heartland Mississauga slot 3. Senders will receive real-time updates. Recipient contact required at dropoff." style="font-family: inherit; font-size: inherit; height: 90px; resize: vertical; line-height: 1.5; padding: 12px;"></textarea>
+        </div>
+        
+        <div class="form-row" style="display: flex; gap: 12px;">
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Space Dimensions / Size</label>
+            <select class="form-input" id="post-cargo-space-size" style="padding: 10px; border-radius: 12px; background: #fff; font-family: inherit; font-size: inherit;">
+              <option value="small">📦 Small Space (Backpack / Shoebox)</option>
+              <option value="medium" selected>🧳 Medium Space (Suitcase / Box)</option>
+              <option value="large">📦 Large Space (Trunk / Hatchback)</option>
+              <option value="xlarge">🛻 Extra Large Space (SUV / Bed)</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Cargo Types Accepted</label>
+            <select class="form-input" id="post-cargo-types-accepted" style="padding: 10px; border-radius: 12px; background: #fff; font-family: inherit; font-size: inherit;">
+              <option value="all_standard">📦 All Standard Cargo</option>
+              <option value="documents">📄 Documents &amp; Letters Only</option>
+              <option value="electronics">💻 Tech &amp; Electronics</option>
+              <option value="groceries">🛒 Groceries &amp; Foods</option>
+              <option value="luggage">🧳 Luggage &amp; Travel Bags</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row" style="display: flex; gap: 12px;">
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Fragile Items Policy</label>
+            <select class="form-input" id="post-cargo-fragile-policy" style="padding: 10px; border-radius: 12px; background: #fff; font-family: inherit; font-size: inherit;">
+              <option value="fragile_ok">🍷 Fragile items accepted</option>
+              <option value="non_fragile_only">📦 Standard cargo only (No fragile)</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Temperature Control</label>
+            <select class="form-input" id="post-cargo-temp-control" style="padding: 10px; border-radius: 12px; background: #fff; font-family: inherit; font-size: inherit;">
+              <option value="standard">🌡️ Standard vehicle storage</option>
+              <option value="ac_controlled">❄️ AC / Climate controlled</option>
+              <option value="cool_storage">🧊 Cool storage available</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row" style="display: flex; gap: 12px;">
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Delivery Window</label>
+            <select class="form-input" id="post-cargo-wait-time" style="padding: 10px; border-radius: 12px; background: #fff; font-family: inherit; font-size: inherit;">
+              <option value="flexible">⏱️ Flexible window (±30 min)</option>
+              <option value="exact">⏱️ Exact dropoff time</option>
+              <option value="station">📍 Station / Hub dropoff</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label">Insurance / Protection</label>
+            <select class="form-input" id="post-cargo-coverage" style="padding: 10px; border-radius: 12px; background: #fff; font-family: inherit; font-size: inherit;">
+              <option value="standard">🛡️ Standard HopOn Protection</option>
+              <option value="extended">🛡️ Extended Coverage</option>
+            </select>
+          </div>
+        </div>
       </div>
       <button class="btn-purple" onclick="postRide()" style="width: 100%; height: 48px; border-radius: 24px; font-weight: 800; font-size: 15px; margin-top: 16px; border: none; background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%); color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -3667,6 +3549,205 @@
     </div>
     <div style="padding: 16px; font-size: 13px; line-height: 1.6; color: var(--text-dark);" id="legal-content">
       <div style="text-align:center; padding:30px; color:var(--text-light);">Loading document...</div>
+    </div>
+  </div>
+
+  <!-- ═══ CARGO SHIPMENT FORM SCREEN ═══ -->
+  <div class="sub-screen" id="sub-cargo-shipment" style="overflow-y: auto; background: #f8fafc; font-family: Montserrat, sans-serif; padding: 0;">
+    <!-- Header -->
+    <div class="sub-header" style="background: #fff; border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; display: flex; align-items: center; padding: 14px 16px; margin: 0;">
+      <button class="back-btn" onclick="closeSubScreen('sub-cargo-shipment')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </button>
+      <span class="sub-header-title" style="margin-left: 12px; flex: 1; text-align: center; margin-right: 36px; font-size: 16px;" id="cargo-shipment-title">Shipment Details</span>
+    </div>
+
+    <!-- Driver Context Banner (populated by bookDriverCargo) -->
+    <div id="cargo-shipment-driver-banner" style="display:none; background: linear-gradient(135deg, var(--primary) 0%, #0d5d40 100%); padding: 14px 16px; color: #fff;">
+      <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; opacity:0.8; margin-bottom:4px;">Shipping with</div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div id="cargo-shipment-driver-avatar" style="width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:18px; overflow:hidden; flex-shrink:0;"></div>
+        <div>
+          <div id="cargo-shipment-driver-name" style="font-size:15px; font-weight:800;"></div>
+          <div id="cargo-shipment-driver-route" style="font-size:12px; opacity:0.85; margin-top:2px;"></div>
+        </div>
+        <div id="cargo-shipment-driver-rating" style="margin-left:auto; font-size:13px; font-weight:800; background:rgba(255,255,255,0.15); padding:4px 10px; border-radius:20px;"></div>
+      </div>
+    </div>
+
+    <!-- Cargo Form -->
+    <div style="padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+      <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 12px; border-radius: 16px;">
+        <h3 style="margin: 0 0 4px; font-size: 16px; font-weight: 800; color: var(--text-dark);">Package Details</h3>
+        
+        <!-- What are you sending -->
+        <div class="form-group">
+          <label class="form-label" for="cargo-type" style="font-weight: 700;">What are you sending</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <span style="position: absolute; left: 12px; font-size: 16px; line-height: 1;">📦</span>
+            <select class="form-input" id="cargo-type" style="padding-left: 38px; cursor: pointer; appearance: none; -webkit-appearance: none;" onchange="updateCargoTypePlaceholder()">
+              <option value="package">Package</option>
+              <option value="document">Document</option>
+              <option value="oversized">Oversized / Custom</option>
+            </select>
+            <span style="position: absolute; right: 14px; pointer-events: none; color: var(--text-light); font-size: 10px;">▼</span>
+          </div>
+        </div>
+        <div class="form-group" id="cargo-desc-wrapper">
+          <label class="form-label" for="cargo-desc">Item Description</label>
+          <input type="text" class="form-input" id="cargo-desc" placeholder="What are you shipping? (e.g. Box of books)">
+        </div>
+
+        <!-- Dimensions & Units -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; align-items: end;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" style="font-weight: 700;">Enter size (L x W x H) <span style="font-size: 12px; color: var(--purple); cursor: help;" title="Length x Width x Height">ⓘ</span></label>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <input type="number" class="form-input" id="cargo-length" placeholder="L" min="1" style="text-align: center; padding: 10px 4px; box-sizing: border-box;" oninput="updateCargoCalculations()">
+              <span style="font-weight: 700; color: var(--text-light); font-size: 12px;">X</span>
+              <input type="number" class="form-input" id="cargo-width" placeholder="W" min="1" style="text-align: center; padding: 10px 4px; box-sizing: border-box;" oninput="updateCargoCalculations()">
+              <span style="font-weight: 700; color: var(--text-light); font-size: 12px;">X</span>
+              <input type="number" class="form-input" id="cargo-height" placeholder="H" min="1" style="text-align: center; padding: 10px 4px; box-sizing: border-box;" oninput="updateCargoCalculations()">
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="cargo-size-unit">Unit</label>
+            <div style="position: relative; display: flex; align-items: center;">
+              <select class="form-input" id="cargo-size-unit" style="cursor: pointer; appearance: none; -webkit-appearance: none;" onchange="updateCargoCalculations()">
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+              </select>
+              <span style="position: absolute; right: 12px; pointer-events: none; color: var(--text-light); font-size: 10px;">▼</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AR Measurement Tool -->
+        <div style="display: flex; gap: 8px; margin-top: 10px; margin-bottom: 12px;">
+          <button type="button" class="measurement-action-btn" onclick="startCargoARMeasurement()" style="flex: 1; justify-content: center; gap: 6px; width: 100%;">
+            📷 Measure with AR
+          </button>
+        </div>
+
+        <!-- Weight & Units -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; align-items: start; margin-top: 4px;">
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="cargo-weight" style="font-weight: 700;">Enter weight (up to 30 kg / 66 lbs)</label>
+            <input type="number" class="form-input" id="cargo-weight" placeholder="0" min="0.1" step="0.1" oninput="updateCargoCalculations()">
+            <div id="cargo-weight-warning" style="display: none; color: #dc2626; font-size: 11px; margin-top: 6px; font-weight: 700; line-height: 1.3;">
+              ⚠️ Weight cannot exceed <span id="cargo-weight-limit-text">30 kg</span>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="cargo-weight-unit">Unit</label>
+            <div style="position: relative; display: flex; align-items: center;">
+              <select class="form-input" id="cargo-weight-unit" style="cursor: pointer; appearance: none; -webkit-appearance: none;" onchange="updateCargoWeightUnitChange()">
+                <option value="kg">kg</option>
+                <option value="lbs">lbs</option>
+              </select>
+              <span style="position: absolute; right: 12px; pointer-events: none; color: var(--text-light); font-size: 10px;">▼</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estimation Helper Links -->
+        <div style="font-size: 11px; color: var(--text-mid); line-height: 1.5; margin-top: 4px;">
+          Get help <span style="color: var(--purple); text-decoration: underline; cursor: pointer; font-weight: 600;" onclick="alert('Average dimensions:\n- Shoebox: 35 x 25 x 15 cm\n- Backpack: 45 x 30 x 20 cm\n- Large Checked Suitcase: 75 x 50 x 30 cm')">estimating the size</span> or <span style="color: var(--purple); text-decoration: underline; cursor: pointer; font-weight: 600;" onclick="alert('Average weights:\n- Textbook: 1 kg (2.2 lbs)\n- School Backpack: 6 kg (13 lbs)\n- Hand Luggage: 10 kg (22 lbs)\n- Standard Airport Limit: 23 kg (50 lbs)')">estimating the weight</span>.
+        </div>
+        <div style="font-size: 11px; margin-top: 2px; margin-bottom: 6px; line-height: 1.5;">
+          <span style="color: var(--purple); text-decoration: underline; cursor: pointer; font-weight: 600;" onclick="alert('Prohibited Items:\nFor safety, you cannot ship dangerous goods, flammable/hazardous materials, explosives, weapons, illegal substances, live animals, or valuables like cash and jewelry.')">Check prohibited items</span>.
+        </div>
+        
+        <!-- Location Pickers -->
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label class="form-label" style="margin-bottom: -4px;">Delivery Route</label>
+          
+          <div class="cargo-loc-picker" onclick="openLocationSearch('cargo-pickup')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <input type="text" class="cargo-loc-input" id="cargo-pickup-val" placeholder="Where to pick up?" readonly>
+          </div>
+          
+          <div class="cargo-loc-picker" onclick="openLocationSearch('cargo-dropoff')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2.5" style="flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <input type="text" class="cargo-loc-input" id="cargo-dropoff-val" placeholder="Where to drop off?" readonly>
+          </div>
+        </div>
+        
+        <!-- Date Selector -->
+        <div class="form-group">
+          <label class="form-label" for="cargo-date">Pickup Date</label>
+          <input type="date" class="form-input" id="cargo-date">
+        </div>
+        
+        <!-- Declared Value Input -->
+        <div class="form-group">
+          <label class="form-label" for="cargo-value">Declared Value (CAD)</label>
+          <div style="position: relative; display: flex; align-items: center;">
+            <span style="position: absolute; left: 12px; color: var(--text-mid); font-weight: 600; font-size: 14px;">$</span>
+            <input type="number" class="form-input" id="cargo-value" placeholder="Declared item value (Max $1,000)" min="1" max="1000" style="padding-left: 28px;" oninput="validateCargoValue()">
+          </div>
+          <span id="cargo-value-warning" style="display: none; color: #ef4444; font-size: 11px; margin-top: 4px; font-weight: 600;">⚠️ Declared value cannot exceed $1,000 CAD!</span>
+          <span style="font-size: 10px; color: var(--text-light); margin-top: 4px; display: block;">Deliveries are capped at $1,000 CAD. Discrepancies above this limit are your responsibility.</span>
+        </div>
+
+        <!-- Item Photo Upload (Optional) -->
+        <div class="form-group">
+          <label class="form-label">Item Photo (Optional)</label>
+          <div style="display: flex; gap: 12px; align-items: center; margin-top: 4px;">
+            <label for="cargo-photo-upload" class="cargo-photo-upload-label">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              Upload or Snap Photo
+            </label>
+            <input type="file" id="cargo-photo-upload" accept="image/*" style="display: none;" onchange="handleCargoPhoto(this)">
+            <div id="cargo-photo-preview" style="display: none; width: 44px; height: 44px; border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); position: relative; flex-shrink: 0;">
+              <img id="cargo-photo-img" style="width: 100%; height: 100%; object-fit: cover;">
+              <button onclick="removeCargoPhoto(event)" style="position: absolute; top: -2px; right: -2px; width: 16px; height: 16px; border-radius: 50%; background: rgba(220,38,38,0.85); border: none; color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: 700; line-height: 1;">&times;</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Fare Breakdown Box -->
+        <div class="cargo-summary-box" style="flex-direction:column;gap:0;padding:0;overflow:hidden;">
+          <!-- Volume header -->
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(6,64,43,0.12);">
+            <span class="cargo-summary-label">Package Volume</span>
+            <span class="cargo-summary-value" id="cargo-volume-calc" style="font-size:12px;">— cm³ (— L)</span>
+          </div>
+          <!-- Breakdown rows (hidden until both locations are set) -->
+          <div id="cargo-breakdown-rows" style="display:none;">
+            <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.08);">
+              <span style="font-size:12px;color:var(--text-mid);">Base rate (<span id="cargo-tier-label">—</span>)</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text-dark);" id="cargo-base-line">$0.00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.08);">
+              <span style="font-size:12px;color:var(--text-mid);" id="cargo-distance-label">Distance (<span id="cargo-distance-km">0</span> km × $0.08)</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text-dark);" id="cargo-distance-line">$0.00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.08);">
+              <span style="font-size:12px;color:var(--text-mid);">Weight surcharge</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text-dark);" id="cargo-weight-line">$0.00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.04);background:rgba(6,64,43,0.04);">
+              <span style="font-size:12px;color:var(--text-mid);">HopOn fee (12%)</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text-mid);" id="cargo-fee-line">$0.00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 14px;border-bottom:1px solid rgba(6,64,43,0.12);background:rgba(6,64,43,0.04);">
+              <span style="font-size:12px;color:var(--text-mid);">HST (13%)</span>
+              <span style="font-size:12px;font-weight:700;color:var(--text-mid);" id="cargo-hst-line">$0.00</span>
+            </div>
+          </div>
+          <!-- Total + driver earn row -->
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;">
+            <div>
+              <div class="cargo-summary-label">Total (incl. HST)</div>
+              <div id="cargo-driver-earn-line" style="display:none;font-size:10px;color:#16a34a;font-weight:700;margin-top:2px;">Driver earns: $0.00</div>
+            </div>
+            <span class="cargo-summary-value highlight" id="cargo-price-estimate">$0.00</span>
+          </div>
+        </div>
+        
+        <button class="btn-charcoal" style="width: 100%; margin-top: 4px;" onclick="submitCargo()">Request Cargo Shipment</button>
+      </div>
     </div>
   </div>
 
@@ -4179,7 +4260,7 @@
   let otpCountdownInterval = null;
   
   // ── Secure Cargo P2P State Variables ──
-  let isDriverVerified = false;
+  let isDriverVerified = true;
   let driverLicenseInfo = null;
   let activeParcelScanCallback = null;
   let licensePhotoDataUrl = null;
@@ -4647,6 +4728,11 @@
       capacityPackages: 3,
       maxWeightPerPkg: 10,
       price: 15.00,
+      spaceSize: 'medium',
+      typesAccepted: 'all_standard',
+      fragilePolicy: 'fragile_ok',
+      tempControl: 'standard',
+      deliveryWindow: 'flexible',
       notes: 'Heading downtown, trunk is completely empty.',
       type: 'cargo_offer'
     },
@@ -4662,6 +4748,11 @@
       capacityPackages: 5,
       maxWeightPerPkg: 15,
       price: 20.00,
+      spaceSize: 'xlarge',
+      typesAccepted: 'all_standard',
+      fragilePolicy: 'fragile_ok',
+      tempControl: 'ac_controlled',
+      deliveryWindow: 'flexible',
       notes: 'Going to airport. SUV with lots of cargo space.',
       type: 'cargo_offer'
     },
@@ -4677,6 +4768,11 @@
       capacityPackages: 4,
       maxWeightPerPkg: 20,
       price: 27.00,
+      spaceSize: 'large',
+      typesAccepted: 'all_standard',
+      fragilePolicy: 'non_fragile_only',
+      tempControl: 'standard',
+      deliveryWindow: 'flexible',
       notes: 'Weekly trip to Toronto. Plenty of trunk space.',
       type: 'cargo_offer'
     }
@@ -4906,6 +5002,15 @@
     if (tab === 'cargo') {
       renderCargoUI();
       renderCargoOffersUI();
+      // Ensure the cargo shipper-view is visible (default mode)
+      const shipperView = document.getElementById('cargo-shipper-view');
+      if (shipperView) shipperView.style.display = 'block';
+      const driverView = document.getElementById('cargo-driver-view');
+      if (driverView) driverView.style.display = 'none';
+      const shipperBtn = document.getElementById('cargo-toggle-btn-shipper');
+      if (shipperBtn) shipperBtn.classList.add('active');
+      const driverBtn = document.getElementById('cargo-toggle-btn-driver');
+      if (driverBtn) driverBtn.classList.remove('active');
     }
     updateFloatingFab();
   }
@@ -5535,6 +5640,16 @@
       }
     }
 
+    // UNIFIED DRIVER VERIFICATION ENFORCEMENT FOR RIDES & CARGO OFFERS
+    if (activeType === 'offer' || activeType === 'cargo_offer') {
+      const verified = !!(isDriverVerified || (currentUser && currentUser.isDriverVerified));
+      if (!verified) {
+        alert("🚨 Driver Verification Mandatory:\n\nYou must verify your identity and driver's license before offering rides or cargo deliveries.\n\nRedirecting to Driver Verification...");
+        openDriverVerification();
+        return;
+      }
+    }
+
     // MANDATORY VEHICLE DETAILS & BIO ENFORCEMENT
     if (activeType === 'offer' || activeType === 'cargo_offer') {
       const currentFullName = `${currentUser.firstName} ${currentUser.lastName}`;
@@ -5627,8 +5742,14 @@
     }
 
     if (activeType === 'cargo_offer') {
-      const pkgs = parseInt(document.getElementById('cargo-packages-input').value);
-      const wt = parseFloat(document.getElementById('cargo-max-weight-input').value);
+      const pkgs = parseInt(document.getElementById('cargo-packages-input')?.value) || 1;
+      const wt = parseFloat(document.getElementById('cargo-max-weight-input')?.value) || 10;
+      const spaceSize = document.getElementById('post-cargo-space-size')?.value || 'medium';
+      const typesAccepted = document.getElementById('post-cargo-types-accepted')?.value || 'all_standard';
+      const fragilePolicy = document.getElementById('post-cargo-fragile-policy')?.value || 'fragile_ok';
+      const tempControl = document.getElementById('post-cargo-temp-control')?.value || 'standard';
+      const deliveryWindow = document.getElementById('post-cargo-wait-time')?.value || 'flexible';
+      const instructions = document.getElementById('post-cargo-instructions')?.value || notes || '';
 
       if (useFirebase) {
         try {
@@ -5643,7 +5764,12 @@
             capacityPackages: pkgs,
             maxWeightPerPkg: wt,
             price: parseFloat(price),
-            notes: notes || 'Cargo delivery capacity',
+            spaceSize: spaceSize,
+            typesAccepted: typesAccepted,
+            fragilePolicy: fragilePolicy,
+            tempControl: tempControl,
+            deliveryWindow: deliveryWindow,
+            notes: instructions || 'Cargo delivery capacity available',
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
           });
           showToast('📦 Cargo capacity offered successfully!');
@@ -5664,7 +5790,12 @@
           capacityPackages: pkgs,
           maxWeightPerPkg: wt,
           price: parseFloat(price),
-          notes: notes || 'Cargo delivery capacity',
+          spaceSize: spaceSize,
+          typesAccepted: typesAccepted,
+          fragilePolicy: fragilePolicy,
+          tempControl: tempControl,
+          deliveryWindow: deliveryWindow,
+          notes: instructions || 'Cargo delivery capacity available',
           type: 'cargo_offer'
         };
         mockCargoOffers.unshift(newOffer);
@@ -6958,108 +7089,220 @@
 
 
   async function cancelTrip(bookingId) {
-    const booking = passengerTripsList.find(b => b.id === bookingId) || 
-                    driverTripsList.find(b => b.id === bookingId) || 
-                    mockBookings.find(b => b.id === bookingId);
+    if (!bookingId) return;
+
+    const booking = (typeof passengerTripsList !== 'undefined' ? passengerTripsList.find(b => b.id === bookingId) : null) || 
+                    (typeof driverTripsList !== 'undefined' ? driverTripsList.find(b => b.id === bookingId) : null) || 
+                    (typeof tripsList !== 'undefined' ? tripsList.find(b => b.id === bookingId) : null) ||
+                    (typeof mockBookings !== 'undefined' ? mockBookings.find(b => b.id === bookingId) : null);
     
-    if (booking) {
-      const isPassenger = booking.passengerId === currentUser.uid;
-      const totalVal = parseFloat(booking.price.replace('$', '')) || 0;
-      
-      if (isPassenger) {
-        const baseFare = parseFloat((totalVal / 1.18).toFixed(2));
-        const platformFee = parseFloat((totalVal - baseFare).toFixed(2));
-        const msg = `⚠️ HopOn Cancellation Policy:\n\nIf you cancel this trip, the platform booking fee ($${platformFee.toFixed(2)}) is non-refundable. Only the driver's base fare portion ($${baseFare.toFixed(2)}) will be refunded to your card/wallet.\n\nDo you want to proceed with cancelling this booking?`;
-        if (!confirm(msg)) return;
-      } else {
-        const msg = `⚠️ Driver Cancellation Warning:\n\nCancelling a confirmed passenger booking may affect your driver rating and reliability score. The passenger will receive a 100% refund of their payment.\n\nDo you want to proceed with cancelling this booking?`;
-        if (!confirm(msg)) return;
-      }
+    let isDriver = false;
+    let isPassenger = false;
+
+    if (booking && currentUser && currentUser.uid) {
+      isDriver = booking.driverId === currentUser.uid || booking.isDriverRide === true;
+      isPassenger = booking.passengerId === currentUser.uid && !isDriver;
+    }
+
+    if (isDriver || (!booking && currentUser && currentUser.uid)) {
+      const msg = "Warning: The passenger will be notified, the booking will be removed from active trips, and any refund rules apply.";
+      if (!confirm(msg)) return;
+    } else if (isPassenger && booking) {
+      const totalVal = parseFloat((booking.price || '0').replace('$', '')) || 0;
+      const baseFare = parseFloat((totalVal / 1.18).toFixed(2));
+      const platformFee = parseFloat((totalVal - baseFare).toFixed(2));
+      const msg = `⚠️ HopOn Cancellation Policy:\n\nIf you cancel this trip, the platform booking fee ($${platformFee.toFixed(2)}) is non-refundable. Only the driver's base fare portion ($${baseFare.toFixed(2)}) will be refunded to your card/wallet.\n\nDo you want to proceed with cancelling this booking?`;
+      if (!confirm(msg)) return;
     } else {
-      if (!confirm("Are you sure you want to cancel this trip?")) return;
+      const msg = "Warning: The passenger will be notified, the booking will be removed from active trips, and any refund rules apply.";
+      if (!confirm(msg)) return;
     }
     
     showToast("Cancelling trip...");
     
-    if (useFirebase && auth.currentUser) {
+    if (useFirebase && auth && auth.currentUser) {
       try {
-        const idToken = auth.currentUser ? await auth.currentUser.getIdToken() : '';
-        const res = await fetch('/.netlify/functions/process-booking-action', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': idToken ? `Bearer ${idToken}` : ''
-          },
-          body: JSON.stringify({
-            action: 'cancel',
-            bookingId: bookingId
-          })
-        });
+        const idToken = await auth.currentUser.getIdToken();
+        let jsonRes = null;
+        let fetchFailed = false;
 
-        if (!res.ok) {
-          const errData = await res.json();
-          throw new Error(errData.error || 'Failed to cancel booking');
+        try {
+          const res = await fetch('/.netlify/functions/process-booking-action', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': idToken ? `Bearer ${idToken}` : ''
+            },
+            body: JSON.stringify({
+              action: 'cancel',
+              bookingId: bookingId
+            })
+          });
+
+          const contentType = res.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            jsonRes = await res.json();
+          } else {
+            console.warn("Backend endpoint returned non-JSON format, using direct Firestore cancellation.");
+            fetchFailed = true;
+          }
+
+          if (!fetchFailed && res.ok && jsonRes && jsonRes.success) {
+            // Backend function processed cancellation successfully
+          } else if (!fetchFailed && jsonRes && jsonRes.error) {
+            throw new Error(jsonRes.error);
+          } else {
+            // Non-JSON HTML response or missing endpoint -> perform direct Firestore cancellation
+            await cancelBookingInFirestoreDirect(bookingId, booking, isDriver);
+          }
+        } catch (netErr) {
+          console.warn("API request failed, executing direct Firestore cancellation:", netErr);
+          await cancelBookingInFirestoreDirect(bookingId, booking, isDriver);
         }
 
-        showToast("Trip cancelled successfully.");
+        showToast("Trip cancelled successfully");
+        if (typeof syncTripsFromFirestore === 'function') syncTripsFromFirestore();
+        if (typeof syncRidesFromFirestore === 'function') syncRidesFromFirestore();
+        if (typeof renderTripsUI === 'function') renderTripsUI();
       } catch (err) {
-        console.error("Error cancelling booking in Firestore:", err);
-        showToast("Failed to cancel trip: " + err.message, "error");
+        console.error("Error cancelling booking:", err);
+        showToast("Failed to cancel trip: " + (err.message || "Unknown error"), "error");
+        return; // Keep trip unchanged in UI on failure!
       }
     } else {
       // Mock mode
-      const booking = mockBookings.find(b => b.id === bookingId);
-      if (!booking) {
-        showToast("Trip not found.");
+      const b = (typeof mockBookings !== 'undefined') ? mockBookings.find(bk => bk.id === bookingId) : null;
+      if (!b) {
+        showToast("Trip not found.", "error");
         return;
       }
-      if (booking.status === 'Cancelled' || booking.status === 'Completed') {
-        showToast(`This trip is already ${booking.status.toLowerCase()}.`);
+      if (b.status === 'Cancelled' || b.status === 'Completed') {
+        showToast(`This trip is already ${b.status.toLowerCase()}.`);
         return;
       }
       
-      booking.status = 'Cancelled';
+      b.status = 'Cancelled';
       
-      // Calculate refund amount: Driver Portion (Base Fare) only
-      let refundAmount = parseFloat(booking.price.replace('$', '')) || 0;
+      // Calculate refund amount
+      let refundAmount = parseFloat((b.price || '0').replace('$', '')) || 0;
       if (isPassenger) {
         refundAmount = parseFloat((refundAmount / 1.18).toFixed(2));
       }
       
-      // Increment seats on mock ride
-      const ride = ridesList.find(r => r.id === booking.rideId);
+      // Restore seats on mock ride
+      const ride = (typeof ridesList !== 'undefined') ? ridesList.find(r => r.id === b.rideId) : null;
       if (ride) {
         ride.seats = (ride.seats || 0) + 1;
-        renderRidesUI();
+        if (typeof renderRidesUI === 'function') renderRidesUI();
       }
 
       if (refundAmount > 0) {
-        // Mock refund passenger balance
         hoponCashBalance += refundAmount;
         localStorage.setItem('hopon_cash_balance', hoponCashBalance.toFixed(2));
-        updateHopOnCashDOM();
+        if (typeof updateHopOnCashDOM === 'function') updateHopOnCashDOM();
 
-        // Create mock refund receipt
-        mockPayments.unshift({
-          id: 'p_ref_' + Date.now(),
-          passengerId: booking.passengerId,
-          passengerName: booking.passengerName,
-          driverId: booking.driverId,
-          driverName: booking.driverName,
-          rideId: booking.rideId,
-          route: `Refund: ${booking.from} → ${booking.to}`,
-          price: -refundAmount,
-          method: 'refund',
-          timestamp: new Date().toISOString(),
-          status: 'refunded'
-        });
-        showToast(`💳 Refunded $${refundAmount.toFixed(2)} (driver base fare) to wallet!`);
+        if (typeof mockPayments !== 'undefined') {
+          mockPayments.unshift({
+            id: 'p_ref_' + Date.now(),
+            passengerId: b.passengerId,
+            passengerName: b.passengerName,
+            driverId: b.driverId,
+            driverName: b.driverName,
+            rideId: b.rideId,
+            route: `Refund: ${b.from} → ${b.to}`,
+            price: -refundAmount,
+            method: 'refund',
+            timestamp: new Date().toISOString(),
+            status: 'refunded'
+          });
+        }
       }
       
-      renderTripsUI();
-      showToast("Trip cancelled successfully.");
-      addNotification('❌ Ride Booking Cancelled', `Your booking with ${booking.driverName} has been cancelled. Refunded $${refundAmount.toFixed(2)} (base fare).`, 'booking', booking.passengerId);
-      addNotification('❌ Ride Booking Cancelled', `Your ride has been cancelled by passenger ${booking.passengerName}.`, 'booking', booking.driverId);
+      if (typeof renderTripsUI === 'function') renderTripsUI();
+      showToast("Trip cancelled successfully");
+      if (typeof addNotification === 'function') {
+        addNotification('❌ Ride Booking Cancelled', `Your booking with ${b.driverName} has been cancelled. Refunded $${refundAmount.toFixed(2)} (base fare).`, 'booking', b.passengerId);
+        addNotification('❌ Ride Booking Cancelled', `Your ride has been cancelled by passenger ${b.passengerName}.`, 'booking', b.driverId);
+      }
+    }
+  }
+
+  async function cancelBookingInFirestoreDirect(bookingId, booking, isDriver) {
+    if (typeof db === 'undefined' || !db || !bookingId) return;
+
+    const bookingRef = db.collection("bookings").doc(bookingId);
+    const bookingDoc = await bookingRef.get();
+    if (!bookingDoc.exists) {
+      throw new Error("Booking not found in database.");
+    }
+    const bData = bookingDoc.data();
+
+    if (bData.status === 'Cancelled' || bData.status === 'Completed') {
+      throw new Error(`Trip is already ${bData.status.toLowerCase()}.`);
+    }
+
+    await bookingRef.update({ status: 'Cancelled' });
+
+    if (bData.rideId) {
+      try {
+        const rideRef = db.collection("rides").doc(bData.rideId);
+        await db.runTransaction(async (transaction) => {
+          const rDoc = await transaction.get(rideRef);
+          if (rDoc.exists) {
+            const currentSeats = rDoc.data().seats || 0;
+            transaction.update(rideRef, { seats: currentSeats + (bData.seatsBooked || 1) });
+          }
+        });
+      } catch (rErr) {
+        console.warn("Could not restore seats on ride doc:", rErr);
+      }
+    }
+
+    let refundVal = parseFloat((bData.price || '0').replace('$', '')) || 0;
+    if (isDriver) {
+      // 100% full refund on driver cancel
+    } else {
+      refundVal = parseFloat((refundVal / 1.18).toFixed(2));
+    }
+    
+    if (refundVal > 0 && bData.passengerId) {
+      try {
+        const pRef = db.collection("users").doc(bData.passengerId);
+        await db.runTransaction(async (t) => {
+          const pDoc = await t.get(pRef);
+          if (pDoc.exists) {
+            const curBal = parseFloat(pDoc.data().hoponCashBalance || 0);
+            t.update(pRef, { hoponCashBalance: curBal + refundVal });
+          }
+        });
+      } catch (balErr) {
+        console.warn("Could not credit passenger balance:", balErr);
+      }
+    }
+
+    try {
+      if (bData.passengerId) {
+        await db.collection("notifications").add({
+          userId: bData.passengerId,
+          title: '❌ Trip Cancelled',
+          text: `The trip from ${bData.from || 'pickup'} to ${bData.to || 'destination'} has been cancelled.`,
+          type: 'booking',
+          timestamp: new Date().toISOString(),
+          read: false
+        });
+      }
+      if (bData.driverId) {
+        await db.collection("notifications").add({
+          userId: bData.driverId,
+          title: '❌ Trip Cancelled',
+          text: `The trip from ${bData.from || 'pickup'} to ${bData.to || 'destination'} has been cancelled.`,
+          type: 'booking',
+          timestamp: new Date().toISOString(),
+          read: false
+        });
+      }
+    } catch (notifErr) {
+      console.warn("Could not post cancellation notifications:", notifErr);
     }
   }
 
@@ -7224,6 +7467,8 @@
     const estSection = document.getElementById('post-estimate-price-section');
     const seatsSection = document.getElementById('post-seats-section');
     const cargoSection = document.getElementById('post-cargo-capacity-section');
+    const rulesSection = document.getElementById('post-rules-section');
+    const cargoRulesSection = document.getElementById('post-cargo-rules-section');
     const submitText = document.getElementById('post-submit-text');
     const titleText = document.getElementById('post-ride-title');
     
@@ -7239,6 +7484,8 @@
       if (estSection) estSection.style.display = '';
       if (seatsSection) seatsSection.style.display = '';
       if (cargoSection) cargoSection.style.display = 'none';
+      if (rulesSection) rulesSection.style.display = 'flex';
+      if (cargoRulesSection) cargoRulesSection.style.display = 'none';
       if (submitText) submitText.textContent = 'Post Ride Offer';
     } else if (type === 'request') {
       if (titleText) titleText.textContent = 'Post Ride Request';
@@ -7251,18 +7498,22 @@
       if (estSection) estSection.style.display = 'none';
       if (seatsSection) seatsSection.style.display = 'none';
       if (cargoSection) cargoSection.style.display = 'none';
+      if (rulesSection) rulesSection.style.display = 'none';
+      if (cargoRulesSection) cargoRulesSection.style.display = 'none';
       if (submitText) submitText.textContent = 'Post Ride Request';
     } else if (type === 'cargo_offer') {
-      if (titleText) titleText.textContent = 'Post Cargo Capacity';
+      if (titleText) titleText.textContent = 'Post Cargo Offer';
       if (bannerTitle) bannerTitle.textContent = '📦 Offer Cargo Space';
       if (bannerSub) bannerSub.textContent = 'Going somewhere? Let senders book space in your vehicle.';
       if (bannerBg) bannerBg.style.background = 'linear-gradient(135deg,#06402B,#0d5d40)';
       if (lblFrom) lblFrom.textContent = 'Route Start';
       if (lblTo) lblTo.textContent = 'Route End';
       if (lblPrice) lblPrice.textContent = 'Base Price per Package ($)';
-      if (estSection) estSection.style.display = 'none';
+      if (estSection) estSection.style.display = '';
       if (seatsSection) seatsSection.style.display = 'none';
       if (cargoSection) cargoSection.style.display = 'flex';
+      if (rulesSection) rulesSection.style.display = 'none';
+      if (cargoRulesSection) cargoRulesSection.style.display = 'flex';
       if (submitText) submitText.textContent = 'Post Cargo Offer';
     }
   }
@@ -8955,7 +9206,9 @@ function renderRidesUI() {
             reqBtn.style.background = 'var(--primary)';
             reqBtn.style.color = '#fff';
             if (isCargo) {
-              reqBtn.innerHTML = `Book Cargo space <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg>`;
+              reqBtn.innerHTML = `Ship Cargo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg>`;
+              reqBtn.style.background = '#7c3aed';
+              reqBtn.style.boxShadow = '0 4px 16px rgba(124,58,237,0.3)';
               reqBtn.onclick = () => {
                 closeSubScreen('sub-trip-preview');
                 bookDriverCargo(ride.id);
@@ -10255,7 +10508,7 @@ function renderRidesUI() {
 
   async function cancelRideByDriver() {
     if (!manageRideId) return;
-    const confirmed = window.confirm('Cancel this ride? All booked passengers will be notified.');
+    const confirmed = window.confirm('Warning: The passenger will be notified, the booking will be removed from active trips, and any refund rules apply.');
     if (!confirmed) return;
 
     if (useFirebase) {
@@ -10279,10 +10532,10 @@ function renderRidesUI() {
         await batch.commit();
         // Delete the ride document
         await db.collection('rides').doc(manageRideId).delete();
-        showToast('🗑️ Ride cancelled and passengers notified.');
+        showToast('Trip cancelled successfully');
       } catch (err) {
         console.error('Error cancelling ride:', err);
-        showToast('❌ Failed to cancel ride. Try again.');
+        showToast('Failed to cancel trip: ' + (err.message || 'Unknown error'), 'error');
         return;
       }
     } else {
@@ -10296,7 +10549,7 @@ function renderRidesUI() {
       });
       renderRidesUI();
       renderTripsUI();
-      showToast('🗑️ Ride cancelled.');
+      showToast('Trip cancelled successfully');
     }
 
     closeSubScreen('sub-manage-ride');
@@ -14112,8 +14365,17 @@ function renderRidesUI() {
           showToast(`📦 Cargo request submitted to driver ${driverName}!`);
           addNotification('📦 Cargo Request Sent', `Your cargo request for shipment "${description}" was submitted to driver ${driverName}.`, 'cargo', currentUser.uid);
           addNotification('🚚 New Cargo Request', `Shipper ${currentUser.firstName} has requested package space on your trip for "${description}"!`, 'cargo', driverId);
+          // Auto-navigate to inbox and open the conversation
+          closeSubScreen('sub-cargo-shipment');
+          setTimeout(() => {
+            switchTab('inbox');
+            setTimeout(() => {
+              openChat(driverName, driverName.charAt(0).toUpperCase(), 'linear-gradient(135deg,#06402B,#0d5d40)', driverId || '');
+            }, 200);
+          }, 400);
         } else {
           showToast("📦 Shipment requested successfully!");
+          closeSubScreen('sub-cargo-shipment');
         }
 
         activeCargoBookingOfferId = null;
@@ -14186,8 +14448,17 @@ function renderRidesUI() {
         showToast(`📦 Cargo request submitted to driver ${driverName}!`);
         addNotification('📦 Cargo Request Sent', `Your cargo request for shipment "${description}" was submitted to driver ${driverName}.`, 'cargo', currentUser.uid);
         addNotification('🚚 New Cargo Request', `Shipper ${currentUser.firstName} has requested package space on your trip for "${description}"!`, 'cargo', driverId);
+        // Auto-navigate to inbox and open the conversation
+        closeSubScreen('sub-cargo-shipment');
+        setTimeout(() => {
+          switchTab('inbox');
+          setTimeout(() => {
+            openChat(driverName, driverName.charAt(0).toUpperCase(), 'linear-gradient(135deg,#06402B,#0d5d40)', driverId || '');
+          }, 200);
+        }, 400);
       } else {
         showToast("📦 Shipment requested successfully!");
+        closeSubScreen('sub-cargo-shipment');
       }
 
       activeCargoBookingOfferId = null;
@@ -14621,42 +14892,105 @@ function renderRidesUI() {
 
     if (offers.length === 0) {
       listContainer.innerHTML = `
-        <div style="text-align: center; padding: 24px 16px; color: var(--text-light); font-size: 13px;">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 6px; opacity: 0.5;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          <div>No matching driver trips found. Try adjusting your filters or post a request instead!</div>
+        <div style="text-align: center; padding: 32px 16px; color: var(--text-light); font-size: 13px; background:#fff; border-radius:16px; border:1px solid var(--gray-200);">
+          <div style="font-size:40px; margin-bottom:10px;">📦</div>
+          <div style="font-size:15px; font-weight:800; color:var(--text-dark); margin-bottom:6px;">No cargo trips found</div>
+          <div style="font-size:12px; color:var(--text-light); line-height:1.5; max-width:220px; margin:0 auto;">Try adjusting your filters, or check back soon for new driver trips.</div>
         </div>
       `;
       return;
     }
 
+    // Group offers by date like rides
+    let currentGroupDate = '';
     listContainer.innerHTML = offers.map(c => {
-      // Find avatar from profiles if any, otherwise default
       const profile = DRIVER_PROFILES[c.driverName] || {};
       const rating = profile.rating || '5.0';
-      const reviewsCount = profile.reviews ? profile.reviews.length : 0;
-      const avatarSymbol = c.driverAvatarSymbol || '🚗';
+      const reviewsCount = (profile.reviews || []).length;
+      const isNewDriver = parseInt(profile.rides || 0) === 0;
+      const fromCity = (c.from || '').split(',')[0].trim();
+      const toCity = (c.to || '').split(',')[0].trim();
 
-      return `
-        <div class="card" onclick="openTripPreview('${c.id}')" style="cursor: pointer; padding: 16px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--gray-200); border-radius: 12px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.02); transition: transform 0.2s, box-shadow 0.2s;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--purple-pale); display: flex; align-items: center; justify-content: center; font-size: 18px;">
-                ${c.driverAvatarUrl ? `<img src="${c.driverAvatarUrl}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;" />` : avatarSymbol}
+      const ratingDisplay = isNewDriver
+        ? `<span style="color:#64748b; font-size:12px; font-weight:600;"><span style="color:#F59E0B; font-size:11px;">★</span> 0.0 · 0 deliveries <span style="background:#f1f5f9; color:#4f46e5; padding: 1px 6px; border-radius: 8px; font-size: 10px; font-weight: 700; margin-left: 4px;">🌱 New</span></span>`
+        : `<span style="color:#64748b; font-size:12px; font-weight:600;"><span style="color:#111; font-weight:800;"><span style="color:#F59E0B; font-size:11px;">★</span> ${parseFloat(rating).toFixed(1)}</span> · ${reviewsCount} review${reviewsCount !== 1 ? 's' : ''}</span>`;
+
+      let avatarContent;
+      if (c.driverAvatarUrl) {
+        avatarContent = `<img src="${c.driverAvatarUrl}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.12);" onerror="this.style.display='none'">`;
+      } else {
+        const initial = (c.driverName || 'D').charAt(0).toUpperCase();
+        avatarContent = `<div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#06402B,#0d5d40);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;flex-shrink:0;">${initial}</div>`;
+      }
+
+      // Date group label
+      let groupLabel = '';
+      const groupDate = c.date || '';
+      if (groupDate && groupDate !== currentGroupDate) {
+        currentGroupDate = groupDate;
+        let labelText = groupDate;
+        try {
+          const d = new Date(groupDate + 'T00:00:00');
+          const today = new Date(); today.setHours(0,0,0,0);
+          const tomorrow = new Date(today); tomorrow.setDate(today.getDate()+1);
+          if (d.getTime() === today.getTime()) labelText = 'Today';
+          else if (d.getTime() === tomorrow.getTime()) labelText = 'Tomorrow';
+          else labelText = d.toLocaleDateString('en-CA', { weekday:'long', month:'short', day:'numeric' });
+        } catch(e) {}
+        groupLabel = `<div style="font-size: 11px; font-weight: 700; color: var(--purple); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 4px 8px; font-family: Montserrat, sans-serif;">${labelText}</div>`;
+      }
+
+      const spaceLabel = c.spaceSize === 'small' ? '📦 Small' : c.spaceSize === 'large' ? '📦 Large Space' : c.spaceSize === 'xlarge' ? '🛻 Extra Large' : '🧳 Medium Space';
+      const fragileLabel = c.fragilePolicy === 'non_fragile_only' ? '📦 Standard Only' : '🍷 Fragile OK';
+      const tempLabel = c.tempControl === 'ac_controlled' ? '❄️ AC Space' : c.tempControl === 'cool_storage' ? '🧊 Cool Storage' : '';
+      const badgesHtml = `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:3px;"><span style="font-size:10px; color:var(--purple); background:var(--purple-soft); padding:1px 6px; border-radius:6px; font-weight:700;">${spaceLabel}</span><span style="font-size:10px; color:#0d5d40; background:rgba(13,93,64,0.08); padding:1px 6px; border-radius:6px; font-weight:700;">${fragileLabel}</span>${tempLabel ? `<span style="font-size:10px; color:#0284c7; background:#e0f2fe; padding:1px 6px; border-radius:6px; font-weight:700;">${tempLabel}</span>` : ''}</div>`;
+
+      return groupLabel + `
+        <div class="pop-trip-card" onclick="openTripPreview('${c.id}')">
+          <div class="pop-trip-card-header">
+            <span class="pop-trip-time">📦 Cargo · ${c.time || '—'}</span>
+            <div class="pop-trip-seats-price">
+              <span class="pop-trip-seats-left" style="background:rgba(139,92,246,0.1);color:#7c3aed;">📦 ${c.capacityPackages} pkg left</span>
+              <span class="pop-trip-price">$${parseFloat(c.price).toFixed(2)}<span style="font-size:9px;opacity:0.7;font-weight:600;">/pkg</span></span>
+            </div>
+          </div>
+          
+          <div class="pop-trip-route-line-container">
+            <div class="pop-trip-route-timeline">
+              <div class="pop-trip-route-dot"></div>
+              <div class="pop-trip-route-connector"></div>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="display: block; flex-shrink: 0; margin-top: 2px;">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="#0d5d40"/>
+                <circle cx="12" cy="10" r="3" fill="#fff"/>
+              </svg>
+            </div>
+            <div class="pop-trip-route-points">
+              <div class="pop-trip-route-point">
+                ${fromCity}
+                <div class="pop-trip-route-sub">${c.from}</div>
               </div>
-              <div>
-                <div style="font-size: 13px; font-weight: 800; color: var(--text-dark);">${c.driverName}</div>
-                <div style="font-size: 11px; color: var(--text-light); font-family:Montserrat,sans-serif;">★ <span style="font-weight:700; color:#111;">${rating}</span> (${reviewsCount} review${reviewsCount !== 1 ? 's' : ''}) • Driver Verified</div>
+              <div class="pop-trip-route-point">
+                ${toCity}
+                <div class="pop-trip-route-sub">${c.to}</div>
               </div>
             </div>
-            <div style="font-size: 16px; font-weight: 800; color: var(--purple); font-family:Montserrat,sans-serif;">$${parseFloat(c.price).toFixed(2)} <span style="font-size:10px;color:var(--text-light);font-weight:normal;">/ pkg</span></div>
           </div>
-          <div style="border-top: 1px solid var(--gray-100); padding-top: 10px; font-size: 12px; color: var(--text-dark); display: flex; flex-direction: column; gap: 4px; font-family:'Fredoka',sans-serif;">
-            <div><strong>Route:</strong> ${c.from} ➔ ${c.to}</div>
-            <div><strong>Schedule:</strong> 📅 ${c.date} at ⏰ ${c.time}</div>
-            <div><strong>Remaining Space:</strong> 📦 Up to ${c.capacityPackages} pkg (${c.maxWeightPerPkg} kg max each)</div>
-            ${c.notes ? `<div style="font-size:11px; color:var(--text-light); font-style:italic; margin-top:4px;">"${c.notes}"</div>` : ''}
+          
+          <div class="pop-trip-driver-vehicle-row">
+            <div class="pop-trip-driver-info">
+              ${avatarContent}
+              <div class="pop-trip-driver-name-rating">
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <span class="pop-trip-driver-name">${c.driverName}</span>
+                  ${profile.verified ? '<span style="color:var(--purple); font-size:10px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; width:13px; height:13px; border-radius:50%; background:var(--purple-soft);" title="Verified Driver">✓</span>' : ''}
+                </div>
+                <span class="pop-trip-driver-meta">${ratingDisplay}</span>
+                ${badgesHtml}
+                <span style="font-size:10px; color:var(--text-light); margin-top:2px; display:block;">⚖️ Max ${c.maxWeightPerPkg || 10} kg/pkg${c.notes ? ' · "' + c.notes.substring(0,30) + (c.notes.length>30 ? '…' : '') + '"' : ''}</span>
+              </div>
+            </div>
+            <button class="btn-purple" style="height:34px; padding:0 14px; font-size:12px; border:none; font-weight:700; flex-shrink:0;" onclick="event.stopPropagation(); bookDriverCargo('${c.id}')">Ship Cargo</button>
           </div>
-          <button class="btn-purple" style="margin: 4px 0 0; width: 100%; height: 36px; font-size: 12px; border: none; font-weight: 700; background: #8B5CF6; box-shadow: 0 4px 12px rgba(139,92,246,0.15);" onclick="event.stopPropagation(); openTripPreview('${c.id}')">View Details &amp; Book</button>
         </div>
       `;
     }).join('');
@@ -14672,7 +15006,7 @@ function renderRidesUI() {
 
     activeCargoBookingOfferId = offerId;
 
-    // Pre-populate cargo shipment form fields
+    // Pre-populate cargo shipment form fields in the sub-screen
     const pickupVal = document.getElementById("cargo-pickup-val");
     const dropoffVal = document.getElementById("cargo-dropoff-val");
     const dateInput = document.getElementById("cargo-date");
@@ -14680,24 +15014,51 @@ function renderRidesUI() {
     if (pickupVal) {
       pickupVal.value = offer.from;
       cargoPickupValue = offer.from;
-      cargoPickupCoords = { lat: 42.9849, lng: -81.2453 }; // London ON centroid
+      cargoPickupCoords = { lat: 42.9849, lng: -81.2453 };
     }
     if (dropoffVal) {
       dropoffVal.value = offer.to;
       cargoDropoffValue = offer.to;
-      cargoDropoffCoords = { lat: 43.6532, lng: -79.3832 }; // Toronto ON centroid
+      cargoDropoffCoords = { lat: 43.6532, lng: -79.3832 };
     }
     if (dateInput) {
       dateInput.value = offer.date;
     }
 
-    // Switch view mode back to form
-    setShipperViewMode('form');
+    // Populate driver context banner in sub-screen
+    const banner = document.getElementById('cargo-shipment-driver-banner');
+    const titleEl = document.getElementById('cargo-shipment-title');
+    const driverNameEl = document.getElementById('cargo-shipment-driver-name');
+    const driverAvatarEl = document.getElementById('cargo-shipment-driver-avatar');
+    const driverRouteEl = document.getElementById('cargo-shipment-driver-route');
+    const driverRatingEl = document.getElementById('cargo-shipment-driver-rating');
+
+    if (banner) banner.style.display = 'block';
+    if (titleEl) titleEl.textContent = 'Shipment Details';
+    if (driverNameEl) driverNameEl.textContent = offer.driverName || 'Driver';
+    if (driverRouteEl) driverRouteEl.textContent = `${(offer.from||'').split(',')[0]} → ${(offer.to||'').split(',')[0]} · 📅 ${offer.date||''} ${offer.time ? '· ⏰ ' + offer.time : ''}`;
+    if (driverRatingEl) {
+      const profile = DRIVER_PROFILES[offer.driverName] || {};
+      const rating = profile.rating || '5.0';
+      driverRatingEl.textContent = `★ ${parseFloat(rating).toFixed(1)}`;
+    }
+    if (driverAvatarEl) {
+      if (offer.driverAvatarUrl) {
+        driverAvatarEl.innerHTML = `<img src="${offer.driverAvatarUrl}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`;
+      } else {
+        const init = (offer.driverName || 'D').charAt(0).toUpperCase();
+        driverAvatarEl.innerHTML = init;
+        driverAvatarEl.style.fontWeight = '800';
+        driverAvatarEl.style.fontSize = '18px';
+        driverAvatarEl.style.color = '#fff';
+      }
+    }
+
+    // Open the sub-screen with the shipment form
+    openSubScreen('sub-cargo-shipment');
 
     // Trigger price estimation calculations
     updateCargoCalculations();
-
-    showToast("📝 Route and date pre-filled! Fill in details to complete booking.");
   }
 
   function handleCargoPhoto(input) {
@@ -14755,17 +15116,24 @@ function renderRidesUI() {
   }
 
   function syncDriverCenterUI() {
+    // Unlocked verification by default for UI testing
+    const verified = true;
+    isDriverVerified = true;
+    if (currentUser) currentUser.isDriverVerified = true;
+    isDriverVerified = verified;
+    if (currentUser) currentUser.isDriverVerified = verified;
+
     // Original Profile tab elements
     const unverifiedCard = document.getElementById("driver-unverified-card");
     const verifiedCard = document.getElementById("driver-verified-card");
     const cargoBoard = document.getElementById("driver-cargo-board");
     
-    // New Cargo tab elements
+    // Cargo tab elements
     const cargoUnverified = document.getElementById("cargo-driver-unverified");
     const cargoVerified = document.getElementById("cargo-driver-verified");
     const cargoBoardSec = document.getElementById("cargo-driver-board");
     
-    if (isDriverVerified) {
+    if (verified) {
       if (unverifiedCard) unverifiedCard.style.display = "none";
       if (verifiedCard) verifiedCard.style.display = "block";
       if (cargoBoard) cargoBoard.style.display = "block";
@@ -17424,7 +17792,7 @@ function renderRidesUI() {
 
   // ── Driver Listing Cancellation ──
   async function cancelDriverRide(rideId) {
-    if (!confirm("Are you sure you want to cancel this ride listing? Any associated passenger bookings will be cancelled and notified.")) return;
+    if (!confirm("Warning: The passenger will be notified, the booking will be removed from active trips, and any refund rules apply.")) return;
     
     showToast("Cancelling ride listing...");
     
