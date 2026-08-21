@@ -861,49 +861,65 @@
       <!-- Shipper View: Search-first layout (mirrors Rides) -->
       <div id="cargo-shipper-view">
 
-        <!-- Search Card: always visible (mirrors Rides search card) -->
-        <div class="pop-search-card" id="cargo-search-card" style="margin-bottom: 16px; border: 1.5px solid var(--gray-200); box-shadow: var(--shadow-sm); border-radius: 16px; padding: 6px; background:#fff;">
-          <!-- From field -->
-          <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-from')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
-            <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📍</span>
-            <div class="pop-search-field-content" style="flex:1; text-align:left;">
-              <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">From</div>
-              <div class="pop-search-field-value" id="cargo-browse-from-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">All locations</div>
-            </div>
-          </div>
-          
-          <!-- To field -->
-          <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-to')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
-            <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">🏁</span>
-            <div class="pop-search-field-content" style="flex:1; text-align:left;">
-              <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">To</div>
-              <div class="pop-search-field-value" id="cargo-browse-to-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Where to?</div>
-            </div>
-          </div>
-          
-          <!-- Departing Date field -->
-          <div class="pop-search-field" onclick="openCustomDatePicker('cargo')" style="padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
-            <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📅</span>
-            <div class="pop-search-field-content" style="flex:1; display:flex; justify-content:space-between; align-items:center;">
-              <div style="flex:1; text-align:left;">
-                <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">Date (optional)</div>
-                <div class="pop-search-field-value" id="cargo-browse-filter-date-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Any date</div>
+        <!-- ── Search Home View ── -->
+        <div id="cargo-search-home">
+          <!-- Search Card -->
+          <div class="pop-search-card" id="cargo-search-card" style="margin-bottom: 16px; border: 1.5px solid var(--gray-200); box-shadow: var(--shadow-sm); border-radius: 16px; padding: 6px; background:#fff;">
+            <!-- From field -->
+            <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-from')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
+              <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📍</span>
+              <div class="pop-search-field-content" style="flex:1; text-align:left;">
+                <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">From</div>
+                <div class="pop-search-field-value" id="cargo-browse-from-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">All locations</div>
               </div>
-              <button id="cargo-browse-clear-btn" onclick="clearCargoBrowseFilters(event)" style="display:none; background:none; border:1px solid var(--gray-200); border-radius:12px; padding:3px 8px; font-size:10px; font-weight:700; color:var(--text-mid); cursor:pointer; font-family:Montserrat,sans-serif;">Clear</button>
+            </div>
+            
+            <!-- To field -->
+            <div class="pop-search-field" onclick="openLocationSearch('cargo-browse-to')" style="border-bottom: 1px solid var(--gray-100); padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
+              <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">🏁</span>
+              <div class="pop-search-field-content" style="flex:1; text-align:left;">
+                <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">To</div>
+                <div class="pop-search-field-value" id="cargo-browse-to-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Where to?</div>
+              </div>
+            </div>
+            
+            <!-- Departing Date field -->
+            <div class="pop-search-field" onclick="openCustomDatePicker('cargo')" style="padding: 8px 12px; display:flex; align-items:center; cursor:pointer;">
+              <span class="pop-search-field-icon" style="font-size:16px; margin-right:10px;">📅</span>
+              <div class="pop-search-field-content" style="flex:1; display:flex; justify-content:space-between; align-items:center;">
+                <div style="flex:1; text-align:left;">
+                  <div class="pop-search-field-label" style="font-size: 10px; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; font-family:Montserrat,sans-serif;">Date (optional)</div>
+                  <div class="pop-search-field-value" id="cargo-browse-filter-date-val" style="font-size: 13px; font-weight: 700; color: var(--text-light); margin-top:2px; font-family:Montserrat,sans-serif;">Any date</div>
+                </div>
+                <button id="cargo-browse-clear-btn" onclick="clearCargoBrowseFilters(event)" style="display:none; background:none; border:1px solid var(--gray-200); border-radius:12px; padding:3px 8px; font-size:10px; font-weight:700; color:var(--text-mid); cursor:pointer; font-family:Montserrat,sans-serif;">Clear</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search Button -->
+          <button class="pop-btn-black" id="cargo-search-btn" onclick="executeCargoOffersSearch()" style="margin-bottom: 16px;">Search</button>
+
+          <!-- Your Shipments Section -->
+          <div id="cargo-shipments-section" style="margin-top: 8px;">
+            <h3 style="margin: 0 0 12px; font-size: 16px; font-weight: 800; color: var(--text-dark);">Your Shipments</h3>
+            <div id="cargo-timeline-list" style="display: flex; flex-direction: column; gap: 12px;">
+              <!-- Dynamically rendered cargo items -->
             </div>
           </div>
         </div>
 
-        <!-- Driver Cargo Cards List (always visible) -->
-        <div id="cargo-drivers-list" style="display: flex; flex-direction: column; gap: 12px;">
-          <!-- Dynamic driver trip cards rendered here -->
-        </div>
+        <!-- ── Search Results View (hidden by default, mirrors rides-search-results) ── -->
+        <div id="cargo-search-results" style="display: none; flex-direction: column; gap: 12px;">
+          <!-- Back to search home header -->
+          <div style="display: flex; align-items: center; padding: 10px 16px; gap: 12px; background: white; border-bottom: 1.5px solid var(--gray-200); margin-bottom: 8px; border-radius: 12px;">
+            <button onclick="showCargoSearchHome()" style="background: none; border: none; cursor: pointer; color: var(--text-dark); display: flex; align-items: center; justify-content: center; padding: 4px; outline: none; border-style: solid;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <span style="font-size: 15px; font-weight: 800; color: var(--text-dark);" id="cargo-results-route-title">Available Cargo Offers</span>
+          </div>
 
-        <!-- Your Shipments Section -->
-        <div id="cargo-shipments-section" style="margin-top: 24px;">
-          <h3 style="margin: 0 0 12px; font-size: 16px; font-weight: 800; color: var(--text-dark);">Your Shipments</h3>
-          <div id="cargo-timeline-list" style="display: flex; flex-direction: column; gap: 12px;">
-            <!-- Dynamically rendered cargo items -->
+          <!-- Driver Cargo Cards List (populated by renderCargoOffersUI) -->
+          <div id="cargo-drivers-list" style="display: flex; flex-direction: column; gap: 12px; padding: 0 4px;">
           </div>
         </div>
 
@@ -917,27 +933,101 @@
             <span style="color:#ef4444;display:flex;align-items:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
             <div>
               <h4 style="margin:0 0 4px; font-size:14px; font-weight:700; color:var(--text-dark);">Identity Verification Required</h4>
-              <p style="margin:0; font-size:12px; color:var(--text-light);">Verify your ID & driver's license to unlock cargo delivery boards.</p>
+              <p style="margin:0; font-size:12px; color:var(--text-light);">Verify your ID &amp; driver's license to offer cargo space.</p>
             </div>
           </div>
           <button class="btn-purple" style="margin-top:12px; width:100%; height:38px; font-size:13px; margin-bottom:0;" onclick="openDriverVerification()">Verify Identity</button>
         </div>
 
-        <!-- Verified Status Badge -->
-        <div id="cargo-driver-verified" class="card" style="padding: 12px; border: 1px solid #22c55e; background: rgba(34,197,94,0.03); border-radius: 12px; display:none; align-items:center; gap:8px; margin-bottom: 20px;">
-          <span style="color:#22c55e;display:flex;align-items:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>
-          <span style="font-size:13px; font-weight:700; color:#15803d;">Identity &amp; License Verified</span>
+
+        <!-- ══ Offer Cargo Form (mirrors Give a Ride style) ══ -->
+        <div id="cargo-offer-form-wrap">
+          <div style="background:linear-gradient(135deg,#f97316,#fb923c);border-radius:16px;padding:16px 18px;color:#fff;margin-bottom:20px;">
+            <p style="font-size:16px;font-weight:700;margin-bottom:4px;">📦 Offer your cargo space</p>
+            <p style="font-size:13px;opacity:.85;">List your available space and earn on your existing route.</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Pickup Location</label>
+            <input class="form-input" type="text" placeholder="Search or select pickup location..." id="cargo-offer-from-input" onclick="openLocationSearch('cargo-offer-from')" readonly style="cursor:pointer;" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination</label>
+            <input class="form-input" type="text" placeholder="Search or select destination..." id="cargo-offer-to-input" onclick="openLocationSearch('cargo-offer-to')" readonly style="cursor:pointer;" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Date</label>
+              <input class="form-input" type="date" id="cargo-offer-date-input" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Time</label>
+              <input class="form-input" type="time" id="cargo-offer-time-input" />
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--gray-200); margin-top:16px; padding-top:16px; display:flex; flex-direction:column; gap:12px;">
+            <p class="profile-section-label" style="margin-bottom:4px;">Cargo Space Details</p>
+
+            <div class="form-row" style="display:flex; gap:12px;">
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Space Size</label>
+                <select class="form-input" id="cargo-offer-space-size" style="padding:10px; border-radius:12px; background:#fff; font-family:inherit; font-size:inherit;">
+                  <option value="small">📦 Small (backpack size)</option>
+                  <option value="medium">🗃️ Medium (box / crate)</option>
+                  <option value="large">🚚 Large (full trunk)</option>
+                  <option value="extra_large">🏗️ Extra Large (van/truck)</option>
+                </select>
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Max Weight (kg)</label>
+                <input class="form-input" type="number" min="1" max="500" placeholder="e.g. 20" id="cargo-offer-max-weight" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Cargo Types Accepted</label>
+              <select class="form-input" id="cargo-offer-types" style="padding:10px; border-radius:12px; background:#fff; font-family:inherit; font-size:inherit;">
+                <option value="general">📦 General goods</option>
+                <option value="food">🍱 Food &amp; perishables</option>
+                <option value="clothing">👕 Clothing &amp; textiles</option>
+                <option value="electronics">💻 Electronics</option>
+                <option value="furniture">🪑 Furniture &amp; bulky items</option>
+                <option value="documents">📄 Documents &amp; parcels</option>
+                <option value="any">✅ Any cargo type</option>
+              </select>
+            </div>
+
+            <div class="form-row" style="display:flex; gap:12px;">
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Fragile Items?</label>
+                <select class="form-input" id="cargo-offer-fragile" style="padding:10px; border-radius:12px; background:#fff; font-family:inherit; font-size:inherit;">
+                  <option value="no">🚫 No fragile items</option>
+                  <option value="yes">🥚 Fragile items OK</option>
+                </select>
+              </div>
+              <div class="form-group" style="flex:1;">
+                <label class="form-label">Suggested Price ($)</label>
+                <input class="form-input" type="number" min="1" placeholder="e.g. 10.00" id="cargo-offer-price" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Delivery Instructions</label>
+              <textarea class="form-input" id="cargo-offer-instructions" placeholder="e.g. Drop-off at front door. Packages must be sealed. No liquids." style="font-family:inherit; font-size:inherit; height:90px; resize:vertical; line-height:1.5; padding:12px;"></textarea>
+            </div>
+          </div>
+
+          <button class="btn-purple" style="background:linear-gradient(135deg,#f97316,#fb923c); margin-top:8px;" onclick="postCargoOffer()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Post Cargo Offer
+          </button>
         </div>
 
-        <!-- Available Cargo Shipments Feed (shown when driver is verified) -->
-        <div id="cargo-driver-board" style="display: none;">
-          <h4 style="margin: 0 0 12px; font-size:15px; font-weight:800; color:var(--text-dark);">Available Cargo Shipments</h4>
-          <div id="cargo-driver-list" style="display:flex; flex-direction:column; gap:12px;">
-            <!-- Dynamically populated cargo delivery requests -->
-          </div>
-        </div>
       </div>
       
+
       <div style="height: 32px"></div>
     </div>
 
@@ -1195,10 +1285,6 @@
           <button class="btn-purple" style="margin-top:12px; width:100%; height:38px; font-size:13px; margin-bottom:0;" onclick="openDriverVerification()">Verify Identity</button>
         </div>
 
-        <div id="driver-verified-card" class="card" style="margin: 16px; padding: 12px; border: 1px solid #22c55e; background: rgba(34,197,94,0.03); border-radius: 12px; display:none; align-items:center; gap:8px;">
-          <span style="color:#22c55e;display:flex;align-items:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>
-          <span style="font-size:13px; font-weight:700; color:#15803d;">Identity &amp; License Verified</span>
-        </div>
 
         <!-- Setup warning banner (shown when bio or vehicle details are missing) -->
         <div id="driver-setup-warning" class="card" style="margin: 16px; padding: 14px; border: 1.5px solid var(--orange); background: #fffbeb; border-radius: 12px; display: none;">
@@ -3552,6 +3638,7 @@
     </div>
   </div>
 
+
   <!-- ═══ CARGO SHIPMENT FORM SCREEN ═══ -->
   <div class="sub-screen" id="sub-cargo-shipment" style="overflow-y: auto; background: #f8fafc; font-family: Montserrat, sans-serif; padding: 0;">
     <!-- Header -->
@@ -4715,68 +4802,8 @@
   let cargoOffersList = [];
   let unsubCargoOffers = null;
   let activeCargoBookingOfferId = null;
-  let mockCargoOffers = [
-    {
-      id: 'co_1',
-      driverId: 'driver_sam',
-      driverName: 'Sam Patel',
-      driverAvatarUrl: '',
-      from: 'Western University (UWO)',
-      to: 'Downtown London (Dundas St)',
-      date: '2026-07-15',
-      time: '02:00 PM',
-      capacityPackages: 3,
-      maxWeightPerPkg: 10,
-      price: 15.00,
-      spaceSize: 'medium',
-      typesAccepted: 'all_standard',
-      fragilePolicy: 'fragile_ok',
-      tempControl: 'standard',
-      deliveryWindow: 'flexible',
-      notes: 'Heading downtown, trunk is completely empty.',
-      type: 'cargo_offer'
-    },
-    {
-      id: 'co_2',
-      driverId: 'driver_alex',
-      driverName: 'Alex Chen',
-      driverAvatarUrl: '',
-      from: 'Fanshawe College (Main Campus)',
-      to: 'London International Airport (YXU)',
-      date: '2026-07-18',
-      time: '11:00 AM',
-      capacityPackages: 5,
-      maxWeightPerPkg: 15,
-      price: 20.00,
-      spaceSize: 'xlarge',
-      typesAccepted: 'all_standard',
-      fragilePolicy: 'fragile_ok',
-      tempControl: 'ac_controlled',
-      deliveryWindow: 'flexible',
-      notes: 'Going to airport. SUV with lots of cargo space.',
-      type: 'cargo_offer'
-    },
-    {
-      id: 'co_3',
-      driverId: 'driver_taylor',
-      driverName: 'Taylor Kim',
-      driverAvatarUrl: '',
-      from: 'London, ON',
-      to: 'Toronto, ON',
-      date: '2026-07-20',
-      time: '09:00 AM',
-      capacityPackages: 4,
-      maxWeightPerPkg: 20,
-      price: 27.00,
-      spaceSize: 'large',
-      typesAccepted: 'all_standard',
-      fragilePolicy: 'non_fragile_only',
-      tempControl: 'standard',
-      deliveryWindow: 'flexible',
-      notes: 'Weekly trip to Toronto. Plenty of trunk space.',
-      type: 'cargo_offer'
-    }
-  ];
+  let mockCargoOffers = [];
+
   let unsubCargoOwner = null;
   let unsubCargoDriver = null;
   let unsubCargoBoard = null;
@@ -8767,12 +8794,12 @@ function renderRidesUI() {
       document.getElementById('tp-from-city').textContent = fromCity;
       document.getElementById('tp-to-city').textContent = toCity;
       document.getElementById('tp-depart-time').textContent = `${ride.date} at ${ride.time}`;
-      const isCargo = ride.type === 'cargo_offer';
+      const isCargo = ride.type === 'cargo_offer' || !!ride.spaceSize || !!ride.maxWeightPerPkg || (typeof cargoOffersList !== 'undefined' && cargoOffersList.some(o => o.id === ride.id)) || (typeof mockCargoOffers !== 'undefined' && mockCargoOffers.some(o => o.id === ride.id));
       const priceLabel = document.getElementById('tp-price-label');
       if (priceLabel) priceLabel.textContent = isCargo ? 'Price per package' : 'Price per seat';
       document.getElementById('tp-price-per-seat').textContent = `$${parseFloat(ride.price).toFixed(2)}`;
       document.getElementById('tp-seats-left').textContent = isCargo ? 
-        `📦 Up to ${ride.capacityPackages} pkg space left` : 
+        `📦 Up to ${ride.capacityPackages || 3} pkg space left` : 
         `${ride.seats} seat${ride.seats !== 1 ? 's' : ''} left`;
 
       // Store from/to for Google Maps external link
@@ -8799,7 +8826,7 @@ function renderRidesUI() {
         pickupAreas: ['General Campus Area'],
         bio: '',
         color: 'linear-gradient(135deg,#06402B,#0d5d40)',
-        initial: ride.driverName.charAt(0),
+        initial: (ride.driverName || 'D').charAt(0),
         reviews: []
       };
 
@@ -8819,27 +8846,27 @@ function renderRidesUI() {
         }
       });
       
-      const computedRating = ratedCount > 0 ? (sumRatings / ratedCount).toFixed(1) : (dp.rating || "5.0");
-      const computedRides = ridesCount || dp.rides || 0;
+      const computedRating = ratedCount > 0 ? (sumRatings / ratedCount).toFixed(1) : (dp.rating || (ride.driverRating ? parseFloat(ride.driverRating).toFixed(1) : "5.0"));
+      const computedRides = ridesCount || dp.rides || (ride.driverReviews || 0);
 
-      document.getElementById('tp-driver-name').textContent = ride.driverName;
+      document.getElementById('tp-driver-name').textContent = ride.driverName || 'Driver';
       const isNewDriver = parseInt(computedRides) === 0;
       
       document.getElementById('tp-driver-meta-row').innerHTML = isNewDriver ? 
-        `<span style="color:#64748b; font-size:12.5px; font-weight:600;">★ 0.0 · 0 people driven</span>` : 
-        `<span style="color:#64748b; font-size:12.5px; font-weight:600;"><span style="color:#111; font-weight: 800;">★ ${parseFloat(computedRating).toFixed(1)}</span> · ${computedRides} ${computedRides === 1 ? 'person' : 'people'} driven</span>`;
+        `<span style="color:#64748b; font-size:12.5px; font-weight:600;">★ 0.0 · 0 deliveries</span>` : 
+        `<span style="color:#64748b; font-size:12.5px; font-weight:600;"><span style="color:#111; font-weight: 800;">★ ${parseFloat(computedRating).toFixed(1)}</span> · ${computedRides} ${computedRides === 1 ? 'delivery' : 'deliveries'}</span>`;
       
       // Bio fallback
       const bioText = dp.bio ? dp.bio.trim() : '';
       const bioEl = document.getElementById('tp-driver-bio');
       if (bioEl) {
-        bioEl.textContent = bioText || "Driver hasn’t written a bio yet.";
+        bioEl.textContent = bioText || (isCargo ? "Driver is ready to safely deliver your packages along this route." : "Driver hasn’t written a bio yet.");
       }
       
       // Verified Badge
       const verifiedPill = document.getElementById('tp-driver-verified-pill');
       if (verifiedPill) {
-        verifiedPill.style.display = dp.verified ? 'inline-flex' : 'none';
+        verifiedPill.style.display = (dp.verified || ride.driverVerified) ? 'inline-flex' : 'none';
       }
 
       // Trust Checklist Badges (Hidden to match cleaner design but populated to keep references alive)
@@ -8868,7 +8895,7 @@ function renderRidesUI() {
         if (avatarUrl) {
           driverAvatarContainer.innerHTML = `<img src="${avatarUrl}" style="width: 100%; height: 100%; object-fit: cover;" />`;
         } else {
-          driverAvatarContainer.innerHTML = `<span style="color: #fff; font-size: 16px; font-weight: 800;">${dp.initial}</span>`;
+          driverAvatarContainer.innerHTML = `<span style="color: #fff; font-size: 16px; font-weight: 800;">${dp.initial || 'D'}</span>`;
         }
       }
       
@@ -8932,35 +8959,64 @@ function renderRidesUI() {
         }
       }
 
-      // 4. RIDE PREFERENCES (Step 6)
+      // 4. RIDE & CARGO PREFERENCES (Step 6)
       const prefContainer = document.getElementById('tp-car-preferences');
       if (prefContainer) {
         prefContainer.innerHTML = '';
         if (isCargo) {
+          const spaceMap = {
+            small: 'Small Space (Backpack / Tote)',
+            medium: 'Medium Space (Standard Box / Crate)',
+            large: 'Large Space (Full Trunk / Luggage)',
+            xlarge: 'Extra Large Space (SUV / Van Capacity)',
+            extra_large: 'Extra Large Space (SUV / Van Capacity)'
+          };
+          const spaceText = spaceMap[ride.spaceSize] || 'Medium Space (Standard Box)';
+          const fragileText = ride.fragilePolicy === 'fragile_ok' ? 'Fragile items accepted (handle with care)' : 'Standard non-fragile items only';
+          const fragileIcon = ride.fragilePolicy === 'fragile_ok' ? '🍷' : '📦';
+          const tempText = ride.tempControl === 'ac_controlled' ? 'AC Climate Controlled Space' : (ride.tempControl === 'cool_storage' ? 'Cool Storage Space' : 'Standard Temperature');
+          const tempIcon = ride.tempControl === 'ac_controlled' ? '❄️' : '🌡️';
+
           prefContainer.innerHTML = `
-            <div style="display:flex; align-items:center; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:4px 0;">
-              <span style="font-size:18px;">📦</span>
+            <div style="display:flex; align-items:flex-start; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:6px 0;">
+              <span style="font-size:18px; line-height:1;">📦</span>
               <div>
-                <div style="font-weight:700;">Space Capacity</div>
-                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Up to ${ride.capacityPackages} packages accepted</div>
+                <div style="font-weight:700;">Available Cargo Space</div>
+                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">${spaceText} · Up to ${ride.capacityPackages || 3} pkgs</div>
               </div>
             </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:4px 0;">
-              <span style="font-size:18px;">⚖️</span>
+            <div style="display:flex; align-items:flex-start; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:6px 0;">
+              <span style="font-size:18px; line-height:1;">⚖️</span>
               <div>
-                <div style="font-weight:700;">Weight Limit</div>
-                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Max ${ride.maxWeightPerPkg} kg per package</div>
+                <div style="font-weight:700;">Maximum Weight Limit</div>
+                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Max ${ride.maxWeightPerPkg || 10} kg per package</div>
               </div>
             </div>
-            <div style="display:flex; align-items:center; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:4px 0;">
-              <span style="font-size:18px;">🚫</span>
+            <div style="display:flex; align-items:flex-start; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:6px 0;">
+              <span style="font-size:18px; line-height:1;">${fragileIcon}</span>
               <div>
-                <div style="font-weight:700;">No Passenger Seating</div>
-                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">This trip is dedicated to cargo delivery only</div>
+                <div style="font-weight:700;">Fragile Policy</div>
+                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">${fragileText}</div>
+              </div>
+            </div>
+            ${ride.tempControl && ride.tempControl !== 'standard' ? `
+            <div style="display:flex; align-items:flex-start; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:6px 0;">
+              <span style="font-size:18px; line-height:1;">${tempIcon}</span>
+              <div>
+                <div style="font-weight:700;">Climate Control</div>
+                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">${tempText}</div>
+              </div>
+            </div>` : ''}
+            <div style="display:flex; align-items:flex-start; gap:12px; font-size:13px; color:var(--text-dark); font-family:Montserrat,sans-serif; padding:6px 0;">
+              <span style="font-size:18px; line-height:1;">🚚</span>
+              <div>
+                <div style="font-weight:700;">Delivery Service</div>
+                <div style="font-size:12px; color:var(--text-light); margin-top:2px;">Direct driver parcel delivery · No passenger seating</div>
               </div>
             </div>
           `;
         } else {
+
           const smokingVal = ride.prefSmoking || dp.prefSmoking || 'no_smoking';
           const petsVal = ride.prefPets || dp.prefPets || 'no_pets';
           const luggageVal = ride.prefLuggage || dp.prefLuggage || 'backpack_only';
@@ -9206,7 +9262,7 @@ function renderRidesUI() {
             reqBtn.style.background = 'var(--primary)';
             reqBtn.style.color = '#fff';
             if (isCargo) {
-              reqBtn.innerHTML = `Ship Cargo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg>`;
+              reqBtn.innerHTML = `Request Shipment <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><path d="M9 18l6-6-6-6"/></svg>`;
               reqBtn.style.background = '#7c3aed';
               reqBtn.style.boxShadow = '0 4px 16px rgba(124,58,237,0.3)';
               reqBtn.onclick = () => {
@@ -11753,7 +11809,6 @@ function renderRidesUI() {
         toggleLocationMapMode();
       }
       updateCargoBrowseClearBtnVisibility();
-      renderCargoOffersUI();
     } else if (locationSearchMode === "cargo-browse-to") {
       cargoBrowseToValue = val;
       const el = document.getElementById("cargo-browse-to-val");
@@ -11766,7 +11821,20 @@ function renderRidesUI() {
         toggleLocationMapMode();
       }
       updateCargoBrowseClearBtnVisibility();
-      renderCargoOffersUI();
+    } else if (locationSearchMode === "cargo-offer-from") {
+      const inp = document.getElementById("cargo-offer-from-input");
+      if (inp) inp.value = val;
+      window._cargoOfferFromVal = val;
+      window._cargoOfferFromCoords = finalCoords;
+      closeSubScreen("sub-location-search");
+      if (locationPickerMapMode) toggleLocationMapMode();
+    } else if (locationSearchMode === "cargo-offer-to") {
+      const inp = document.getElementById("cargo-offer-to-input");
+      if (inp) inp.value = val;
+      window._cargoOfferToVal = val;
+      window._cargoOfferToCoords = finalCoords;
+      closeSubScreen("sub-location-search");
+      if (locationPickerMapMode) toggleLocationMapMode();
     } else {
       searchToValue = val;
       searchToCoords = finalCoords;
@@ -12105,7 +12173,6 @@ function renderRidesUI() {
         el.style.color = "var(--text-dark)";
       }
       updateCargoBrowseClearBtnVisibility();
-      renderCargoOffersUI();
     } else {
       searchDateValue = targetDate;
       const el = document.getElementById("search-date-val");
@@ -12128,7 +12195,6 @@ function renderRidesUI() {
         el.style.color = "var(--text-light)";
       }
       updateCargoBrowseClearBtnVisibility();
-      renderCargoOffersUI();
     } else {
       searchDateValue = null;
       const el = document.getElementById("search-date-val");
@@ -14736,20 +14802,37 @@ function renderRidesUI() {
   }
 
   function syncCargoOffersFromFirestore() {
-    if (!useFirebase || !currentUser || !currentUser.uid) return;
+    if (!useFirebase || !db) return;
     if (unsubCargoOffers) unsubCargoOffers();
 
-    unsubCargoOffers = db.collection("cargo_offers")
-      .onSnapshot((snapshot) => {
-        cargoOffersList = [];
-        snapshot.forEach(doc => {
-          cargoOffersList.push({ id: doc.id, ...doc.data() });
+    try {
+      unsubCargoOffers = db.collection("cargo_offers")
+        .orderBy("timestamp", "desc")
+        .onSnapshot((snapshot) => {
+          cargoOffersList = [];
+          snapshot.forEach(doc => {
+            cargoOffersList.push({ id: doc.id, ...doc.data() });
+          });
+          renderCargoOffersUI();
+        }, (err) => {
+          console.warn("Firestore cargo offers ordered sync fallback:", err);
+          // Fallback if index on timestamp is missing
+          unsubCargoOffers = db.collection("cargo_offers")
+            .onSnapshot((snapshot) => {
+              cargoOffersList = [];
+              snapshot.forEach(doc => {
+                cargoOffersList.push({ id: doc.id, ...doc.data() });
+              });
+              renderCargoOffersUI();
+            }, (err2) => {
+              console.error("Firestore cargo offers sync error:", err2);
+            });
         });
-        renderCargoOffersUI();
-      }, (err) => {
-        console.error("Firestore cargo offers sync error:", err);
-      });
+    } catch (e) {
+      console.error("Error setting up cargo offers sync:", e);
+    }
   }
+
 
   async function cancelCargoRequest(cargoId) {
     if (!confirm("Are you sure you want to cancel this cargo shipment request?")) return;
@@ -14788,6 +14871,9 @@ function renderRidesUI() {
       driverBtn.classList.remove("active");
       shipperView.style.display = "block";
       driverView.style.display = "none";
+      // Reset to search home if results were showing
+      showCargoSearchHome();
+
     } else {
       shipperBtn.classList.remove("active");
       driverBtn.classList.add("active");
@@ -14850,8 +14936,9 @@ function renderRidesUI() {
     }
     
     updateCargoBrowseClearBtnVisibility();
-    renderCargoOffersUI();
+    showCargoSearchHome();
   }
+
 
   function updateCargoBrowseClearBtnVisibility() {
     const clearBtn = document.getElementById("cargo-browse-clear-btn");
@@ -14863,144 +14950,317 @@ function renderRidesUI() {
     }
   }
 
+  function showCargoSearchHome() {
+    const home = document.getElementById('cargo-search-home');
+    const results = document.getElementById('cargo-search-results');
+    if (home) home.style.display = 'block';
+    if (results) results.style.display = 'none';
+  }
+
+  function executeCargoOffersSearch() {
+    // Build header title from current filter state
+    const fromText = cargoBrowseFromValue ? cargoBrowseFromValue.split(',')[0].trim() : 'All';
+    const toText   = cargoBrowseToValue   ? cargoBrowseToValue.split(',')[0].trim()   : 'Anywhere';
+
+    // Set the inline results header title
+    const titleEl = document.getElementById('cargo-results-route-title');
+    if (titleEl) {
+      titleEl.textContent = (cargoBrowseFromValue || cargoBrowseToValue)
+        ? fromText + ' → ' + toText
+        : 'Available Cargo Offers';
+    }
+
+    // Render filtered cargo offer cards into the inline results list
+    renderCargoOffersUI();
+
+    // Toggle: hide search home, show results (same pattern as executeRidesSearch)
+    const home    = document.getElementById('cargo-search-home');
+    const results = document.getElementById('cargo-search-results');
+    if (home)    home.style.display    = 'none';
+    if (results) results.style.display = 'flex';
+  }
+
+  /**
+   * Refined Reusable Cargo Offer Card Component
+   * Matches the clean simplicity, spacing, typography, and visual hierarchy of the ride card.
+   * Displays only essentials: driver photo, name, rating, route timeline, date/time, price, and short cargo summary.
+   * Tapping the card opens the dedicated cargo details page.
+   * 
+   * @param {Object} c - The cargo offer object
+   * @returns {string} Clean HTML string for the cargo offer card
+   */
+  function renderCargoOfferCard(c) {
+    if (!c) return '';
+    const dp = (typeof DRIVER_PROFILES !== 'undefined' && DRIVER_PROFILES[c.driverName]) ? DRIVER_PROFILES[c.driverName] : {};
+
+    // Rating & reviews
+    const docRating     = parseFloat(c.driverRating);
+    const docReviews    = parseInt(c.driverReviews, 10);
+    const profileRating = parseFloat(dp.rating || '0');
+    const profileReviews = (dp.reviews || []).length;
+
+    const rating     = !isNaN(docRating) && docRating > 0 ? docRating : (!isNaN(profileRating) && profileRating > 0 ? profileRating : null);
+    const reviewsCnt = !isNaN(docReviews) ? docReviews : profileReviews;
+    const isNewDriver = !rating || (rating === 0 && reviewsCnt === 0);
+
+    const ratingDisplay = isNewDriver
+      ? `<span style="color:#64748b; font-size:12px; font-weight:600;"><span style="color:#F59E0B; font-size:11px;">★</span> 0.0 · 0 deliveries <span style="background:#f1f5f9; color:#4f46e5; padding: 1px 6px; border-radius: 8px; font-size: 10px; font-weight: 700; margin-left: 4px;">🌱 New</span></span>`
+      : `<span style="color:#64748b; font-size:12px; font-weight:600;"><span style="color:#111; font-weight:800;"><span style="color:#F59E0B; font-size:11px;">★</span> ${rating.toFixed(1)}</span> · ${reviewsCnt} review${reviewsCnt !== 1 ? 's' : ''}</span>`;
+
+    // Avatar
+    const avatarUrl   = c.driverAvatarUrl || dp.avatarUrl || '';
+    const initial     = (c.driverName || 'D').charAt(0).toUpperCase();
+    const avatarColor = dp.color || 'linear-gradient(135deg, #06402B, #0d5d40)';
+    const avatarContent = typeof getDriverAvatarHtml === 'function'
+      ? getDriverAvatarHtml(avatarUrl, initial, avatarColor, 'pop-trip-driver-avatar')
+      : (avatarUrl
+          ? `<img src="${avatarUrl}" class="pop-trip-driver-avatar" style="object-fit:cover;" onerror="this.outerHTML='<div class=\\'pop-trip-driver-avatar\\' style=\\'background:${avatarColor}; color:#fff; font-weight:800;\\'>${initial}</div>'" />`
+          : `<div class="pop-trip-driver-avatar" style="background:${avatarColor}; color:#fff; font-weight:800;">${initial}</div>`);
+
+    // Space & summary
+    const spaceShortMap = {
+      small: 'Small',
+      medium: 'Medium',
+      large: 'Large',
+      xlarge: 'XL Space',
+      extra_large: 'XL Space'
+    };
+    const spaceShort = spaceShortMap[c.spaceSize] || 'Medium';
+    const pkgLeft = c.capacityPackages != null ? `${c.capacityPackages} pkg left` : 'Space left';
+    const priceStr = (!isNaN(parseFloat(c.price))) ? `$${parseFloat(c.price).toFixed(2)}` : '$10.00';
+
+    // Route points
+    const fromCity = (c.from || 'Pickup').split(',')[0].trim();
+    const toCity   = (c.to || 'Destination').split(',')[0].trim();
+
+    // Time & Date format
+    let timeDisplay = c.time || 'Flexible';
+    if (c.date) {
+      try {
+        const d = new Date(c.date.includes('T') ? c.date : (c.date + 'T00:00:00'));
+        const today = new Date(); today.setHours(0,0,0,0);
+        const tomorrow = new Date(today); tomorrow.setDate(today.getDate()+1);
+        if (d.getTime() === today.getTime()) {
+          timeDisplay = `Today at ${c.time || 'flexible'}`;
+        } else if (d.getTime() === tomorrow.getTime()) {
+          timeDisplay = `Tomorrow at ${c.time || 'flexible'}`;
+        } else {
+          const formattedDate = d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' });
+          timeDisplay = `${formattedDate} · ${timeDisplay}`;
+        }
+      } catch (e) {}
+    }
+
+    const isVerified = dp.verified || c.driverVerified || false;
+    const summaryText = `📦 ${spaceShort} · Max ${c.maxWeightPerPkg || 10}kg`;
+
+    return `
+      <div class="pop-trip-card" onclick="openTripPreview('${c.id}')">
+        <div class="pop-trip-card-header">
+          <span class="pop-trip-time">📦 Cargo · ${timeDisplay}</span>
+          <div class="pop-trip-seats-price">
+            <span class="pop-trip-seats-left" style="background:rgba(139,92,246,0.1); color:#7c3aed;">${pkgLeft}</span>
+            <span class="pop-trip-price">${priceStr}</span>
+          </div>
+        </div>
+
+        <div class="pop-trip-route-line-container">
+          <div class="pop-trip-route-timeline">
+            <div class="pop-trip-route-dot"></div>
+            <div class="pop-trip-route-connector"></div>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="display: block; flex-shrink: 0; margin-top: 2px;">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="#0d5d40"/>
+              <circle cx="12" cy="10" r="3" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="pop-trip-route-points">
+            <div class="pop-trip-route-point">
+              ${fromCity}
+              <div class="pop-trip-route-sub">${c.from}</div>
+            </div>
+            <div class="pop-trip-route-point">
+              ${toCity}
+              <div class="pop-trip-route-sub">${c.to}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pop-trip-driver-vehicle-row">
+          <div class="pop-trip-driver-info">
+            ${avatarContent}
+            <div class="pop-trip-driver-name-rating">
+              <div style="display:flex; align-items:center; gap:4px;">
+                <span class="pop-trip-driver-name">${c.driverName || 'Driver'}</span>
+                ${isVerified ? '<span style="color:var(--purple); font-size:10px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; width:13px; height:13px; border-radius:50%; background:var(--purple-soft);" title="Verified Driver">✓</span>' : ''}
+              </div>
+              <span class="pop-trip-driver-meta">${ratingDisplay}</span>
+            </div>
+          </div>
+          <span class="pop-trip-vehicle-info" style="font-size:11.5px; font-weight:700; color:var(--text-mid); background:var(--gray-100); padding:4px 10px; border-radius:12px; white-space:nowrap;">${summaryText}</span>
+        </div>
+      </div>
+    `;
+  }
+
+
+  /**
+   * Location matching helper for Cargo search (mirrors Rides matching)
+   */
+  function matchCargoLocation(offerLoc, searchLoc) {
+    if (!searchLoc || searchLoc.trim() === '' || searchLoc === 'All locations' || searchLoc === 'Where to?' || searchLoc === '📍 Current Location') {
+      return true;
+    }
+    if (!offerLoc) return false;
+
+    const oNorm = offerLoc.toLowerCase().trim();
+    const sNorm = searchLoc.toLowerCase().trim();
+
+    // 1. Direct substring match in either direction
+    if (oNorm.includes(sNorm) || sNorm.includes(oNorm)) return true;
+
+    // 2. City / Primary location name match (before comma)
+    const oCity = oNorm.split(',')[0].trim();
+    const sCity = sNorm.split(',')[0].trim();
+    if (oCity && sCity && (oCity.includes(sCity) || sCity.includes(oCity))) return true;
+
+    // 3. Keyword / token overlap (e.g., "Western", "Fanshawe", "Airport", "Toronto", "London")
+    const sTokens = sNorm.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(t => t.length >= 3);
+    const oTokens = oNorm.replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(t => t.length >= 3);
+    const hasOverlap = sTokens.some(st => oTokens.some(ot => ot.includes(st) || st.includes(ot)));
+    if (hasOverlap) return true;
+
+    return false;
+  }
+
+  /**
+   * Date matching helper for Cargo search
+   */
+  function isOfferDateMatching(offerDateStr, searchDateObj) {
+    if (!searchDateObj) return true;
+    if (!offerDateStr) return true; // Flexible/undated offers remain visible
+
+    const searchYYYYMMDD = formatDateToYYYYMMDD(searchDateObj);
+    if (offerDateStr === searchYYYYMMDD) return true;
+
+    try {
+      const d = new Date(offerDateStr.includes('T') ? offerDateStr : (offerDateStr + 'T00:00:00'));
+      if (!isNaN(d.getTime())) {
+        return formatDateToYYYYMMDD(d) === searchYYYYMMDD;
+      }
+    } catch (e) {}
+
+    return false;
+  }
+
+  /**
+   * Expiration helper for Cargo offers
+   */
+  function isOfferNotExpired(offerDateStr) {
+    if (!offerDateStr) return true;
+    try {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const d = new Date(offerDateStr.includes('T') ? offerDateStr : (offerDateStr + 'T00:00:00'));
+      if (!isNaN(d.getTime())) {
+        return d >= today;
+      }
+    } catch (e) {}
+    return true;
+  }
+
   function renderCargoOffersUI() {
     const listContainer = document.getElementById('cargo-drivers-list');
     if (!listContainer) return;
 
-    let offers = useFirebase ? cargoOffersList : mockCargoOffers;
+    // Real posted data source only: cargoOffersList synced from Firestore collection 'cargo_offers'
+    let offers = (typeof cargoOffersList !== 'undefined' && Array.isArray(cargoOffersList)) ? [...cargoOffersList] : [];
 
-    // Apply From location filter
+    // Exclude incomplete entries
+    offers = offers.filter(o => o && o.from && o.to);
+
+    // Filter out expired offers
+    offers = offers.filter(o => isOfferNotExpired(o.date));
+
+    // Apply From location filter using intelligent matching
     if (cargoBrowseFromValue && cargoBrowseFromValue.trim() !== '') {
-      const fromVal = cargoBrowseFromValue.trim().toLowerCase();
-      offers = offers.filter(o => o.from.toLowerCase().includes(fromVal));
+      offers = offers.filter(o => matchCargoLocation(o.from, cargoBrowseFromValue));
     }
 
-    // Apply To location filter
+    // Apply To location filter using intelligent matching
     if (cargoBrowseToValue && cargoBrowseToValue.trim() !== '') {
-      const toVal = cargoBrowseToValue.trim().toLowerCase();
-      offers = offers.filter(o => o.to.toLowerCase().includes(toVal));
+      offers = offers.filter(o => matchCargoLocation(o.to, cargoBrowseToValue));
     }
 
     // Apply date filter
     if (cargoSearchDateValue) {
-      const dateVal = formatDateToYYYYMMDD(cargoSearchDateValue);
-      offers = offers.filter(o => o.date === dateVal);
+      offers = offers.filter(o => isOfferDateMatching(o.date, cargoSearchDateValue));
     }
 
-    // Filter out fully booked offers
-    offers = offers.filter(o => o.capacityPackages > 0);
+    // Filter out fully booked offers (0 packages left)
+    offers = offers.filter(o => (o.capacityPackages == null || o.capacityPackages > 0));
 
+    // Empty state — keep bottom navigation visible and show clean "No cargo offers found"
     if (offers.length === 0) {
       listContainer.innerHTML = `
-        <div style="text-align: center; padding: 32px 16px; color: var(--text-light); font-size: 13px; background:#fff; border-radius:16px; border:1px solid var(--gray-200);">
+        <div style="text-align: center; padding: 36px 16px; color: var(--text-light); font-size: 13px; background:#fff; border-radius:16px; border:1px solid var(--gray-200); margin-top: 4px;">
           <div style="font-size:40px; margin-bottom:10px;">📦</div>
-          <div style="font-size:15px; font-weight:800; color:var(--text-dark); margin-bottom:6px;">No cargo trips found</div>
-          <div style="font-size:12px; color:var(--text-light); line-height:1.5; max-width:220px; margin:0 auto;">Try adjusting your filters, or check back soon for new driver trips.</div>
+          <div style="font-size:16px; font-weight:800; color:var(--text-dark); margin-bottom:6px;">No cargo offers found</div>
+          <div style="font-size:12px; color:var(--text-light); line-height:1.5; max-width:260px; margin:0 auto;">No drivers are currently offering cargo space for this route and date. Try different locations or dates.</div>
+          <button onclick="clearCargoBrowseFilters(event); showCargoSearchHome();" style="margin-top:16px; background:var(--purple); color:#fff; border:none; border-radius:20px; padding:10px 22px; font-size:12px; font-weight:700; cursor:pointer; font-family:Montserrat,sans-serif;">Clear Filters &amp; Search Again</button>
         </div>
       `;
       return;
     }
 
-    // Group offers by date like rides
+    // Sort by date ascending
+    offers = [...offers].sort((a, b) => (a.date || '') < (b.date || '') ? -1 : 1);
+
     let currentGroupDate = '';
     listContainer.innerHTML = offers.map(c => {
-      const profile = DRIVER_PROFILES[c.driverName] || {};
-      const rating = profile.rating || '5.0';
-      const reviewsCount = (profile.reviews || []).length;
-      const isNewDriver = parseInt(profile.rides || 0) === 0;
-      const fromCity = (c.from || '').split(',')[0].trim();
-      const toCity = (c.to || '').split(',')[0].trim();
-
-      const ratingDisplay = isNewDriver
-        ? `<span style="color:#64748b; font-size:12px; font-weight:600;"><span style="color:#F59E0B; font-size:11px;">★</span> 0.0 · 0 deliveries <span style="background:#f1f5f9; color:#4f46e5; padding: 1px 6px; border-radius: 8px; font-size: 10px; font-weight: 700; margin-left: 4px;">🌱 New</span></span>`
-        : `<span style="color:#64748b; font-size:12px; font-weight:600;"><span style="color:#111; font-weight:800;"><span style="color:#F59E0B; font-size:11px;">★</span> ${parseFloat(rating).toFixed(1)}</span> · ${reviewsCount} review${reviewsCount !== 1 ? 's' : ''}</span>`;
-
-      let avatarContent;
-      if (c.driverAvatarUrl) {
-        avatarContent = `<img src="${c.driverAvatarUrl}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.12);" onerror="this.style.display='none'">`;
-      } else {
-        const initial = (c.driverName || 'D').charAt(0).toUpperCase();
-        avatarContent = `<div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#06402B,#0d5d40);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:800;flex-shrink:0;">${initial}</div>`;
-      }
-
-      // Date group label
+      // Date group header
       let groupLabel = '';
       const groupDate = c.date || '';
       if (groupDate && groupDate !== currentGroupDate) {
         currentGroupDate = groupDate;
         let labelText = groupDate;
         try {
-          const d = new Date(groupDate + 'T00:00:00');
+          const d = new Date(groupDate.includes('T') ? groupDate : (groupDate + 'T00:00:00'));
           const today = new Date(); today.setHours(0,0,0,0);
           const tomorrow = new Date(today); tomorrow.setDate(today.getDate()+1);
-          if (d.getTime() === today.getTime()) labelText = 'Today';
+          if (d.getTime() === today.getTime())         labelText = 'Today';
           else if (d.getTime() === tomorrow.getTime()) labelText = 'Tomorrow';
           else labelText = d.toLocaleDateString('en-CA', { weekday:'long', month:'short', day:'numeric' });
         } catch(e) {}
         groupLabel = `<div style="font-size: 11px; font-weight: 700; color: var(--purple); text-transform: uppercase; letter-spacing: 0.5px; margin: 16px 4px 8px; font-family: Montserrat, sans-serif;">${labelText}</div>`;
       }
 
-      const spaceLabel = c.spaceSize === 'small' ? '📦 Small' : c.spaceSize === 'large' ? '📦 Large Space' : c.spaceSize === 'xlarge' ? '🛻 Extra Large' : '🧳 Medium Space';
-      const fragileLabel = c.fragilePolicy === 'non_fragile_only' ? '📦 Standard Only' : '🍷 Fragile OK';
-      const tempLabel = c.tempControl === 'ac_controlled' ? '❄️ AC Space' : c.tempControl === 'cool_storage' ? '🧊 Cool Storage' : '';
-      const badgesHtml = `<div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:3px;"><span style="font-size:10px; color:var(--purple); background:var(--purple-soft); padding:1px 6px; border-radius:6px; font-weight:700;">${spaceLabel}</span><span style="font-size:10px; color:#0d5d40; background:rgba(13,93,64,0.08); padding:1px 6px; border-radius:6px; font-weight:700;">${fragileLabel}</span>${tempLabel ? `<span style="font-size:10px; color:#0284c7; background:#e0f2fe; padding:1px 6px; border-radius:6px; font-weight:700;">${tempLabel}</span>` : ''}</div>`;
-
-      return groupLabel + `
-        <div class="pop-trip-card" onclick="openTripPreview('${c.id}')">
-          <div class="pop-trip-card-header">
-            <span class="pop-trip-time">📦 Cargo · ${c.time || '—'}</span>
-            <div class="pop-trip-seats-price">
-              <span class="pop-trip-seats-left" style="background:rgba(139,92,246,0.1);color:#7c3aed;">📦 ${c.capacityPackages} pkg left</span>
-              <span class="pop-trip-price">$${parseFloat(c.price).toFixed(2)}<span style="font-size:9px;opacity:0.7;font-weight:600;">/pkg</span></span>
-            </div>
-          </div>
-          
-          <div class="pop-trip-route-line-container">
-            <div class="pop-trip-route-timeline">
-              <div class="pop-trip-route-dot"></div>
-              <div class="pop-trip-route-connector"></div>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="display: block; flex-shrink: 0; margin-top: 2px;">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="#0d5d40"/>
-                <circle cx="12" cy="10" r="3" fill="#fff"/>
-              </svg>
-            </div>
-            <div class="pop-trip-route-points">
-              <div class="pop-trip-route-point">
-                ${fromCity}
-                <div class="pop-trip-route-sub">${c.from}</div>
-              </div>
-              <div class="pop-trip-route-point">
-                ${toCity}
-                <div class="pop-trip-route-sub">${c.to}</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="pop-trip-driver-vehicle-row">
-            <div class="pop-trip-driver-info">
-              ${avatarContent}
-              <div class="pop-trip-driver-name-rating">
-                <div style="display:flex; align-items:center; gap:4px;">
-                  <span class="pop-trip-driver-name">${c.driverName}</span>
-                  ${profile.verified ? '<span style="color:var(--purple); font-size:10px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; width:13px; height:13px; border-radius:50%; background:var(--purple-soft);" title="Verified Driver">✓</span>' : ''}
-                </div>
-                <span class="pop-trip-driver-meta">${ratingDisplay}</span>
-                ${badgesHtml}
-                <span style="font-size:10px; color:var(--text-light); margin-top:2px; display:block;">⚖️ Max ${c.maxWeightPerPkg || 10} kg/pkg${c.notes ? ' · "' + c.notes.substring(0,30) + (c.notes.length>30 ? '…' : '') + '"' : ''}</span>
-              </div>
-            </div>
-            <button class="btn-purple" style="height:34px; padding:0 14px; font-size:12px; border:none; font-weight:700; flex-shrink:0;" onclick="event.stopPropagation(); bookDriverCargo('${c.id}')">Ship Cargo</button>
-          </div>
-        </div>
-      `;
+      return groupLabel + renderCargoOfferCard(c);
     }).join('');
   }
 
+
+
+
   function bookDriverCargo(offerId) {
-    const offers = useFirebase ? cargoOffersList : mockCargoOffers;
+    const offers = (typeof cargoOffersList !== 'undefined' && Array.isArray(cargoOffersList)) ? cargoOffersList : [];
     const offer = offers.find(o => o.id === offerId);
+
     if (!offer) {
-      showToast("❌ Driver trip offer not found!");
+      showToast("❌ This cargo offer is no longer available.");
+      renderCargoOffersUI(); // Refresh the list to remove any stale cards
+      return;
+    }
+    // Edge case: offer may have expired between page load and selection
+    const todayStr = new Date().toISOString().slice(0, 10);
+    if (offer.date && offer.date < todayStr) {
+      showToast("⏰ This offer has expired. Please select another driver.");
+      renderCargoOffersUI();
+      return;
+    }
+    // Edge case: offer may have become fully booked
+    if (offer.capacityPackages <= 0) {
+      showToast("📦 This driver has no remaining package space. Please choose another.");
+      renderCargoOffersUI();
       return;
     }
 
@@ -15128,10 +15388,9 @@ function renderRidesUI() {
     const verifiedCard = document.getElementById("driver-verified-card");
     const cargoBoard = document.getElementById("driver-cargo-board");
     
-    // Cargo tab elements
+    // Cargo tab elements (cargo-driver-board removed from Offer Cargo tab)
     const cargoUnverified = document.getElementById("cargo-driver-unverified");
-    const cargoVerified = document.getElementById("cargo-driver-verified");
-    const cargoBoardSec = document.getElementById("cargo-driver-board");
+    // cargo-driver-verified and cargo-driver-board no longer exist in Offer Cargo view
     
     if (verified) {
       if (unverifiedCard) unverifiedCard.style.display = "none";
@@ -15139,8 +15398,6 @@ function renderRidesUI() {
       if (cargoBoard) cargoBoard.style.display = "block";
       
       if (cargoUnverified) cargoUnverified.style.display = "none";
-      if (cargoVerified) cargoVerified.style.display = "block";
-      if (cargoBoardSec) cargoBoardSec.style.display = "block";
       
       renderDriverCargoBoard();
     } else {
@@ -15149,10 +15406,9 @@ function renderRidesUI() {
       if (cargoBoard) cargoBoard.style.display = "none";
       
       if (cargoUnverified) cargoUnverified.style.display = "block";
-      if (cargoVerified) cargoVerified.style.display = "none";
-      if (cargoBoardSec) cargoBoardSec.style.display = "none";
     }
   }
+
 
   // Hook Driver Center tab activation to update state
   const originalDriverTab = document.getElementById('profile-tab-driver');
@@ -15521,30 +15777,26 @@ function renderRidesUI() {
   function renderDriverCargoBoard() {
     const containerProfile = document.getElementById("driver-cargo-list");
     const containerCargoTab = document.getElementById("cargo-driver-list");
-    
-    const pendingItems = (useFirebase ? dbCargoBoard : mockCargo.filter(c => c.status === 'Pending' && c.userId !== currentUser.uid))
+
+    // Pending requests available for acceptance (from other users)
+    const pendingItems = (useFirebase ? dbCargoBoard : mockCargo.filter(c => c.status === 'Pending' && c.userId !== (currentUser && currentUser.uid)))
       .filter(c => !blockedUsers.includes(c.userId));
-    
-    const renderHtml = (items) => {
-      if (items.length === 0) {
-        return `
-          <div style="text-align: center; padding: 24px 16px; color: var(--text-light); font-size: 13px;">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 6px; opacity: 0.5;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            <div>No shipments waiting for delivery.</div>
-          </div>
-        `;
-      }
-      
-      return items.map(c => {
+
+    // Active shipments the driver is currently handling (all non-terminal states)
+    const activeDriverStatuses = ['Pending Payment', 'Paid', 'Accepted', 'Picked Up', 'In Transit'];
+    const activeItems = (useFirebase ? cargoList : mockCargo)
+      .filter(c => c.driverId === (currentUser && currentUser.uid) && activeDriverStatuses.includes(c.status))
+      .filter(c => !blockedUsers.includes(c.userId));
+
+    const renderPendingHtml = (items) => {
+      if (items.length === 0) return '';
+      return `<div style="font-size:11px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.5px;margin:0 4px 10px;font-family:Montserrat,sans-serif;">📬 Pending Requests</div>` +
+      items.map(c => {
         const volLiters = (c.volume / 1000).toFixed(1);
         let itemPhotoHtml = "";
         if (c.itemPhoto) {
-          itemPhotoHtml = `
-            <div class="cargo-item-thumbnail-wrap" style="margin-left: 12px;" onclick="window.open('${c.itemPhoto}')">
-              <img class="cargo-item-thumbnail-img" src="${c.itemPhoto}" />
-            </div>`;
+          itemPhotoHtml = `<div class="cargo-item-thumbnail-wrap" style="margin-left: 12px;" onclick="window.open('${c.itemPhoto}')"><img class="cargo-item-thumbnail-img" src="${c.itemPhoto}" /></div>`;
         }
-        
         return `
           <div class="cargo-driver-card">
             <div class="cargo-driver-card-header" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
@@ -15558,31 +15810,84 @@ function renderRidesUI() {
               <strong>Route:</strong> ${c.pickup} → ${c.dropoff}<br/>
               <strong>Details:</strong> ${c.size.length}x${c.size.width}x${c.size.height} cm • ${c.weight} kg (${volLiters} L)
             </div>
-            <button class="btn-purple" style="margin:0; width:100%; height:38px; font-size:13px;" onclick="acceptCargoDelivery('${c.id}')">Accept Delivery</button>
+            <div style="display:flex; gap:8px;">
+              <button class="btn-purple" style="margin:0; flex:1; height:38px; font-size:13px;" onclick="acceptCargoDelivery('${c.id}')">✅ Accept Delivery</button>
+              <button class="btn-charcoal" style="margin:0; height:38px; font-size:12px; padding:0 12px; border-color:#dc2626; color:#dc2626;" onclick="declineCargoDelivery('${c.id}')">❌ Decline</button>
+            </div>
           </div>
         `;
       }).join("");
     };
-    
-    const html = renderHtml(pendingItems);
+
+    const renderActiveHtml = (items) => {
+      if (items.length === 0) return '';
+      const statusIcons = { 'Pending Payment': '⏳', 'Paid': '💳', 'Accepted': '✅', 'Picked Up': '📦', 'In Transit': '🚚' };
+      return `<div style="font-size:11px;font-weight:700;color:#0d5d40;text-transform:uppercase;letter-spacing:0.5px;margin:16px 4px 10px;font-family:Montserrat,sans-serif;">🚚 Your Active Deliveries</div>` +
+      items.map(c => {
+        const icon = statusIcons[c.status] || '📦';
+        const escapedOwnerName = (c.userName || 'Sender').replace(/'/g, "\\'");
+        let actionHtml = '';
+        if (c.status === 'Pending Payment') {
+          actionHtml = `<div style="font-size:11px; color:var(--text-light); font-weight:600; padding:8px; background:var(--gray-100); border-radius:8px; text-align:center;">⏳ Waiting for shipper's payment...</div>`;
+        } else if (c.status === 'Paid' || c.status === 'Accepted') {
+          actionHtml = `<button class="btn-purple" style="margin:0; width:100%; height:36px; font-size:12px;" onclick="pickupCargoDelivery('${c.id}')">📸 Take Pickup Photo</button>`;
+        } else if (c.status === 'Picked Up') {
+          actionHtml = `<button class="btn-purple" style="margin:0; width:100%; height:36px; font-size:12px; background:var(--purple-light);" onclick="triggerCargoTransit('${c.id}')">🚚 Start Transit</button>`;
+        } else if (c.status === 'In Transit') {
+          actionHtml = `<button class="btn-purple" style="margin:0; width:100%; height:36px; font-size:12px; background:#16a34a; border:none;" onclick="deliverCargoDelivery('${c.id}')">📸 Take Drop-off Photo</button>`;
+        }
+        return `
+          <div class="cargo-driver-card" style="border-left:3px solid #0d5d40;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-size:13px; font-weight:800; color:var(--text-dark); flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${c.description}</span>
+              <span style="font-size:10px; font-weight:700; background:rgba(13,93,64,0.1); color:#0d5d40; padding:2px 8px; border-radius:10px; white-space:nowrap; margin-left:8px;">${icon} ${c.status}</span>
+            </div>
+            <div style="font-size:11px; color:var(--text-light); margin-bottom:10px; font-family:'Fredoka',sans-serif;">
+              <strong>Route:</strong> ${c.pickup} → ${c.dropoff} &nbsp;·&nbsp; <strong>Shipper:</strong> ${c.userName || 'Unknown'}
+            </div>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <button class="btn-charcoal" style="margin:0; width:40px; height:36px; display:flex; align-items:center; justify-content:center; border:1.5px solid var(--purple-pale); background:var(--purple-soft); flex-shrink:0;" onclick="openChat('${escapedOwnerName}', '${escapedOwnerName.charAt(0)}', 'var(--purple)', '${c.userId}')">💬</button>
+              <div style="flex:1;">${actionHtml}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    };
+
+    const hasAny = pendingItems.length > 0 || activeItems.length > 0;
+    const html = hasAny
+      ? renderPendingHtml(pendingItems) + renderActiveHtml(activeItems)
+      : `<div style="text-align: center; padding: 24px 16px; color: var(--text-light); font-size: 13px;">
+           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 6px; opacity: 0.5;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+           <div>No pending requests or active deliveries.</div>
+         </div>`;
+
     if (containerProfile) containerProfile.innerHTML = html;
     if (containerCargoTab) containerCargoTab.innerHTML = html;
   }
 
-    function declineCargoDelivery(cargoId) {
+  function declineCargoDelivery(cargoId) {
     if (!confirm("Are you sure you want to decline this cargo shipment request?")) return;
     if (useFirebase) {
       db.collection("cargo").doc(cargoId).update({
         status: "Declined"
       }).then(() => {
         showToast("Cargo request declined.");
-        const chatRoomId = [currentUser.uid, activeChatOtherUserId].sort().join('_');
-        db.collection("chats").doc(chatRoomId).collection("messages").add({
-          senderId: currentUser.uid,
-          text: "❌ Cargo shipment request declined.",
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        refreshCurrentChat();
+        // Notify the shipper their request was declined
+        const item = dbCargoBoard.find(c => c.id === cargoId);
+        if (item) {
+          addNotification('❌ Cargo Request Declined', `Driver ${currentUser.firstName} ${currentUser.lastName} has declined your shipment request for "${item.description}". You can search for another driver.`, 'cargo', item.userId);
+        }
+        // Send message in chat if a conversation is active
+        if (activeChatOtherUserId) {
+          const chatRoomId = [currentUser.uid, activeChatOtherUserId].sort().join('_');
+          db.collection("chats").doc(chatRoomId).collection("messages").add({
+            senderId: currentUser.uid,
+            text: "❌ Cargo shipment request declined. Please search for another driver.",
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          });
+          refreshCurrentChat();
+        }
       }).catch(err => {
         showToast("❌ Failed to decline delivery: " + err.message);
       });
@@ -15590,11 +15895,13 @@ function renderRidesUI() {
       const item = mockCargo.find(c => c.id === cargoId);
       if (item) {
         item.status = "Declined";
+        // Notify shipper
+        addNotification('❌ Cargo Request Declined', `Driver ${currentUser.firstName} ${currentUser.lastName} has declined your shipment request for "${item.description}". You can search for another driver.`, 'cargo', item.userId);
         if (currentChatName) {
           CONVOS[currentChatName] = CONVOS[currentChatName] || [];
           CONVOS[currentChatName].push({
             f: 'them',
-            t: "❌ Cargo shipment request declined.",
+            t: "❌ Cargo shipment request declined. Please search for another driver.",
             ts: new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})
           });
         }
@@ -18969,7 +19276,157 @@ function finishHopOnAuth() {
         switchCargoMode('driver');
       }
     };
+
+    window.postCargoOffer = async function() {
+      const pickup = (window._cargoOfferFromVal || document.getElementById('cargo-offer-from-input').value || '').trim();
+      const dropoff = (window._cargoOfferToVal || document.getElementById('cargo-offer-to-input').value || '').trim();
+      const date = document.getElementById('cargo-offer-date-input').value;
+      const time = document.getElementById('cargo-offer-time-input').value;
+      const spaceSize = document.getElementById('cargo-offer-space-size').value;
+      const maxWeight = parseFloat(document.getElementById('cargo-offer-max-weight').value);
+      const cargoTypes = document.getElementById('cargo-offer-types').value;
+      const fragile = document.getElementById('cargo-offer-fragile').value;
+      const price = parseFloat(document.getElementById('cargo-offer-price').value);
+      const instructions = document.getElementById('cargo-offer-instructions').value.trim();
+
+      if (!pickup || !dropoff) {
+        showToast('❌ Please set a pickup location and destination.');
+        return;
+      }
+      if (!date) {
+        showToast('❌ Please select a date.');
+        return;
+      }
+      if (isNaN(maxWeight) || maxWeight <= 0) {
+        showToast('❌ Please enter a valid maximum weight.');
+        return;
+      }
+      if (isNaN(price) || price <= 0) {
+        showToast('❌ Please enter a suggested delivery price.');
+        return;
+      }
+
+      if (!currentUser) {
+        showToast('❌ You must be logged in to post a cargo offer.');
+        return;
+      }
+
+      if (useFirebase) {
+        try {
+          const spinnerModal = document.getElementById('centered-spinner-modal');
+          const spinnerText = document.getElementById('spinner-loading-text');
+          if (spinnerModal) { spinnerText.textContent = 'Posting cargo offer...'; spinnerModal.style.display = 'flex'; }
+
+          const offerData = {
+            driverId: currentUser.uid,
+            driverName: currentUser.firstName + ' ' + currentUser.lastName,
+            driverAvatarUrl: currentUser.avatarUrl || '',
+            driverAvatar: currentUser.avatar || currentUser.firstName.charAt(0),
+            driverRating: 0,
+            driverReviews: 0,
+            driverVerified: true,
+            from: pickup,
+            to: dropoff,
+            fromCoords: window._cargoOfferFromCoords || null,
+            toCoords: window._cargoOfferToCoords || null,
+            date,
+            time: time || '',
+            spaceSize,
+            maxWeightPerPkg: maxWeight,
+            cargoTypes,
+            fragilePolicy: fragile === 'yes' ? 'fragile_ok' : 'non_fragile_only',
+            price,
+            notes: instructions,
+            capacityPackages: 3,
+            status: 'active',
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          };
+
+          const docRef = await db.collection('cargo_offers').add(offerData);
+
+          // Optimistic local update so card is instantly searchable
+          const localOffer = { id: docRef.id, ...offerData };
+          if (typeof cargoOffersList !== 'undefined' && !cargoOffersList.some(o => o.id === docRef.id)) {
+            cargoOffersList.unshift(localOffer);
+          }
+
+          if (spinnerModal) spinnerModal.style.display = 'none';
+          showToast('✅ Cargo offer posted! Shippers can now find your trip.');
+
+          // Reset form
+          document.getElementById('cargo-offer-from-input').value = '';
+          document.getElementById('cargo-offer-to-input').value = '';
+          document.getElementById('cargo-offer-date-input').value = '';
+          document.getElementById('cargo-offer-time-input').value = '';
+          document.getElementById('cargo-offer-max-weight').value = '';
+          document.getElementById('cargo-offer-price').value = '';
+          document.getElementById('cargo-offer-instructions').value = '';
+          window._cargoOfferFromVal = '';
+          window._cargoOfferToVal = '';
+          window._cargoOfferFromCoords = null;
+          window._cargoOfferToCoords = null;
+
+          // Switch to Send Cargo view and render
+          switchCargoMode('shipper');
+          renderCargoOffersUI();
+
+        } catch (err) {
+          const spinnerModal = document.getElementById('centered-spinner-modal');
+          if (spinnerModal) spinnerModal.style.display = 'none';
+          console.error('postCargoOffer error:', err);
+          showToast('❌ Failed to post offer. Please try again.');
+        }
+      } else {
+        // Offline / session mode — push directly to cargoOffersList
+        const driverName = (currentUser ? ((currentUser.firstName || '') + ' ' + (currentUser.lastName || '')) : '').trim() || 'Demo Driver';
+        const newOffer = {
+          id: 'mock_co_' + Date.now(),
+          driverId: (currentUser && currentUser.uid) || 'demo_driver',
+          driverName: driverName,
+          driverAvatarUrl: (currentUser && currentUser.avatarUrl) || '',
+          driverRating: 0,
+          driverReviews: 0,
+          driverVerified: true,
+          from: pickup,
+          to: dropoff,
+          date,
+          time: time || '',
+          spaceSize,
+          maxWeightPerPkg: maxWeight,
+          cargoTypes,
+          fragilePolicy: fragile === 'yes' ? 'fragile_ok' : 'non_fragile_only',
+          price,
+          notes: instructions,
+          capacityPackages: 3,
+          status: 'active'
+        };
+        if (typeof cargoOffersList !== 'undefined') {
+          cargoOffersList.unshift(newOffer);
+        }
+
+
+        // Reset form
+        document.getElementById('cargo-offer-from-input').value = '';
+        document.getElementById('cargo-offer-to-input').value = '';
+        document.getElementById('cargo-offer-date-input').value = '';
+        document.getElementById('cargo-offer-time-input').value = '';
+        document.getElementById('cargo-offer-max-weight').value = '';
+        document.getElementById('cargo-offer-price').value = '';
+        document.getElementById('cargo-offer-instructions').value = '';
+        window._cargoOfferFromVal = '';
+        window._cargoOfferToVal = '';
+
+        showToast('✅ Cargo offer posted! Shippers can now find your trip.');
+
+        // Switch to Send Cargo view and render
+        switchCargoMode('shipper');
+        renderCargoOffersUI();
+      }
+    };
   })();
+
+
+
 
 </script>
 
